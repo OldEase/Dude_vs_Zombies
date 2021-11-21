@@ -18,10 +18,10 @@ time = 0
 
 while (not finished) and (time < 500): # основной цикл программы
 	clock.tick(FPS)
-	F.move_object(dude)
+	dude = F.move_object(dude)
 	F.draw_object(dude)
 	for event in pygame.event.get(): # блок обработки выполненных игроком действий
-		F.handle_events(event, finished)
+		finished = F.handle_events(event, finished)
 	dude.handle_pressing_keys(v)
 	time += 1
 	pygame.display.update()

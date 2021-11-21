@@ -17,6 +17,9 @@ class Dude():
         button_down_check = pygame.key.get_pressed()[pygame.K_DOWN]
         self.dx = v * (button_left_check + button_right_check)
 
+        if (self.x <= 0) and (self.dx < 0) or (self.x >= 800) and (self.dx > 0):
+            self.dx = 0
+
         if self.y >= 300:
             self.dy = - button_up_check * v
         elif self.y <= 200:
