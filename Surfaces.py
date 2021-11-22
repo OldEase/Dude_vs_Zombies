@@ -9,5 +9,5 @@ draw.polygon(surface_of_dude, G.RED, [(15, 25), (85, 25), (85, 55), (15, 55), (1
                                        (0, 30), (15, 30)])
 draw.rect(surface_of_dude, G.LIGHT_YELLOW, (30, 5, 40, 20))
 draw.rect(surface_of_dude, G.BLUE, (35, 10, 10, 5))
-draw.rect(surface_of_dude, G.BLUE, (55, 10, 10, 5))
+draw.rect(surface_of_dude, G.BLUE, (55, 10, 10, 5))#
 

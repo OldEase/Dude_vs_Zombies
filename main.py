@@ -7,7 +7,7 @@ import Global_variable as G
 v = 5
 pygame.init()
 
-FPS = 30
+FPS = 30 #число кадров в секунду
 
 dude = C.Dude(400, 350, 0, 0, S.surface_of_dude)
 
