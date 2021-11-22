@@ -9,14 +9,14 @@ pygame.init()
 
 FPS = 30
 
-dude = C.Dude(400, 300, 0, 0, S.surface_of_dude)
+dude = C.Dude(400, 350, 0, 0, S.surface_of_dude)
 
 pygame.display.update()
 clock = pygame.time.Clock()
 finished = False
 time = 0
 
-while (not finished) and (time < 500): # основной цикл программы
+while (not finished) and (time < 1000): # основной цикл программы
 	clock.tick(FPS)
 	dude = F.move_object(dude)
 	F.draw_object(dude)

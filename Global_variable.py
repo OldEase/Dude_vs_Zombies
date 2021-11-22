@@ -4,6 +4,7 @@ screen = pygame.display.set_mode((1000, 600))
 RED = (255, 0, 0) # блок задания цветовой палитры
 BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
+LIGHT_YELLOW = (200, 200, 0)
 GREEN = (0, 255, 0)
 MAGENTA = (255, 0, 255)
 CYAN = (0, 255, 255)
