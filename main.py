@@ -4,25 +4,24 @@ import Classes as C
 import Functions as F
 import Global_variable as G
 
-v = 5
 pygame.init()
 
-FPS = 30 #число кадров в секунду
+FPS = 30  # число кадров в секунду
 
-dude = C.Dude(400, 350, 0, 0, S.surface_of_dude)
+dude = C.Dude(400, 350, 0, 0, 5, 10, 1, 0, 3, 0, S.surface_of_dude)
 
 pygame.display.update()
 clock = pygame.time.Clock()
 finished = False
 time = 0
 
-while (not finished) and (time < 1000): # основной цикл программы
+while (not finished) and (time < 1000):  # основной цикл программы
 	clock.tick(FPS)
 	dude = F.move_object(dude)
 	F.draw_object(dude)
-	for event in pygame.event.get(): # блок обработки выполненных игроком действий
+	for event in pygame.event.get():  # блок обработки выполненных игроком действий
 		finished = F.handle_events(event, finished)
-	dude.handle_pressing_keys(v)
+	dude.handle_pressing_keys(time, G.g)
 	time += 1
 	pygame.display.update()
 	G.screen.fill(G.BLACK)
