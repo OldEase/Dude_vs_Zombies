@@ -6,7 +6,7 @@ import Global_variable as G
 import Zombies_class as Z
 
 pygame.init()
-
+screen = pygame.display.set_mode((1200, 700))
 FPS = 30  # число кадров в секунду
 
 dude = C.Dude(400, 350, 0, 0, 10, 10, 1, 0, 100, 0, S.surface_of_dude)
