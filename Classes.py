@@ -36,8 +36,10 @@ class Dude():
         button_down_check = pygame.key.get_pressed()[pygame.K_DOWN]
 
         # обработка движения по горизонтальной оси
-        if time % (16 - self.a) == 0:
+        if time % (2 - self.a) == 0:
             self.dx += button_left_check + button_right_check
+        if button_right_check == 0 and button_left_check == 0 and self.dx != 0:
+            self.dx = 0
 
         if self.dx > self.v:  # скорость не должна превышать по  модудю значения v
             self.dx = self.v
