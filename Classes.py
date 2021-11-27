@@ -29,11 +29,11 @@ class Dude():
         v - максимальная скорость, а - ускорение по горизонтальной оси,
         g - по вертикальной
         '''
+        # считываем данные о том, какие клавиши в данный момент зажаты
         button_left_check = - pygame.key.get_pressed()[pygame.K_LEFT]
         button_right_check = pygame.key.get_pressed()[pygame.K_RIGHT]
         button_up_check = - pygame.key.get_pressed()[pygame.K_UP]
         button_down_check = pygame.key.get_pressed()[pygame.K_DOWN]
-        # считываем данные о том, какие клавиши в данный момент зажаты
 
         # обработка движения по горизонтальной оси
         if time % (16 - self.a) == 0:

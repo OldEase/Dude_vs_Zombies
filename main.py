@@ -4,6 +4,7 @@ import Classes as C
 import Functions as F
 import Global_variable as G
 
+
 pygame.init()
 
 FPS = 30  # число кадров в секунду
