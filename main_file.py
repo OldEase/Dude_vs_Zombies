@@ -9,6 +9,10 @@ pygame.init()
 screen = pygame.display.set_mode((1200, 700))
 FPS = 144  # число кадров в секунду
 
+pygame.mixer.music.load('ost.mp3')
+pygame.mixer.music.set_volume(1)
+pygame.mixer.music.play()
+
 dude = C.Dude(400, 350, 0, 0, 10/FPS*30, 5, 1, 0, 100, 0, S.surface_of_dude_left)
 zombie = Z.Zombie(100, 350, 3/FPS*30, 10, 100, 10, 1, 1, S.surface_of_zombie_right)
 pygame.display.update()
