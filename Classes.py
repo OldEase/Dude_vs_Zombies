@@ -1,6 +1,7 @@
 import pygame
 
-class Dude():
+
+class Dude:
     def __init__(self, x, y, dx, dy, v, power_of_jump, a, skills, lives, money, image):
         '''
         задаем начальные параметры элемента класса:
@@ -56,7 +57,7 @@ class Dude():
             self.dy += g
 
 
-class Button_objects():
+class Button_objects:  # класс кнопок
     def __init__(self, x, y, image):
         '''
         задаем начальные параметры элемента класса:
@@ -66,3 +67,5 @@ class Button_objects():
         self.x = x
         self.y = y
         self.image = image
+
+

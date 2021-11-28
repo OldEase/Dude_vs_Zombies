@@ -20,16 +20,21 @@ def draw_object(object):
     G.screen.blit(object.image, (object.x, object.y))
 
 
-def handle_events(event, finished):
+def handle_events(event, shop_open, finished):
     """
     функция, обрабатывающая все произошедшие за временной интервал события
     """
     if event.type == pygame.QUIT:  # выхода из игры
         finished = True
-    return finished
+    if event.type == pygame.MOUSEBUTTONDOWN:  # нажатие на кнопку мыши
+        x = pygame.mouse.get_pos()[0]  # определяем координаты положения мыши
+        y = pygame.mouse.get_pos()[1]
+        if (not shop_open) and (x > 1100) and (y < 50):  # нажатие на кнопку магазина
+            shop_open = True
+    return shop_open, finished
 
 
-def create_label(label, size: int, a: int, b: int, border: bool, fill: bool, color: tuple):
+def create_label(label: str, size: int, a: int, b: int, border: bool, fill: bool, color: tuple):
     """
     создает надпись на заданной поверхности
     label - надпись
@@ -48,3 +53,6 @@ def create_label(label, size: int, a: int, b: int, border: bool, fill: bool, col
         pygame.draw.rect(surf, color, (0, 0, a, b), 0)
     surf.blit(text, (0, 0))
     return surf
+
+
+
