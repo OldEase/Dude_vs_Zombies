@@ -18,6 +18,7 @@ time = 0
 
 while (not finished) and (time < 100000):  # основной цикл программы
 	clock.tick(FPS)
+	screen.fill(G.LIGHT_YELLOW)
 	dude = F.move_object(dude)
 	zombie.follow(dude)
 	zombie = F.move_object(zombie)
