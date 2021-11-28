@@ -9,7 +9,7 @@ pygame.init()
 screen = pygame.display.set_mode((1200, 700))
 FPS = 144  # число кадров в секунду
 
-dude = C.Dude(400, 350, 0, 0, 10/FPS*30, 5, 1, 0, 100, 0, S.surface_of_dude)
+dude = C.Dude(400, 350, 0, 0, 10/FPS*30, 5, 1, 0, 100, 0, S.surface_of_dude_left)
 zombie = Z.Zombie(100, 350, 3/FPS*30, 10, 100, 10, 1, 1, S.surface_of_zombie)
 pygame.display.update()
 clock = pygame.time.Clock()
@@ -27,6 +27,11 @@ while (not finished) and (time < 100000):  # основной цикл прог�
 	for event in pygame.event.get():  # блок обработки выполненных игроком действий
 		finished = F.handle_events(event, finished)
 	dude.handle_pressing_keys(time, G.g/FPS*30)
+	pos = pygame.mouse.get_pos()
+	if dude.x < pos[0]:
+		dude.image = S.surface_of_dude_right
+	else:
+		dude.image = S.surface_of_dude_left
 	time += 1
 	pygame.display.update()
 	G.screen.fill(G.BLACK)
