@@ -34,12 +34,35 @@ draw.rect(surface_of_dude_right, G.BLACK, (4, 40, 4, 12))#л нога
 draw.rect(surface_of_dude_right, G.BLACK, (16, 40, 4, 12))#п нога
 surface_of_dude_right.set_colorkey(G.WHITE)
 
-surface_of_zombie = pygame.Surface((100, 100), pygame.SRCALPHA)
-draw.polygon(surface_of_zombie, G.BLUE, [(8, 22), (32, 22), (32, 28), (30, 28), (30, 40), (22, 40), (22, 28), (18, 28), \
-                                       (18, 40), (10, 40), (10, 28), (8, 28)])
-draw.polygon(surface_of_zombie, G.RED, [(6, 10), (34, 10), (34, 22), (6, 22), (6, 16), (4, 16), (4, 20), (0, 20), \
-                                       (0, 12), (6, 12)])
-draw.rect(surface_of_zombie, G.GRAY, (12, 2, 16, 8))
-draw.rect(surface_of_zombie, G.BLUE, (14, 4, 4, 2))
-draw.rect(surface_of_zombie, G.BLUE, (22, 4, 4, 2))#
+surface_of_zombie_right = pygame.Surface((24, 52), pygame.SRCALPHA) #поверхность, на которой надо бы нарисовать человечка, а не просто круг...
+surface_of_zombie_right.fill(G.WHITE)
+draw.polygon(surface_of_zombie_right, G.BLACK, [(0, 0), (24, 0), (24, 40), (0, 40)])#контур
+draw.polygon(surface_of_zombie_right, (41, 207, 99), [(2, 2), (22, 2), (22, 20), (2, 20)])#лицо
+draw.rect(surface_of_zombie_right, (61, 156, 201), (6, 4, 16, 4))#лоб
+draw.rect(surface_of_zombie_right, (31, 128, 173), (6, 10, 16, 8))#щеки
+draw.rect(surface_of_zombie_right, (31, 128, 173), (8, 10, 12, 6))#под глазами
+draw.rect(surface_of_zombie_right, G.BLACK, (8, 12, 4, 4))#л глаз
+draw.rect(surface_of_zombie_right, G.BLACK, (18, 12, 4, 4))#пр глаз
+draw.rect(surface_of_zombie_right, (31, 128, 173), (2, 20, 20, 2))#подбородок
+draw.rect(surface_of_zombie_right, (6, 90, 163), (2, 22, 20, 16))#одежда
+draw.rect(surface_of_zombie_right, (37, 60, 190), (8, 26, 12, 12))#одежда тень
+draw.rect(surface_of_zombie_right, G.BLACK, (4, 40, 4, 12))#л нога
+draw.rect(surface_of_zombie_right, G.BLACK, (16, 40, 4, 12))#п нога
+surface_of_zombie_right.set_colorkey(G.WHITE)
+
+surface_of_zombie_left = pygame.Surface((24, 52), pygame.SRCALPHA) #поверхность, на которой надо бы нарисовать человечка, а не просто круг...
+surface_of_zombie_left.fill(G.WHITE)
+draw.polygon(surface_of_zombie_left, G.BLACK, [(0, 0), (24, 0), (24, 40), (0, 40)])#контур
+draw.polygon(surface_of_zombie_left, (41, 207, 99), [(2, 2), (22, 2), (22, 20), (2, 20)])#лицо
+draw.rect(surface_of_zombie_left, (61, 156, 201), (4, 4, 16, 4))#лоб
+draw.rect(surface_of_zombie_left, (31, 128, 173), (4, 10, 16, 8))#щеки
+draw.rect(surface_of_zombie_left, (31, 128, 173), (6, 10, 12, 6))#под глазами
+draw.rect(surface_of_zombie_left, G.BLACK, (4, 12, 4, 4))#л глаз
+draw.rect(surface_of_zombie_left, G.BLACK, (14, 12, 4, 4))#пр глаз
+draw.rect(surface_of_zombie_left, (31, 128, 173), (2, 20, 20, 2))#подбородок
+draw.rect(surface_of_zombie_left, (6, 90, 163), (2, 22, 20, 16))#одежда
+draw.rect(surface_of_zombie_left, (37, 60, 190), (6, 26, 12, 12))#одежда тень
+draw.rect(surface_of_zombie_left, G.BLACK, (4, 40, 4, 12))#л нога
+draw.rect(surface_of_zombie_left, G.BLACK, (16, 40, 4, 12))#п нога
+surface_of_zombie_left.set_colorkey(G.WHITE)
 

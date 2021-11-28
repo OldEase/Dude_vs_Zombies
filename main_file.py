@@ -10,7 +10,7 @@ screen = pygame.display.set_mode((1200, 700))
 FPS = 144  # число кадров в секунду
 
 dude = C.Dude(400, 350, 0, 0, 10/FPS*30, 5, 1, 0, 100, 0, S.surface_of_dude_left)
-zombie = Z.Zombie(100, 350, 3/FPS*30, 10, 100, 10, 1, 1, S.surface_of_zombie)
+zombie = Z.Zombie(100, 350, 3/FPS*30, 10, 100, 10, 1, 1, S.surface_of_zombie_right)
 pygame.display.update()
 clock = pygame.time.Clock()
 finished = False
