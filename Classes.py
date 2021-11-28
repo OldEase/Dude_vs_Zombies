@@ -36,9 +36,9 @@ class Dude():
         button_down_check = pygame.key.get_pressed()[pygame.K_DOWN]
 
         # обработка движения по горизонтальной оси
-        if time % (2 - self.a) == 0:
+        if time % (64 - self.a) == 0:
             self.dx += button_left_check + button_right_check
-        if button_right_check == 0 and button_left_check == 0 and self.dx != 0:
+        if (button_right_check + button_left_check == 0) and (self.dx != 0):
             self.dx = 0
 
         if self.dx > self.v:  # скорость не должна превышать по  модудю значения v
@@ -54,3 +54,15 @@ class Dude():
             self.dy = button_up_check * self.power_of_jump
         else:
             self.dy += g
+
+
+class Button_objects():
+    def __init__(self, x, y, image):
+        '''
+        задаем начальные параметры элемента класса:
+        x, y - координаты, отвечающие за местоположение кнопки;
+        image - поверхность, на которой рисуется кнопка
+        '''
+        self.x = x
+        self.y = y
+        self.image = image

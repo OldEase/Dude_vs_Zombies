@@ -1,5 +1,5 @@
 import pygame
-screen = pygame.display.set_mode((1000, 600))
+screen = pygame.display.set_mode((1200, 700))
 
 g = 1
 

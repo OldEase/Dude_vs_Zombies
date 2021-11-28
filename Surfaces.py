@@ -1,6 +1,9 @@
 import pygame
 from pygame import draw as draw
 import Global_variable as G
+from Functions import create_label
+
+shop_button = create_label('shop', 10, 100, 50, False, True, G.GREEN)
 
 surface_of_dude_left = pygame.Surface((24, 52), pygame.SRCALPHA) #поверхность, на которой надо бы нарисовать человечка, а не просто круг...
 surface_of_dude_left.fill(G.WHITE)
@@ -18,7 +21,7 @@ draw.rect(surface_of_dude_left, G.BLACK, (4, 40, 4, 12))#л нога
 draw.rect(surface_of_dude_left, G.BLACK, (16, 40, 4, 12))#п нога
 surface_of_dude_left.set_colorkey(G.WHITE)
 
-surface_of_dude_right = pygame.Surface((24, 52), pygame.SRCALPHA) #поверхность, на которой надо бы нарисовать человечка, а не просто круг...
+surface_of_dude_right = pygame.Surface((24, 52), pygame.SRCALPHA)  # поверхность, на которой нарисован человечек
 surface_of_dude_right.fill(G.WHITE)
 draw.polygon(surface_of_dude_right, G.BLACK, [(0, 0), (24, 0), (24, 40), (0, 40)])#контур
 draw.polygon(surface_of_dude_right, (255, 187, 159), [(2, 2), (22, 2), (22, 20), (2, 20)])#лицо
