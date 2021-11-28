@@ -46,7 +46,7 @@ class Dude():
         if self.dx < - self.v:
             self.dx = - self.v
 
-        if (self.x <= 0) and (self.dx < 0) or (self.x >= 800) and (self.dx > 0):
+        if (self.x <= 0) and (self.dx < 0) or (self.x >= 1200) and (self.dx > 0):
             self.dx = 0  # человечек не может выбежать за пределы экрана
 
         # обработка движения по вертикальной оси
