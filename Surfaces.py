@@ -5,8 +5,9 @@ from Functions import create_label
 
 shop_button = create_label('shop', 60, 100, 50, False, True, G.GREEN)  # кнопка доступа к магазину
 
-shop_window = pygame.Surface((400, 300), pygame.SRCALPHA)
-image_of_gun = pygame.Surface((100, 100), pygame.SRCALPHA)  # (вспомогательная штука; жду реальных озображений оружия)
+shop_window = pygame.Surface((1000, 500), pygame.SRCALPHA)
+shop_window.fill(G.BLACK)
+image_of_gun = pygame.Surface((250, 150), pygame.SRCALPHA)  # (вспомогательная штука; жду реальных озображений оружия)
 
 
 surface_of_dude_left = pygame.Surface((24, 52), pygame.SRCALPHA) #поверхность, на которой нарисован человечек

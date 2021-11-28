@@ -2,7 +2,7 @@ import pygame
 
 
 class Dude:
-    def __init__(self, x, y, dx, dy, v, power_of_jump, a, skills, lives, money, image):
+    def __init__(self, x, y, dx, dy, v, power_of_jump, a, skills, lives, guns, money, image):
         '''
         задаем начальные параметры элемента класса:
         x, y - координаты человечка;
@@ -10,6 +10,7 @@ class Dude:
         v - максимальная горизонтальная скорость;
         power_of_jump - сила прыжка; a - ускорение;
         skills - очки опыта; lives - здоровье (lives = 0 означает смерть героя);
+        guns - список имеющегося у игрока оружия;
         money - кол-во монет; image - поверхность, на которой рисуется человечек
         '''
         self.x = x
@@ -21,6 +22,7 @@ class Dude:
         self.a = a
         self.skills = skills
         self.lives = lives
+        self.guns = guns
         self.money = money
         self.image = image
 
