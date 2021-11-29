@@ -5,6 +5,7 @@ import Functions as F
 import Global_variable as G
 import Zombies_class as Z
 import Starting_functions
+import Gun_class as Gn
 
 pygame.init()
 FPS = 144  # число кадров в секунду
