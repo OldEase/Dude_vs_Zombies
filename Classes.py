@@ -39,7 +39,7 @@ class Dude:
         button_down_check = pygame.key.get_pressed()[pygame.K_DOWN]
 
         # обработка движения по горизонтальной оси
-        if time % (64 - self.a) == 0:
+        if time % (16 - self.a) == 0:
             self.dx += button_left_check + button_right_check
         if (button_right_check + button_left_check == 0) and (self.dx != 0):
             self.dx = 0
