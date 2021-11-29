@@ -1,5 +1,6 @@
 import Surfaces as S
 
+
 class Zombie():
     def __init__(self, x_coord=0, y_coord=0, dx_max=4, dy_max=10,
                  lives=100, damage=10, exp=1, money=1, image=S.surface_of_zombie_right):
@@ -22,6 +23,7 @@ class Zombie():
         if dude.x > self.x:
             self.dx = abs(self.dx_max)
             self.image = S.surface_of_zombie_right
+
 
 class Rabbit():
     def __init__(self, x_coord=0, y_coord=0, dx_max=4, dy_max=10,
