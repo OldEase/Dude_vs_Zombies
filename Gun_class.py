@@ -1,14 +1,13 @@
 import math
 from random import *
 import pygame
-from pygame.draw import *
 import numpy as np
 
 FPS = 30
 screen = pygame.display.set_mode((600, 600))
 sr = pygame.Surface((180, 80))
 angle0 = 0
-
+import Surfaces as S
 RED = 0xFF0000
 BLUE = 0x0000FF
 YELLOW = 0xFFC91F
@@ -22,14 +21,15 @@ GAME_COLORS = [BLUE, YELLOW, GREEN, MAGENTA, CYAN]
 
 
 class gun():
-    def __init__(self, sr):
+    def __init__(self, image):
         self.x = 130
         self.y = 35
         self.color = BLACK
+        self.image = image
 
     def draw(self):
-        rect(sr, BLUE, (self.x, self.y, 50, 10))
-        rect(sr, BLUE, (self.x, self.y + 10, 10, 15))
+        pygame.draw.rect(sr, BLUE, (self.x, self.y, 50, 10))
+        pygame.draw.rect(sr, BLUE, (self.x, self.y + 10, 10, 15))
 
 def muv(sr, pos, coord):
     x1, y1 = pos[0], pos[1]
@@ -40,7 +40,7 @@ def muv(sr, pos, coord):
 
 class bullet:
     def __init__(self, pos, coord):
-        h = 80
+        h = 8
         R = ((coord[0] - pos[0])**2 + (coord[1] - pos[1])**2)**0.5
         self.x = coord[0] + h * -(coord[0] - pos[0]) / R
         self.y = coord[1] + h * -(coord[1] - pos[1]) / R
@@ -50,9 +50,9 @@ class bullet:
         self.y1 = coord[1] + h * - \
             (coord[1] - pos[1]) / R - (coord[1] - pos[1]) / self.h
 
-        polygon(screen, GREY, ((self.x, self.y - 1), (self.x1, self.y1 - 1),
+        pygame.draw.polygon(screen, GREY, ((self.x, self.y - 1), (self.x1, self.y1 - 1),
                 (self.x1, self.y1 + 1), (self.x, self.y + 1)), 0)
-        self.angle = 5 * randint(-100, 100) / 100
+        self.angle = 3 * randint(-100, 100) / 100
 
         self.check = True
 
@@ -66,7 +66,7 @@ class bullet:
         self.y += self.Vy
         self.x1 += self.Vx
         self.y1 += self.Vy
-        polygon(screen, GREY, ((self.x, self.y - 1), (self.x1, self.y1 - 1),
+        pygame.draw.polygon(screen, GREY, ((self.x, self.y - 1), (self.x1, self.y1 - 1),
                 (self.x1, self.y1 + 1), (self.x, self.y + 1)), 0)
 
 
@@ -74,7 +74,7 @@ pygame.display.update()
 clock = pygame.time.Clock()
 finished=False
 
-Gun=gun(sr)
+Gun = gun(S.surface_of_pistol)
 Gun.draw()
 coord = [200, 405]
 ch=False
@@ -90,7 +90,7 @@ while not finished:
             ball = bullet(pos, coord)
             ch = True        
     pos = pygame.mouse.get_pos()
-    sr1, coord_change, angel = muv(sr, pos, coord)
+    sr1, coord_change, angel = muv(S.surface_of_pistol, pos, coord)
     if ch:
         ball.dvizh((coord[0] - coord_change[0] / 2,
                    coord[1] - coord_change[1] / 2))
