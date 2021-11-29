@@ -19,9 +19,9 @@ button_shop = C.Button_objects(1100, 0, S.shop_button)
 zombie = Z.Zombie(100, 350, 3/FPS*30, 10, 100, 10, 1, 1, S.surface_of_zombie_right)
 rabbit = Z.Rabbit(200, 388, 5/FPS*30, 10, 100, 10, 1, 1, S.surface_of_rabbit_left)
 shop = Starting_functions.create_shop()
-#Gun = Gn.gun(S.surface_of_pistol)
-coord = [550, 350]
-#pygame.display.update()
+Gun = Gn.gun(S.surface_of_pistol)
+coord = [560, 370]
+pygame.display.update()
 clock = pygame.time.Clock()
 finished = False
 time = 0
@@ -42,9 +42,9 @@ while (not finished) and (time < 100000):  # основной цикл прог�
 		shop['open'], finished = F.handle_events(event, shop['open'],  finished)
 	dude.handle_pressing_keys(time, G.g/FPS*30)
 	pos = pygame.mouse.get_pos()
-	'''sr1, coord_change, angel = Gn.muv(S.surface_of_pistol, pos, coord)
-	screen.blit(sr1, (coord[0] - coord_change[0] /
-	            2, coord[1] - coord_change[1] / 2))'''
+	sr1, coord_change, angel = Gn.muv(S.surface_of_pistol, pos, coord)
+	sr1.set_colorkey(G.WHITE)
+	G.screen.blit(sr1, (coord[0] - coord_change[0] / 2, coord[1] - coord_change[1] / 2))
 	if dude.x < pos[0]:
 		dude.image = S.surface_of_dude_right
 	else:

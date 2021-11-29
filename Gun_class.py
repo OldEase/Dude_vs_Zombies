@@ -2,13 +2,14 @@ import math
 from random import *
 import pygame
 import numpy as np
-
+import Surfaces as S
+import Global_variable as G
+'''
 FPS = 30
-screen = pygame.display.set_mode((600, 600))
+screen = pygame.display.set_mode((600, 600))'''
 sr = pygame.Surface((180, 80))
 angle0 = 0
-import Surfaces as S
-RED = 0xFF0000
+'''RED = 0xFF0000
 BLUE = 0x0000FF
 YELLOW = 0xFFC91F
 GREEN = 0x00FF00
@@ -18,18 +19,18 @@ BLACK = (0, 0, 1)
 WHITE = 0xFFFFFF
 GREY = 0x7D7D7D
 GAME_COLORS = [BLUE, YELLOW, GREEN, MAGENTA, CYAN]
-
+'''
 
 class gun():
     def __init__(self, image):
         self.x = 130
         self.y = 35
-        self.color = BLACK
+        self.color = G.BLACK
         self.image = image
 
     def draw(self):
-        pygame.draw.rect(sr, BLUE, (self.x, self.y, 50, 10))
-        pygame.draw.rect(sr, BLUE, (self.x, self.y + 10, 10, 15))
+        pygame.draw.rect(sr, G.BLUE, (self.x, self.y, 50, 10))
+        pygame.draw.rect(sr, G.BLUE, (self.x, self.y + 10, 10, 15))
 
 def muv(sr, pos, coord):
     x1, y1 = pos[0], pos[1]
@@ -50,7 +51,7 @@ class bullet:
         self.y1 = coord[1] + h * - \
             (coord[1] - pos[1]) / R - (coord[1] - pos[1]) / self.h
 
-        pygame.draw.polygon(screen, GREY, ((self.x, self.y - 1), (self.x1, self.y1 - 1),
+        pygame.draw.polygon(screen, G.GREY, ((self.x, self.y - 1), (self.x1, self.y1 - 1),
                 (self.x1, self.y1 + 1), (self.x, self.y + 1)), 0)
         self.angle = 3 * randint(-100, 100) / 100
 
@@ -66,7 +67,7 @@ class bullet:
         self.y += self.Vy
         self.x1 += self.Vx
         self.y1 += self.Vy
-        pygame.draw.polygon(screen, GREY, ((self.x, self.y - 1), (self.x1, self.y1 - 1),
+        pygame.draw.polygon(screen, G.GREY, ((self.x, self.y - 1), (self.x1, self.y1 - 1),
                 (self.x1, self.y1 + 1), (self.x, self.y + 1)), 0)
 
 
@@ -78,7 +79,7 @@ Gun = gun(S.surface_of_pistol)
 Gun.draw()
 coord = [200, 405]
 ch=False
-
+'''
 while not finished:
     clock.tick(FPS)
     screen.fill(WHITE)
@@ -97,4 +98,4 @@ while not finished:
 
     screen.blit(sr1, (coord[0] - coord_change[0]/ 2, coord[1] - coord_change[1]/ 2 ))
     pygame.display.update()
-pygame.quit()
+pygame.quit()'''
