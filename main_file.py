@@ -16,7 +16,7 @@ pygame.mixer.music.play()
 dude = C.Dude(550, 350, 0, 0, 10/FPS * 30, 5, 1, 0, 100, [0] * 10, 0, S.surface_of_dude_left)
 button_shop = C.Button_objects(1100, 0, S.shop_button)
 zombie = Z.Zombie(100, 350, 3/FPS*30, 10, 100, 10, 1, 1, S.surface_of_zombie_right)
-rabbit = Z.Rabbit(200, 388, 3/FPS*30, 10, 100, 10, 1, 1, S.surface_of_rabbit_left)
+rabbit = Z.Rabbit(200, 388, 5/FPS*30, 10, 100, 10, 1, 1, S.surface_of_rabbit_left)
 shop = Starting_functions.create_shop()
 
 pygame.display.update()
