@@ -74,3 +74,14 @@ draw.rect(surface_of_zombie_left, G.BLACK, (4, 40, 4, 12))#л нога
 draw.rect(surface_of_zombie_left, G.BLACK, (16, 40, 4, 12))#п нога
 surface_of_zombie_left.set_colorkey(G.WHITE)
 
+surface_of_rabbit_left = pygame.Surface((19, 15), pygame.SRCALPHA)
+surface_of_rabbit_left.fill(G.WHITE)
+draw.polygon(surface_of_rabbit_left, G.BLACK, [(0, 0), (10, 0), (10, 6), (18, 6), (18, 14), (0, 14)])
+draw.polygon(surface_of_rabbit_left, (44, 232, 244), [(2, 6), (16, 8), (16, 12), (2, 12)])
+draw.polygon(surface_of_rabbit_left, (60, 223, 196), [(2, 2), (4, 2), (4, 6), (6, 6), (6, 2), (8, 2), (8, 8), (2, 8)])
+draw.polygon(surface_of_rabbit_left, G.BLACK, [(2, 8), (4, 8), (4, 10), (2, 10)])
+draw.polygon(surface_of_rabbit_left, G.BLACK, [(6, 8), (8, 8), (8, 10), (6, 10)])
+surface_of_rabbit_left.set_colorkey(G.WHITE)
+
+surface_of_rabbit_right = pygame.transform.flip(surface_of_rabbit_left, 1, 0)
+surface_of_rabbit_right.set_colorkey(G.WHITE)
