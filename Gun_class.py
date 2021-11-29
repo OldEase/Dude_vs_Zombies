@@ -23,13 +23,13 @@ GAME_COLORS = [BLUE, YELLOW, GREEN, MAGENTA, CYAN]
 
 class gun():
     def __init__(self, sr):
-        self.x = 120
+        self.x = 130
         self.y = 35
         self.color = BLACK
 
     def draw(self):
-        rect(sr, BLUE, (self.x + 10, self.y + 10, 10, 15))
-        rect(sr, BLUE, (self.x + 10, self.y, 50, 10))
+        rect(sr, BLUE, (self.x, self.y, 50, 10))
+        rect(sr, BLUE, (self.x, self.y + 10, 10, 15))
 
 def muv(sr, pos, coord):
     x1, y1 = pos[0], pos[1]
