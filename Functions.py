@@ -4,11 +4,11 @@ import Global_variable as G
 pygame.init()
 
 
-def move_object(object):
+def move_object(object, dude):
     """
     универсальная функция, отвечающая за движение любых объектов
     """
-    object.x += object.dx
+    object.x += object.dx - dude.dx
     object.y += object.dy
     return object
 
