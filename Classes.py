@@ -70,4 +70,11 @@ class Button_objects:  # класс кнопок
         self.y = y
         self.image = image
 
+class Background:
+    def __init__(self, image):
+        self.x = -1200
+        self.y = -50
+        self.image = image
+        self.dx = 0
+        self.dy = 0
 

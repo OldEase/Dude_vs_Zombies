@@ -25,11 +25,13 @@ pygame.display.update()
 clock = pygame.time.Clock()
 finished = False
 time = 0
-
+background = C.Background(S.surface_background)
 while (not finished) and (time < 100000):  # основной цикл программы
 	clock.tick(FPS)
 	G.screen.fill(G.LIGHT_YELLOW)
 	dude = F.move_object(dude, dude)
+	background = F.move_object(background, dude)
+	F.draw_object(background)
 	for bull in G.bullets:
 		bull = F.move_object(bull, dude)
 		F.draw_object(bull)

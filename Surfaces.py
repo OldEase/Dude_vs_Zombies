@@ -92,3 +92,13 @@ surface_of_pistol.set_colorkey(G.WHITE)
 draw.polygon(surface_of_pistol, G.BLACK, [(54+25, 0), (72+25, 0), (72+25, 6), (60+25, 6), (60+25, 12), (54+25, 12)])
 
 surface_of_pistol_up = pygame.transform.flip(surface_of_pistol, 0, 1)
+
+surface_background = pygame.Surface((3600, 800), pygame.SRCALPHA)
+surface_background.fill(G.BLACK)
+for k in range(6):
+    grass = [(0, 800)]
+    for i in range(1000 - k * 150):
+        grass.append((i * 3600/(1000 - k * 150) + 1800/(1000 - k * 150), 150 + k*100))
+        grass.append((i * 3600/(1000 - k * 150) + 3600/(1000 - k * 150), 140 + k*100))
+    grass.append((3600, 800))
+    draw.polygon(surface_background, (5, 32 + k * 20, 53), grass)
