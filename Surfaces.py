@@ -90,3 +90,5 @@ surface_of_pistol = pygame.Surface((75+25, 15), pygame.SRCALPHA)
 surface_of_pistol.fill(G.WHITE)
 surface_of_pistol.set_colorkey(G.WHITE)
 draw.polygon(surface_of_pistol, G.BLACK, [(54+25, 0), (72+25, 0), (72+25, 6), (60+25, 6), (60+25, 12), (54+25, 12)])
+
+surface_of_pistol_up = pygame.transform.flip(surface_of_pistol, 0, 1)

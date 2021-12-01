@@ -4,22 +4,9 @@ import pygame
 import numpy as np
 import Surfaces as S
 import Global_variable as G
-'''
-FPS = 30
-screen = pygame.display.set_mode((600, 600))'''
+
 sr = pygame.Surface((180, 80))
-angle0 = 0
-'''RED = 0xFF0000
-BLUE = 0x0000FF
-YELLOW = 0xFFC91F
-GREEN = 0x00FF00
-MAGENTA = 0xFF03B8
-CYAN = 0x00FFCC
-BLACK = (0, 0, 1)
-WHITE = 0xFFFFFF
-GREY = 0x7D7D7D
-GAME_COLORS = [BLUE, YELLOW, GREEN, MAGENTA, CYAN]
-'''
+
 
 class gun():
     def __init__(self, image):
@@ -50,23 +37,24 @@ class bullet:
             (coord[0] - pos[0]) / R - (coord[0] - pos[0]) / self.h
         self.y1 = coord[1] + h * - \
             (coord[1] - pos[1]) / R - (coord[1] - pos[1]) / self.h
-
-        pygame.draw.polygon(screen, G.GREY, ((self.x, self.y - 1), (self.x1, self.y1 - 1),
+        screed = pygame.Surface((10, 10))
+        pygame.draw.polygon(screed, G.GRAY, ((self.x, self.y - 1), (self.x1, self.y1 - 1),
                 (self.x1, self.y1 + 1), (self.x, self.y + 1)), 0)
         self.angle = 3 * randint(-100, 100) / 100
 
         self.check = True
 
         self.V = 10
-        self.Vx = self.V * -(coord[0] - pos[0]) / R
-        self.Vy = self.V * -(coord[1] - pos[1]) / R + self.angle
+        self.dx = self.V * -(coord[0] - pos[0]) / R
+        self.dy = self.V * -(coord[1] - pos[1]) / R + self.angle
+        self.image = screed
 
     def dvizh(self, coord_kako):
 
-        self.x += self.Vx
-        self.y += self.Vy
-        self.x1 += self.Vx
-        self.y1 += self.Vy
+        self.x += self.dx
+        self.y += self.dy
+        self.x1 += self.dx
+        self.y1 += self.dy
         pygame.draw.polygon(screen, G.GREY, ((self.x, self.y - 1), (self.x1, self.y1 - 1),
                 (self.x1, self.y1 + 1), (self.x, self.y + 1)), 0)
 
