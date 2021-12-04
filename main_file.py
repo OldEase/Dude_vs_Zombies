@@ -26,6 +26,7 @@ clock = pygame.time.Clock()
 finished = False
 time = 0
 background = C.Background(S.surface_background)
+
 while (not finished) and (time < 100000):  # основной цикл программы
 	clock.tick(FPS)
 	G.screen.fill(G.LIGHT_YELLOW)
@@ -51,7 +52,6 @@ while (not finished) and (time < 100000):  # основной цикл прог�
 			G.bullets.append(Gn.bullet(pos, (dude.x + coord_change[0] / 2, dude.y + coord_change[1] / 2)))
 	dude.handle_pressing_keys(time, G.g/FPS*30)
 
-
 	sr1.set_colorkey(G.WHITE)
 	G.screen.blit(sr1, (dude.x + 10 - coord_change[0] / 2, dude.y + 10 - coord_change[1] / 2))
 	if dude.x < pos[0]:
@@ -61,7 +61,7 @@ while (not finished) and (time < 100000):  # основной цикл прог�
 		dude.image = S.surface_of_dude_left
 		gun.image = S.surface_of_pistol_up
 	if shop['open']:
-		G.screen.blit(shop['image'], (100, 100))
+		G.screen.blit(shop['image'].image, (shop['image'].x, shop['image'].y))
 		for event in pygame.event.get():  # блок обработки выполненных игроком в магазине действий
 			C.Dude = F.shop_actions(event, shop, C.Dude)
 	time += 1
