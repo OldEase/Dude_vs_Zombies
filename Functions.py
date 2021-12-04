@@ -1,4 +1,5 @@
 import pygame
+import Classes
 
 import Global_variable as G
 
@@ -30,8 +31,8 @@ def handle_events(event, shop_open, finished):
     if event.type == pygame.MOUSEBUTTONDOWN:  # нажатие на кнопку мыши
         x = pygame.mouse.get_pos()[0]  # определяем координаты положения мыши
         y = pygame.mouse.get_pos()[1]
-        if (not shop_open) and (x > 1100) and (y < 50):  # нажатие на кнопку магазина
-            shop_open = True
+        if (x > 1100) and (y < 50):  # нажатие на кнопку магазина
+            shop_open = not shop_open
     return shop_open, finished
 
 
@@ -60,13 +61,10 @@ def shop_actions(event, shop, Dude):
     if event.type == pygame.MOUSEBUTTONDOWN:  # нажатие на кнопку мыши
         x = pygame.mouse.get_pos()[0]  # определяем координаты положения мыши
         y = pygame.mouse.get_pos()[1]
-        print(2)
         for i in range(10):
-            if i == 0:
-                print(shop['guns'][i]['image'].x, x, shop['guns'][i]['image'].y, y)
             if (shop['image'].x + shop['guns'][i]['image'].x < x < shop['image'].x + shop['guns'][i]['image'].x \
                 + 250) and (
                     shop['image'].y + shop['guns'][i]['image'].y -30 < y < shop['image'].x + shop['guns'][i] \
                         ['image'].y + 30):
-                print(2)
+                continue
     return Dude
