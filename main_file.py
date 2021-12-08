@@ -19,7 +19,7 @@ button_shop = [C.Button_objects(1100, 0, S.shop_button), C.Button_objects(1100, 
 zombie = Z.Zombie(100, 350, 3/FPS*30, 10, 100, 10, 1, 1, S.surface_of_zombie_right)
 rabbit = Z.Rabbit(200, 388, 5/FPS*30, 10, 100, 10, 1, 1, S.surface_of_rabbit_left)
 shop = Starting_functions.create_shop()
-gun = Gn.gun(S.surface_of_pistol)
+gun = Gn.gun(S.surface_of_pistol, speed=1000, damage=1, magaz=10, reload=5000, amount=1, spread=10)
 coord = [560, 370]
 pygame.display.update()
 clock = pygame.time.Clock()

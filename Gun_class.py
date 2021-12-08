@@ -9,19 +9,18 @@ sr = pygame.Surface((180, 80))
 
 
 class gun():
-    def __init__(self, image):
+    def __init__(self, image, speed=1000, damage=1, magaz=10, reload=5000, amount=5, spread=10):
         self.x = 130
         self.y = 35
-        self.speed = 1000
+        self.speed = speed
         self.shot_time = 0
-        self.damage = 1
-        self.magaz = 10
+        self.damage = damage
+        self.magaz = magaz
         self.load = self.magaz
-        self.reload = 5000
+        self.reload = reload
         self.load_time = 0
-        self.amount = 5
-        self.spread = 10
-        self.auto = True
+        self.amount = amount
+        self.spread = spread
         self.image = image
 
     def draw(self):
