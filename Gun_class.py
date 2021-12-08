@@ -12,12 +12,12 @@ class gun():
     def __init__(self, image):
         self.x = 130
         self.y = 35
-        self.speed = 0
-        self.damage = 0
-        self.magaz = 0
-        self.reload = 0
-        self.amount = 0
-        self.spread = 0
+        self.speed = 10
+        self.damage = 1
+        self.magaz = 10
+        self.reload = 5
+        self.amount = 1
+        self.spread = 10
         self.image = image
 
     def draw(self):
@@ -25,7 +25,8 @@ class gun():
         pygame.draw.rect(sr, G.BLUE, (self.x, self.y + 10, 10, 15))
 
     def shot(self, dude, pos):
-        G.bullets.append(bullet(pos, (dude.x+12, dude.y+24)))
+        G.bullets.append(bullet(pos, (dude.x + 12, dude.y + 24), self))
+        
 
 def muv(sr, pos, coord):
     x1, y1 = pos[0], pos[1]
@@ -35,7 +36,7 @@ def muv(sr, pos, coord):
     return sr1, sr1.get_size(), angle
 
 class bullet:
-    def __init__(self, pos, coord):
+    def __init__(self, pos, coord, gun):
         h = 8
         R = ((coord[0] - pos[0])**2 + (coord[1] - pos[1])**2)**0.5
         self.x = coord[0] + h * -(coord[0] - pos[0]) / R
@@ -48,7 +49,7 @@ class bullet:
         screed = pygame.Surface((10, 10))
         pygame.draw.polygon(screed, G.GRAY, ((self.x, self.y - 1), (self.x1, self.y1 - 1),
                 (self.x1, self.y1 + 1), (self.x, self.y + 1)), 0)
-        self.angle = 3 * randint(-100, 100) / 100
+        self.angle = 3 * randint(-gun.spread, gun.spread) / 100
 
         self.check = True
 
