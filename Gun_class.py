@@ -15,7 +15,9 @@ class gun():
         self.speed = 10
         self.damage = 1
         self.magaz = 10
-        self.reload = 5
+        self.load = self.magaz
+        self.reload = 5000
+        self.load_time = 0
         self.amount = 1
         self.spread = 10
         self.image = image
@@ -25,9 +27,13 @@ class gun():
         pygame.draw.rect(sr, G.BLUE, (self.x, self.y + 10, 10, 15))
 
     def shot(self, dude, pos):
-        G.bullets.append(bullet(pos, (dude.x + 12, dude.y + 24), self))
-        
-
+        if self.load == 0 and self.load_time + self.reload < pygame.time.get_ticks():
+            self.load = self.magaz
+        if self.load != 0:
+            G.bullets.append(bullet(pos, (dude.x + 12, dude.y + 24), self))
+            self.load -= 1
+            if self.load == 0:
+                self.load_time = pygame.time.get_ticks()
 def muv(sr, pos, coord):
     x1, y1 = pos[0], pos[1]
     x, y = coord[0], coord[1]
