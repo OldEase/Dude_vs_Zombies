@@ -49,10 +49,10 @@ while (not finished) and (time < 100000):  # основной цикл прог�
 
 	for event in events:  # блок обработки выполненных игроком действий
 		shop['open'], finished = F.handle_events(event, shop['open'], finished)
-		if (event.type == pygame.MOUSEBUTTONDOWN) and (not shop['open']):
-			gun.shot(dude, pos)
-	dude.handle_pressing_keys(time, G.g/FPS*30)
-
+		# if (event.type == pygame.MOUSEBUTTONDOWN) and (not shop['open']):
+			#gun.shot(dude, pos, True, False)
+	dude.handle_pressing_keys(time, G.g / FPS * 30)
+	gun.shot(dude, pos, pygame.mouse.get_pressed()[0])
 	sr1.set_colorkey(G.WHITE)
 	G.screen.blit(sr1, (dude.x + 10 - coord_change[0] / 2, dude.y + 10 - coord_change[1] / 2))
 	if dude.x < pos[0]:

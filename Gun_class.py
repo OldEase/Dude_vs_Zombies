@@ -19,19 +19,21 @@ class gun():
         self.load = self.magaz
         self.reload = 5000
         self.load_time = 0
-        self.amount = 1
+        self.amount = 5
         self.spread = 10
+        self.auto = True
         self.image = image
 
     def draw(self):
         pygame.draw.rect(sr, G.BLUE, (self.x, self.y, 50, 10))
         pygame.draw.rect(sr, G.BLUE, (self.x, self.y + 10, 10, 15))
 
-    def shot(self, dude, pos):
-        if self.load == 0 and self.load_time + self.reload < pygame.time.get_ticks():
+    def shot(self, dude, pos, check):
+        if self.load == 0 and self.load_time + self.reload < pygame.time.get_ticks() and check:
             self.load = self.magaz
-        if self.load != 0 and self.shot_time +self.speed < pygame.time.get_ticks():
-            G.bullets.append(bullet(pos, (dude.x + 12, dude.y + 24), self))
+        if self.load != 0 and self.shot_time + self.speed < pygame.time.get_ticks() and check:
+            for i in range(self.amount):
+                G.bullets.append(bullet(pos, (dude.x + 12, dude.y + 24), self))
             self.load -= 1
             self.shot_time = pygame.time.get_ticks()
             if self.load == 0:
