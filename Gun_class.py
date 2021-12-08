@@ -12,7 +12,8 @@ class gun():
     def __init__(self, image):
         self.x = 130
         self.y = 35
-        self.speed = 10
+        self.speed = 1000
+        self.shot_time = 0
         self.damage = 1
         self.magaz = 10
         self.load = self.magaz
@@ -29,11 +30,13 @@ class gun():
     def shot(self, dude, pos):
         if self.load == 0 and self.load_time + self.reload < pygame.time.get_ticks():
             self.load = self.magaz
-        if self.load != 0:
+        if self.load != 0 and self.shot_time +self.speed < pygame.time.get_ticks():
             G.bullets.append(bullet(pos, (dude.x + 12, dude.y + 24), self))
             self.load -= 1
+            self.shot_time = pygame.time.get_ticks()
             if self.load == 0:
                 self.load_time = pygame.time.get_ticks()
+
 def muv(sr, pos, coord):
     x1, y1 = pos[0], pos[1]
     x, y = coord[0], coord[1]
