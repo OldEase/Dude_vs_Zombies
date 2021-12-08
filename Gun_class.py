@@ -67,23 +67,3 @@ Gun = gun(S.surface_of_pistol)
 Gun.draw()
 coord = [200, 405]
 ch=False
-'''
-while not finished:
-    clock.tick(FPS)
-    screen.fill(WHITE)
-    sr.set_colorkey((0, 0, 0))
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            finished = True
-        elif event.type == pygame.MOUSEBUTTONUP:
-            ball = bullet(pos, coord)
-            ch = True        
-    pos = pygame.mouse.get_pos()
-    sr1, coord_change, angel = muv(S.surface_of_pistol, pos, coord)
-    if ch:
-        ball.dvizh((coord[0] - coord_change[0] / 2,
-                   coord[1] - coord_change[1] / 2))
-
-    screen.blit(sr1, (coord[0] - coord_change[0]/ 2, coord[1] - coord_change[1]/ 2 ))
-    pygame.display.update()
-pygame.quit()'''
