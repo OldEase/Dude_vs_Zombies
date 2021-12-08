@@ -12,12 +12,20 @@ class gun():
     def __init__(self, image):
         self.x = 130
         self.y = 35
-        self.color = G.BLACK
+        self.speed = 0
+        self.damage = 0
+        self.magaz = 0
+        self.reload = 0
+        self.amount = 0
+        self.spread = 0
         self.image = image
 
     def draw(self):
         pygame.draw.rect(sr, G.BLUE, (self.x, self.y, 50, 10))
         pygame.draw.rect(sr, G.BLUE, (self.x, self.y + 10, 10, 15))
+
+    def shot(self, dude, pos):
+        G.bullets.append(bullet(pos, (dude.x+12, dude.y+24)))
 
 def muv(sr, pos, coord):
     x1, y1 = pos[0], pos[1]

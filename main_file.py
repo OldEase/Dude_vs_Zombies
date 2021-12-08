@@ -50,7 +50,7 @@ while (not finished) and (time < 100000):  # основной цикл прог�
 	for event in events:  # блок обработки выполненных игроком действий
 		shop['open'], finished = F.handle_events(event, shop['open'], finished)
 		if (event.type == pygame.MOUSEBUTTONDOWN) and (not shop['open']):
-			G.bullets.append(Gn.bullet(pos, (dude.x + coord_change[0] / 2, dude.y + coord_change[1] / 2)))
+			gun.shot(dude, pos)
 	dude.handle_pressing_keys(time, G.g/FPS*30)
 
 	sr1.set_colorkey(G.WHITE)
