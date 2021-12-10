@@ -28,7 +28,7 @@ class Dude:
         self.car = car
         self.image = image
 
-    def handle_pressing_keys(self, time, g):
+    def handle_pressing_keys(self, shop_open, time, g):
         '''
         обрабатывает нажатия на клавиши и отвечает за движение человечка
         v - максимальная скорость, а - ускорение по горизонтальной оси,
@@ -40,32 +40,34 @@ class Dude:
         button_up_check = - pygame.key.get_pressed()[pygame.K_UP]
         button_down_check = pygame.key.get_pressed()[pygame.K_DOWN]
 
-        # обработка движения по горизонтальной оси
-        if time % (16 - self.a) == 0:
-            self.dx += button_left_check + button_right_check
-        if (button_right_check + button_left_check == 0) and (self.dx != 0):
-            self.dx = 0
+        if (not shop_open) and (not self.car.repairing):
+            # обработка движения по горизонтальной оси
+            if time % (16 - self.a) == 0:
+                self.dx += button_left_check + button_right_check
+            if (button_right_check + button_left_check == 0) and (self.dx != 0):
+                self.dx = 0
 
-        if self.dx > self.v:  # скорость не должна превышать по  модудю значения v
-            self.dx = self.v
-        if self.dx < - self.v:
-            self.dx = - self.v
+            if self.dx > self.v:  # скорость не должна превышать по  модудю значения v
+                self.dx = self.v
+            if self.dx < - self.v:
+                self.dx = - self.v
 
-        if (self.x <= 0) and (self.dx < 0) or (self.x >= 1200) and (self.dx > 0):
-            self.dx = 0  # человечек не может выбежать за пределы экрана
+            if (self.x <= 0) and (self.dx < 0) or (self.x >= 1200) and (self.dx > 0):
+                self.dx = 0  # человечек не может выбежать за пределы экрана
 
-        # обработка движения по вертикальной оси
-        if self.y >= 350:
-            self.dy = button_up_check * self.power_of_jump
-        else:
-            self.dy += g
+            # обработка движения по вертикальной оси
+            if self.y >= 350:
+                self.dy = button_up_check * self.power_of_jump
+            else:
+                self.dy += g
 
-        # починка машины
-        if button_down_check == 1:
-            self.car.repairing = True
-            self.car.repair_level += 1
-        else:
-            self.car.repairing = False
+        if not shop_open:
+            # починка машины
+            if (button_down_check == 1) and (self.x - 30 < self.car.x < self.x + 30):
+                self.car.repairing = True
+                self.car.repair_level += 1
+            else:
+                self.car.repairing = False
 
 class Car:
     def __init__(self, x, y, dx, dy, repairing, repair_level, image):
