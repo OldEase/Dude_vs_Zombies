@@ -2,7 +2,7 @@ import pygame
 
 
 class Dude:
-    def __init__(self, x, y, dx, dy, v, power_of_jump, a, skills, lives, guns, money, image):
+    def __init__(self, x, y, dx, dy, v, power_of_jump, a, skills, lives, guns, money, car, image):
         '''
         задаем начальные параметры элемента класса:
         x, y - координаты человечка;
@@ -11,6 +11,7 @@ class Dude:
         power_of_jump - сила прыжка; a - ускорение;
         skills - очки опыта; lives - здоровье (lives = 0 означает смерть героя);
         guns - список имеющегося у игрока оружия;
+        car - машины игрока
         money - кол-во монет; image - поверхность, на которой рисуется человечек
         '''
         self.x = x
@@ -24,6 +25,7 @@ class Dude:
         self.lives = lives
         self.guns = guns
         self.money = money
+        self.car = car
         self.image = image
 
     def handle_pressing_keys(self, time, g):
@@ -58,6 +60,31 @@ class Dude:
         else:
             self.dy += g
 
+        # починка машины
+        if button_down_check == 1:
+            self.car.repairing = True
+            self.car.repair_level += 1
+        else:
+            self.car.repairing = False
+
+class Car:
+    def __init__(self, x, y, dx, dy, repairing, repair_level, image):
+        '''
+        задаем начальные параметры элемента класса:
+        x, y - координаты машины;
+        dx - горизонтальная скорость;
+        dy - вертикальная скорость;
+        image - поверхность, на которой рисуется машина
+        repairing - логическая переменная, показывает, ремонтируется ли машина в настоящий момент
+        repair_level - уровень починки автомобиля
+        '''
+        self.x = x
+        self.y = y
+        self.dx = dx
+        self.dy = dy
+        self.repairing = repairing
+        self.repair_level = repair_level
+        self.image = image
 
 class Button_objects:  # класс кнопок
     def __init__(self, x, y, image):

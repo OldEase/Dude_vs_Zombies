@@ -36,6 +36,13 @@ def handle_events(event, shop_open, finished):
     return shop_open, finished
 
 
+def checking_of_repairing(repair_level, result, finished):
+    if repair_level >= 500:
+        result = 'ПОБЕДА'
+        finished = True
+    return result, finished
+
+
 def create_label(label: str, size: int, a: int, b: int, border: bool, fill: bool, color: tuple):
     """
     создает надпись на заданной поверхности

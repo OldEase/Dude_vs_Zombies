@@ -10,6 +10,8 @@ shop_window = pygame.Surface((1000, 500), pygame.SRCALPHA)
 shop_window.fill(G.BLACK)
 image_of_gun = pygame.Surface((250, 150), pygame.SRCALPHA)  # (вспомогательная штука; жду реальных озображений оружия)
 
+surface_of_car = pygame.Surface((40, 30), pygame.SRCALPHA) #поверхность, на которой нарисована машина
+draw.rect(surface_of_car, G.RED, (0, 0, 40, 30))
 
 surface_of_dude_left = pygame.Surface((24, 52), pygame.SRCALPHA) #поверхность, на которой нарисован человечек
 surface_of_dude_left.fill(G.WHITE)
