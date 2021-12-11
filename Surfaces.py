@@ -96,6 +96,12 @@ draw.polygon(surface_of_pistol, G.BLACK, [(54+25, 0), (72+25, 0), (72+25, 6), (6
 
 surface_of_pistol_up = pygame.transform.flip(surface_of_pistol, 0, 1)
 
+surface_of_revolver = pygame.Surface((100, 15), pygame.SRCALPHA)
+surface_of_revolver.fill(G.WHITE)
+surface_of_revolver.set_colorkey(G.WHITE)
+draw.polygon(surface_of_revolver, G.BLACK, [(79, 6), (82, 6), (82, 3), (96, 3), (96, 0), (99, 0),
+                                            (99, 6), (93, 6), (93, 11), (84, 11), (84, 18), (79, 18)])
+surface_of_revolver_up = pygame.transform.flip(surface_of_revolver, 0, 1)
 surface_background = pygame.Surface((3600, 800), pygame.SRCALPHA)
 surface_background.fill(G.BLACK)
 for k in range(6):

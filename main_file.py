@@ -20,7 +20,7 @@ button_shop = [C.Button_objects(1100, 0, S.shop_button), C.Button_objects(1100, 
 zombie = Z.Zombie(dude, 100, 350, 3 / FPS * 30, 10, 100, 10, 1, 1, S.surface_of_zombie_right)
 rabbit = Z.Rabbit(200, 388, 5 / FPS * 30, 10, 100, 10, 1, 1, S.surface_of_rabbit_left)
 shop = Starting_functions.create_shop()
-gun = Gn.gun(S.surface_of_pistol, speed=100, damage=1,
+gun = Gn.gun(S.surface_of_revolver, speed=100, damage=1,
              magaz=1000, reload=5000, amount=1, spread=1)
 coord = [560, 370]
 pygame.display.update()
@@ -84,10 +84,10 @@ while (not finished) and (time < 100000):  # основной цикл прог�
     G.screen.blit(sr1, (dude.x + 10 - coord_change[0] / 2, dude.y + 10 - coord_change[1] / 2))
     if dude.x < pos[0]:
         dude.image = S.surface_of_dude_right
-        gun.image = S.surface_of_pistol
+        gun.image = S.surface_of_revolver
     else:
         dude.image = S.surface_of_dude_left
-        gun.image = S.surface_of_pistol_up
+        gun.image = S.surface_of_revolver_up
     if shop['open']:
         G.screen.blit(shop['image'].image, (shop['image'].x, shop['image'].y))
         for event in events:  # блок обработки выполненных игроком в магазине действий
