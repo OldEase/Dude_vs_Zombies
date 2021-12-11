@@ -66,6 +66,7 @@ class bullet:
         self.dx = self.V * -(coord[0] - pos[0]) / R
         self.dy = self.V * -(coord[1] - pos[1]) / R + self.angle
         self.image = screed
+        self.mask = pygame.mask.from_surface(screed)
 
     def dvizh(self, coord_kako):
 

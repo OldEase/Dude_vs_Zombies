@@ -34,8 +34,8 @@ Mask_dude = pygame.mask.from_surface(dude.image)
 
 while (not finished) and (time < 100000):  # основной цикл программы
 	clock.tick(FPS)
-	if(Mask_dude.overlap_area(Mask_zombie, (int(zombie.x - dude.x), int(zombie.y - dude.y)))) != 0:
-		print((int(zombie.x - dude.x), int(zombie.y - dude.y)))
+	'''if(Mask_dude.overlap_area(Mask_zombie, (int(zombie.x - dude.x), int(zombie.y - dude.y)))) != 0:
+		print((int(zombie.x - dude.x), int(zombie.y - dude.y)))'''
 		#zombie.image.fill(G.BLACK)
 	events = pygame.event.get()
 	G.screen.fill(G.LIGHT_YELLOW)
@@ -46,6 +46,10 @@ while (not finished) and (time < 100000):  # основной цикл прог�
 	for bull in G.bullets:
 		bull = F.move_object(bull, dude)
 		F.draw_object(bull)
+		if (zombie.mask.overlap_area(bull.mask, (int(zombie.x - bull.x), int(zombie.x - bull.x)))) != 0:
+			print(zombie.mask.overlap(
+				bull.mask, (int(zombie.x - bull.x), int(zombie.x - bull.x))))
+			
 	zombie.follow(dude)
 	rabbit.follow(dude)
 	zombie = F.move_object(zombie, dude)
@@ -63,6 +67,7 @@ while (not finished) and (time < 100000):  # основной цикл прог�
 			# gun.shot(dude, pos, True, False)
 	dude.handle_pressing_keys(shop['open'], time, G.g / FPS * 30)
 	gun.shot(dude, pos, pygame.mouse.get_pressed()[0])
+	
 	sr1.set_colorkey(G.WHITE)
 	G.screen.blit(sr1, (dude.x + 10 - coord_change[0] / 2, dude.y + 10 - coord_change[1] / 2))
 	if dude.x < pos[0]:

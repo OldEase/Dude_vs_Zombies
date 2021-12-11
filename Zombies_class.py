@@ -1,4 +1,5 @@
 import Surfaces as S
+import pygame 
 
 
 class Zombie():
@@ -15,6 +16,7 @@ class Zombie():
         self.exp = exp
         self.money = money
         self.image = image
+        self.mask = pygame.mask.from_surface(image)
 
     def follow(self, dude):
         if dude.x < self.x:
