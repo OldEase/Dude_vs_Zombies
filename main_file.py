@@ -20,7 +20,8 @@ button_shop = [C.Button_objects(1100, 0, S.shop_button), C.Button_objects(1100, 
 zombie = Z.Zombie(100, 350, 3/FPS*30, 10, 100, 10, 1, 1, S.surface_of_zombie_right)
 rabbit = Z.Rabbit(200, 388, 5/FPS*30, 10, 100, 10, 1, 1, S.surface_of_rabbit_left)
 shop = Starting_functions.create_shop()
-gun = Gn.gun(S.surface_of_pistol, speed=1000, damage=1, magaz=10, reload=5000, amount=1, spread=1)
+gun = Gn.gun(S.surface_of_pistol, speed=100, damage=1,
+             magaz=1000, reload=5000, amount=1, spread=1)
 coord = [560, 370]
 pygame.display.update()
 clock = pygame.time.Clock()
@@ -45,17 +46,21 @@ while (not finished) and (time < 100000):  # основной цикл прог�
 	F.draw_object(background)
 	counter = 0
 	for bull in G.bullets:
-		bull = F.move_object(bull, dude)
+		inside_check = False
+		for i in range(bull.V):
+			bull = F.move_object(bull, dude)
+			if (zombie.mask.overlap_area(bull.mask, (int(-zombie.x + bull.x), int(-zombie.y + bull.y)))) != 0 and not inside_check:
+				(x, y) = zombie.mask.overlap(
+					bull.mask, (int(-zombie.x + bull.x), int(-zombie.y + bull.y)))
+				pygame.draw.rect(zombie.image, G.WHITE, (x - 1, y - 1, 3, 3))
+				zombie.mask = pygame.mask.from_surface(zombie.image)
+				'''pygame.draw.rect(zombie.image, G.RED, (x + 1, y, 1, 1))
+				pygame.draw.rect(zombie.image, G.RED, (x, y - 1, 1, 1))
+				pygame.draw.rect(zombie.image, G.RED, (x, y + 1, 1, 1))'''
+
+				inside_check = True
+				G.bullets.pop(counter)
 		F.draw_object(bull)
-		if (zombie.mask.overlap_area(bull.mask, (int(-zombie.x + bull.x), int(-zombie.y + bull.y)))) != 0:
-			(x, y) = zombie.mask.overlap(
-				bull.mask, (int(-zombie.x + bull.x), int(-zombie.y + bull.y)))
-			pygame.draw.rect(zombie.image, G.WHITE, (x - 1, y - 1, 3, 3))
-			zombie.mask = pygame.mask.from_surface(zombie.image)
-			'''pygame.draw.rect(zombie.image, G.RED, (x + 1, y, 1, 1))
-			pygame.draw.rect(zombie.image, G.RED, (x, y - 1, 1, 1))
-			pygame.draw.rect(zombie.image, G.RED, (x, y + 1, 1, 1))'''
-			G.bullets.pop(counter)
 		counter += 1
 
 			

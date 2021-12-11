@@ -32,7 +32,8 @@ class gun():
             self.load = self.magaz
         if self.load != 0 and self.shot_time + self.speed < pygame.time.get_ticks() and check:
             for i in range(self.amount):
-                G.bullets.append(bullet(pos, (dude.x + 12, dude.y + 24), self))
+                G.bullets.append(
+                    bullet(pos, (dude.x + 8, dude.y), self))
             self.load -= 1
             self.shot_time = pygame.time.get_ticks()
             if self.load == 0:
@@ -47,7 +48,7 @@ def muv(sr, pos, coord):
 
 class bullet:
     def __init__(self, pos, coord, gun):
-        h = 8
+        h = 45
         R = ((coord[0] - pos[0])**2 + (coord[1] - pos[1])**2)**0.5
         self.x = coord[0] + h * -(coord[0] - pos[0]) / R
         self.y = coord[1] + h * -(coord[1] - pos[1]) / R
@@ -65,6 +66,8 @@ class bullet:
         self.V = 1
         self.dx = self.V * -(coord[0] - pos[0]) / R
         self.dy = self.V * -(coord[1] - pos[1]) / R + self.angle
+        self.dx /= self.V
+        self.dy /= self.V
         self.image = screed
         self.mask = pygame.mask.from_surface(screed)
 
