@@ -29,8 +29,14 @@ result = 'ПОРАЖЕНИЕ'
 time = 0
 background = C.Background(S.surface_background)
 
+Mask_zombie = pygame.mask.from_surface(zombie.image)
+Mask_dude = pygame.mask.from_surface(dude.image)
+
 while (not finished) and (time < 100000):  # основной цикл программы
 	clock.tick(FPS)
+	if(Mask_dude.overlap_area(Mask_zombie, (int(zombie.x - dude.x), int(zombie.y - dude.y)))) != 0:
+		print((int(zombie.x - dude.x), int(zombie.y - dude.y)))
+		#zombie.image.fill(G.BLACK)
 	events = pygame.event.get()
 	G.screen.fill(G.LIGHT_YELLOW)
 	dude = F.move_object(dude, dude)

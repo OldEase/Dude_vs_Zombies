@@ -4,6 +4,7 @@ screen = pygame.display.set_mode((1200, 700))
 g = 1
 bullets = []
 
+
 RED = (255, 0, 0)  # блок задания цветовой палитры
 BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)

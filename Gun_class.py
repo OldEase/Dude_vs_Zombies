@@ -56,14 +56,13 @@ class bullet:
             (coord[0] - pos[0]) / R - (coord[0] - pos[0]) / self.h
         self.y1 = coord[1] + h * - \
             (coord[1] - pos[1]) / R - (coord[1] - pos[1]) / self.h
-        screed = pygame.Surface((10, 10))
-        pygame.draw.polygon(screed, G.GRAY, ((self.x, self.y - 1), (self.x1, self.y1 - 1),
-                (self.x1, self.y1 + 1), (self.x, self.y + 1)), 0)
+        screed = pygame.Surface((3, 3))
+        screed.fill(G.WHITE)
         self.angle = 3 * randint(-gun.spread, gun.spread) / 100
 
         self.check = True
 
-        self.V = 10
+        self.V = 1
         self.dx = self.V * -(coord[0] - pos[0]) / R
         self.dy = self.V * -(coord[1] - pos[1]) / R + self.angle
         self.image = screed
