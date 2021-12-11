@@ -50,7 +50,8 @@ while (not finished) and (time < 100000):  # основной цикл прог�
 		if (zombie.mask.overlap_area(bull.mask, (int(-zombie.x + bull.x), int(-zombie.y + bull.y)))) != 0:
 			(x, y) = zombie.mask.overlap(
 				bull.mask, (int(-zombie.x + bull.x), int(-zombie.y + bull.y)))
-			pygame.draw.rect(zombie.image, G.WHITE, (x-1, y-1, 3, 3))
+			pygame.draw.rect(zombie.image, G.WHITE, (x - 1, y - 1, 3, 3))
+			zombie.mask = pygame.mask.from_surface(zombie.image)
 			'''pygame.draw.rect(zombie.image, G.RED, (x + 1, y, 1, 1))
 			pygame.draw.rect(zombie.image, G.RED, (x, y - 1, 1, 1))
 			pygame.draw.rect(zombie.image, G.RED, (x, y + 1, 1, 1))'''
