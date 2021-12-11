@@ -47,8 +47,9 @@ while (not finished) and (time < 100000):  # основной цикл прог�
 		bull = F.move_object(bull, dude)
 		F.draw_object(bull)
 		if (zombie.mask.overlap_area(bull.mask, (int(zombie.x - bull.x), int(zombie.x - bull.x)))) != 0:
-			print(zombie.mask.overlap(
-				bull.mask, (int(zombie.x - bull.x), int(zombie.x - bull.x))))
+			(x, y) = zombie.mask.overlap(
+				bull.mask, (int(zombie.x - bull.x), int(zombie.x - bull.x)))
+			pygame.draw.rect(zombie.image, G.RED, (x, y, 1, 1))
 			
 	zombie.follow(dude)
 	rabbit.follow(dude)
