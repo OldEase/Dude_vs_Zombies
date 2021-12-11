@@ -15,11 +15,22 @@ def move_object(object, dude):
     return object
 
 
+def move_bullet(object):
+    """
+    универсальная функция, отвечающая за движение любых объектов
+    """
+    object.x += object.dx
+    object.y += object.dy
+    return object
+
+
 def draw_object(object):
     """
     универсальная функция, отвечающая за прорисовку объекта на экране
     """
     G.screen.blit(object.image, (object.x, object.y))
+
+
 
 
 def handle_events(event, shop_open, finished):

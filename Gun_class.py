@@ -63,7 +63,7 @@ class bullet:
 
         self.check = True
 
-        self.V = 1
+        self.V = 100
         self.dx = self.V * -(coord[0] - pos[0]) / R
         self.dy = self.V * -(coord[1] - pos[1]) / R + self.angle
         self.dx /= self.V
