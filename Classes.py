@@ -59,7 +59,13 @@ class Dude:
                 self.dx = 0  # человечек не может выбежать за пределы экрана
 
             # обработка движения по вертикальной оси
-            if self.y >= 350:
+            if self.car.x - self.width < self.x + self.dx < self.car.x + 40:
+                level_of_ground = self.car.y - self.height
+            else:
+                level_of_ground = 350
+            if (self.y < level_of_ground) and (self.y + self.dy > level_of_ground):
+                self.dy = level_of_ground - self.y
+            if self.y >= level_of_ground:
                 self.dy = button_up_check * self.power_of_jump
             else:
                 self.dy += g
@@ -79,9 +85,10 @@ class Dude:
         if (self.x >= self.car.x + 40) and (self.x + self.dx < self.car.x + 40) and (
                 self.y > self.car.y - self.height) and (self.y + self.dy > self.car.y - self.height):
             self.dx = self.car.x + 40 - self.x
-        if (self.y <= self.car.y - self.height) and (self.y + self.dy > self.car.y - self.height) and (
-                self.car.x - self.width <= self.x + self.dx <= self.car.x + 40):
+        if (self.y < self.car.y - self.height) and (self.y + self.dy > self.car.y - self.height) and (
+                self.car.x - self.width < self.x + self.dx < self.car.x + 40):
             self.dy = self.car.y - self.height - self.y
+
 
 class Car:
     def __init__(self, x, y, dx, dy, repairing, repair_level, image):
