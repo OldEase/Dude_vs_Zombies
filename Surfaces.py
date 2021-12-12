@@ -3,8 +3,8 @@ from pygame import draw as draw
 import Global_variable as G
 from Functions import create_label
 
-width_of_images = {'dude': 24, 'zombie': 24, 'rabbit': 19}
-height_of_images = {'dude': 52, 'zombie': 52, 'rabbit': 15}
+width_of_images = {'dude': 24, 'zombie': 24, 'rabbit': 19, 'car': 40}
+height_of_images = {'dude': 52, 'zombie': 52, 'rabbit': 15, 'car': 30}
 
 shop_button = create_label('shop', 60, 100, 50, False, True, G.GREEN)  # кнопка доступа к магазину
 shop_close_button = create_label('close', 60, 100, 50, False, True, G.GREEN)  # кнопка закрытия магазина
@@ -13,8 +13,9 @@ shop_window = pygame.Surface((1000, 500), pygame.SRCALPHA)
 shop_window.fill(G.BLACK)
 image_of_gun = pygame.Surface((250, 150), pygame.SRCALPHA)  # (вспомогательная штука; жду реальных озображений оружия)
 
-surface_of_car = pygame.Surface((40, 30), pygame.SRCALPHA) # поверхность, на которой нарисована машина
-draw.rect(surface_of_car, G.RED, (0, 0, 40, 30))
+surface_of_car = pygame.Surface((width_of_images['car'], height_of_images['car']), pygame.SRCALPHA)
+# поверхность, на которой нарисована машина
+draw.rect(surface_of_car, G.RED, (0, 0, width_of_images['car'], height_of_images['car']))
 
 surface_of_dude_left = pygame.Surface((width_of_images['dude'], height_of_images['dude']), pygame.SRCALPHA)
 #поверхность, на которой нарисован человечек

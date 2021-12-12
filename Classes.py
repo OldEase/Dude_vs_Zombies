@@ -82,16 +82,16 @@ class Dude:
         if (self.x + self.width <= self.car.x) and (self.x + self.width + self.dx > self.car.x) and (
                 self.y + self.dy > self.car.y - self.height) and (self.y > self.car.y - self.height):
             self.dx = self.car.x - self.width - self.x
-        if (self.x >= self.car.x + 40) and (self.x + self.dx < self.car.x + 40) and (
+        if (self.x >= self.car.x + self.car.width) and (self.x + self.dx < self.car.x + self.car.width) and (
                 self.y > self.car.y - self.height) and (self.y + self.dy > self.car.y - self.height):
-            self.dx = self.car.x + 40 - self.x
+            self.dx = self.car.x + self.car.width - self.x
         if (self.y < self.car.y - self.height) and (self.y + self.dy > self.car.y - self.height) and (
-                self.car.x - self.width < self.x + self.dx < self.car.x + 40):
+                self.car.x - self.width < self.x + self.dx < self.car.x + self.car.width):
             self.dy = self.car.y - self.height - self.y
 
 
 class Car:
-    def __init__(self, x, y, dx, dy, repairing, repair_level, image):
+    def __init__(self, x, y, dx, dy, repairing, repair_level, image, width, height):
         '''
         задаем начальные параметры элемента класса:
         x, y - координаты машины;
@@ -99,7 +99,8 @@ class Car:
         dy - вертикальная скорость;
         image - поверхность, на которой рисуется машина
         repairing - логическая переменная, показывает, ремонтируется ли машина в настоящий момент
-        repair_level - уровень починки автомобиля
+        repair_level - уровень починки автомобиля;
+        width, height - ширина и высота изображения соответственно
         '''
         self.x = x
         self.y = y
@@ -108,6 +109,8 @@ class Car:
         self.repairing = repairing
         self.repair_level = repair_level
         self.image = image
+        self.width = width
+        self.height = height
 
 class Button_objects:  # класс кнопок
     def __init__(self, x, y, image):
