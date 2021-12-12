@@ -18,7 +18,6 @@ def motion_processing(object, dude):
     if (object.x + object.width <= dude.car.x + dude.dx) and (object.x + object.width + object.dx > dude.car.x +
             dude.dx) and (object.y + object.dy < dude.car.y + object.height) and (
             object.y < dude.car.y + object.height):
-        print(True)
         object.x = dude.car.x - object.width
     elif (object.x >= dude.car.x + dude.dx + 40) and (object.x + object.dx < dude.car.x + dude.dx + 40) and (
             object.y < dude.car.y + object.height) and (object.y + object.dy < dude.car.y + object.height):
@@ -30,7 +29,6 @@ def motion_processing(object, dude):
         object.y = dude.car.y + object.height
     else:
         object = move_object(object, dude)
-        print(False)
     return object
 
 

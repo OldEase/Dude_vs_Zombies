@@ -74,14 +74,14 @@ class Dude:
 
     def check_collision_with_car(self):
         if (self.x + self.width <= self.car.x) and (self.x + self.width + self.dx > self.car.x) and (
-                self.y + self.dy < self.car.y + self.height) and (self.y < dude.car.y + self.height):
+                self.y + self.dy > self.car.y - self.height) and (self.y > self.car.y - self.height):
             self.dx = self.car.x - self.width - self.x
-        elif (self.x >= self.car.x + 40) and (self.x + self.dx < self.car.x + 40) and (
-                self.y < self.car.y + self.height) and (self.y + self.dy < self.car.y + self.height):
+        if (self.x >= self.car.x + 40) and (self.x + self.dx < self.car.x + 40) and (
+                self.y > self.car.y - self.height) and (self.y + self.dy > self.car.y - self.height):
             self.dx = self.car.x + 40 - self.x
-        elif (self.y >= self.car.y + self.height) and (self.y + self.dy < self.car.y + self.height) and (
+        if (self.y <= self.car.y - self.height) and (self.y + self.dy > self.car.y - self.height) and (
                 self.car.x - self.width <= self.x + self.dx <= self.car.x + 40):
-            self.dy = self.car.y + self.height - self.x
+            self.dy = self.car.y - self.height - self.y
 
 class Car:
     def __init__(self, x, y, dx, dy, repairing, repair_level, image):
