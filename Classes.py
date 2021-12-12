@@ -2,7 +2,7 @@ import pygame
 
 
 class Dude:
-    def __init__(self, x, y, dx, dy, v, power_of_jump, a, skills, lives, guns, money, car, image):
+    def __init__(self, x, y, dx, dy, v, power_of_jump, a, skills, lives, guns, money, car, image, width, height):
         '''
         задаем начальные параметры элемента класса:
         x, y - координаты человечка;
@@ -13,6 +13,7 @@ class Dude:
         guns - список имеющегося у игрока оружия;
         car - машины игрока
         money - кол-во монет; image - поверхность, на которой рисуется человечек
+        width - ширина, height - высота поверхности
         '''
         self.x = x
         self.y = y
@@ -27,6 +28,8 @@ class Dude:
         self.money = money
         self.car = car
         self.image = image
+        self.width = width
+        self.height = height
 
     def handle_pressing_keys(self, shop_open, time, g):
         '''
@@ -68,6 +71,17 @@ class Dude:
                 self.car.repair_level += 1
             else:
                 self.car.repairing = False
+
+    def check_collision_with_car(self):
+        if (self.x + self.width <= self.car.x) and (self.x + self.width + self.dx > self.car.x) and (
+                self.y + self.dy < self.car.y + self.height) and (self.y < dude.car.y + self.height):
+            self.dx = self.car.x - self.width - self.x
+        elif (self.x >= self.car.x + 40) and (self.x + self.dx < self.car.x + 40) and (
+                self.y < self.car.y + self.height) and (self.y + self.dy < self.car.y + self.height):
+            self.dx = self.car.x + 40 - self.x
+        elif (self.y >= self.car.y + self.height) and (self.y + self.dy < self.car.y + self.height) and (
+                self.car.x - self.width <= self.x + self.dx <= self.car.x + 40):
+            self.dy = self.car.y + self.height - self.x
 
 class Car:
     def __init__(self, x, y, dx, dy, repairing, repair_level, image):

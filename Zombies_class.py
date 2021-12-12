@@ -4,7 +4,7 @@ import  Global_variable as G
 
 
 class Zombie():
-    def __init__(self, dude, x_coord=0, y_coord=0, dx_max=4, dy_max=10,
+    def __init__(self, width, height, dude, x_coord=0, y_coord=0, dx_max=4, dy_max=10,
                  lives=100, damage=10, exp=1, money=1, image=S.surface_of_zombie_right):
         self.x = x_coord
         self.y = y_coord
@@ -17,6 +17,8 @@ class Zombie():
         self.exp = exp
         self.money = money
         self.image = image
+        self.width = width
+        self.height = height
         self.direction = 'right'
         if dude.x < self.x:
             self.image = self.image = pygame.transform.flip(self.image, 1, 0)
@@ -41,7 +43,7 @@ class Zombie():
 
 
 class Rabbit():
-    def __init__(self, x_coord=0, y_coord=0, dx_max=4, dy_max=10,
+    def __init__(self, width, height, x_coord=0, y_coord=0, dx_max=4, dy_max=10,
                  lives=100, damage=10, exp=1, money=1, image=S.surface_of_rabbit_right):
         self.x = x_coord
         self.y = y_coord
@@ -54,6 +56,8 @@ class Rabbit():
         self.exp = exp
         self.money = money
         self.image = image
+        self.width = width
+        self.height = height
 
     def follow(self, dude):
         if dude.x < self.x:

@@ -3,6 +3,9 @@ from pygame import draw as draw
 import Global_variable as G
 from Functions import create_label
 
+width_of_images = {'dude': 24, 'zombie': 24, 'rabbit': 19}
+height_of_images = {'dude': 52, 'zombie': 52, 'rabbit': 15}
+
 shop_button = create_label('shop', 60, 100, 50, False, True, G.GREEN)  # кнопка доступа к магазину
 shop_close_button = create_label('close', 60, 100, 50, False, True, G.GREEN)  # кнопка закрытия магазина
 
@@ -10,10 +13,11 @@ shop_window = pygame.Surface((1000, 500), pygame.SRCALPHA)
 shop_window.fill(G.BLACK)
 image_of_gun = pygame.Surface((250, 150), pygame.SRCALPHA)  # (вспомогательная штука; жду реальных озображений оружия)
 
-surface_of_car = pygame.Surface((40, 30), pygame.SRCALPHA) #поверхность, на которой нарисована машина
+surface_of_car = pygame.Surface((40, 30), pygame.SRCALPHA) # поверхность, на которой нарисована машина
 draw.rect(surface_of_car, G.RED, (0, 0, 40, 30))
 
-surface_of_dude_left = pygame.Surface((24, 52), pygame.SRCALPHA) #поверхность, на которой нарисован человечек
+surface_of_dude_left = pygame.Surface((width_of_images['dude'], height_of_images['dude']), pygame.SRCALPHA)
+#поверхность, на которой нарисован человечек
 surface_of_dude_left.fill(G.WHITE)
 draw.polygon(surface_of_dude_left, G.BLACK, [(0, 0), (24, 0), (24, 40), (0, 40)])#контур
 draw.polygon(surface_of_dude_left, (255, 187, 159), [(2, 2), (22, 2), (22, 20), (2, 20)])#лицо
@@ -29,7 +33,8 @@ draw.rect(surface_of_dude_left, G.BLACK, (4, 40, 4, 12))#л нога
 draw.rect(surface_of_dude_left, G.BLACK, (16, 40, 4, 12))#п нога
 surface_of_dude_left.set_colorkey(G.WHITE)
 
-surface_of_dude_right = pygame.Surface((24, 52), pygame.SRCALPHA)  # поверхность, на которой нарисован человечек
+surface_of_dude_right = pygame.Surface((width_of_images['dude'], height_of_images['dude']), pygame.SRCALPHA)  #
+# поверхность, на которой нарисован человечек
 surface_of_dude_right.fill(G.WHITE)
 draw.polygon(surface_of_dude_right, G.BLACK, [(0, 0), (24, 0), (24, 40), (0, 40)])#контур
 draw.polygon(surface_of_dude_right, (255, 187, 159), [(2, 2), (22, 2), (22, 20), (2, 20)])#лицо
@@ -45,7 +50,8 @@ draw.rect(surface_of_dude_right, G.BLACK, (4, 40, 4, 12))#л нога
 draw.rect(surface_of_dude_right, G.BLACK, (16, 40, 4, 12))#п нога
 surface_of_dude_right.set_colorkey(G.WHITE)
 
-surface_of_zombie_right = pygame.Surface((24, 52), pygame.SRCALPHA) #поверхность, на которой надо бы нарисовать человечка, а не просто круг...
+surface_of_zombie_right = pygame.Surface((width_of_images['zombie'], height_of_images['zombie']), pygame.SRCALPHA)
+#поверхность, на которой надо бы нарисовать человечка, а не просто круг...
 surface_of_zombie_right.fill(G.WHITE)
 draw.polygon(surface_of_zombie_right, G.BLACK, [(0, 0), (24, 0), (24, 40), (0, 40)])#контур
 draw.polygon(surface_of_zombie_right, (41, 207, 99), [(2, 2), (22, 2), (22, 20), (2, 20)])#лицо
@@ -61,7 +67,7 @@ draw.rect(surface_of_zombie_right, G.BLACK, (4, 40, 4, 12))#л нога
 draw.rect(surface_of_zombie_right, G.BLACK, (16, 40, 4, 12))#п нога
 surface_of_zombie_right.set_colorkey(G.WHITE)
 
-surface_of_zombie_left = pygame.Surface((24, 52), pygame.SRCALPHA) #поверхность, на которой надо бы нарисовать человечка, а не просто круг...
+surface_of_zombie_left = pygame.Surface((width_of_images['zombie'], height_of_images['zombie']), pygame.SRCALPHA)
 surface_of_zombie_left.fill(G.WHITE)
 draw.polygon(surface_of_zombie_left, G.BLACK, [(0, 0), (24, 0), (24, 40), (0, 40)])#контур
 draw.polygon(surface_of_zombie_left, (41, 207, 99), [(2, 2), (22, 2), (22, 20), (2, 20)])#лицо
@@ -77,7 +83,7 @@ draw.rect(surface_of_zombie_left, G.BLACK, (4, 40, 4, 12))#л нога
 draw.rect(surface_of_zombie_left, G.BLACK, (16, 40, 4, 12))#п нога
 surface_of_zombie_left.set_colorkey(G.WHITE)
 
-surface_of_rabbit_left = pygame.Surface((19, 15), pygame.SRCALPHA)
+surface_of_rabbit_left = pygame.Surface((width_of_images['rabbit'], height_of_images['rabbit']), pygame.SRCALPHA)
 surface_of_rabbit_left.fill(G.WHITE)
 draw.polygon(surface_of_rabbit_left, G.BLACK, [(0, 0), (10, 0), (10, 6), (18, 6), (18, 14), (0, 14)])
 draw.polygon(surface_of_rabbit_left, (44, 232, 244), [(2, 6), (16, 8), (16, 12), (2, 12)])
