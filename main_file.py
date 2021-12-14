@@ -21,6 +21,18 @@ arsenal.append(Gn.gun(S.surface_of_revolver, speed=100, damage=1,
              magaz=1000, reload=5000, amount=1, spread=1))
 arsenal.append(Gn.gun(S.surface_of_shotgun, speed=100, damage=1,
              magaz=1000, reload=5000, amount=1, spread=1))
+arsenal.append(Gn.gun(S.surface_of_uzi, speed=100, damage=1,
+             magaz=1000, reload=5000, amount=1, spread=1))
+arsenal.append(Gn.gun(S.surface_of_rifle, speed=100, damage=1,
+             magaz=1000, reload=5000, amount=1, spread=1))
+arsenal.append(Gn.gun(S.surface_of_shotgun, speed=100, damage=1,
+             magaz=1000, reload=5000, amount=1, spread=1))
+arsenal.append(Gn.gun(S.surface_of_shotgun, speed=100, damage=1,
+             magaz=1000, reload=5000, amount=1, spread=1))
+arsenal.append(Gn.gun(S.surface_of_shotgun, speed=100, damage=1,
+             magaz=1000, reload=5000, amount=1, spread=1))
+arsenal.append(Gn.gun(S.surface_of_shotgun, speed=100, damage=1,
+             magaz=1000, reload=5000, amount=1, spread=1))
 
 car = C.Car(500, 372, 0, 0, False, 20, S.surface_of_car, S.width_of_images['car'], S.height_of_images['car'])
 dude = C.Dude(550, 350, 0, 0, 10 / FPS * 30, 5, 1, 0, 100, [0] * 10, 0, car, S.surface_of_dude_left,
@@ -92,9 +104,9 @@ while (not finished) and (time < 100000):  # основной цикл прог�
     dude.handle_pressing_keys(shop['open'], time, G.g / FPS * 30)
     gun.shot(dude, pos, pygame.mouse.get_pressed()[0])
     if F.check(pygame.key.get_pressed()[
-            pygame.K_1], pygame.key.get_pressed()[pygame.K_2]):
+            pygame.K_1], pygame.key.get_pressed()[pygame.K_2], pygame.key.get_pressed()[pygame.K_3], pygame.key.get_pressed()[pygame.K_4], pygame.key.get_pressed()[pygame.K_5], pygame.key.get_pressed()[pygame.K_6], pygame.key.get_pressed()[pygame.K_7], pygame.key.get_pressed()[pygame.K_8], pygame.key.get_pressed()[pygame.K_9]):
         gun = arsenal[F.choose(pygame.key.get_pressed()[
-            pygame.K_1], pygame.key.get_pressed()[pygame.K_2])]
+            pygame.K_1], pygame.key.get_pressed()[pygame.K_2], pygame.key.get_pressed()[pygame.K_3], pygame.key.get_pressed()[pygame.K_4], pygame.key.get_pressed()[pygame.K_5], pygame.key.get_pressed()[pygame.K_6], pygame.key.get_pressed()[pygame.K_7], pygame.key.get_pressed()[pygame.K_8], pygame.key.get_pressed()[pygame.K_9])]
 
     sr1.set_colorkey(G.WHITE)
     G.screen.blit(sr1, (dude.x + 10 - coord_change[0] / 2, dude.y + 10 - coord_change[1] / 2))

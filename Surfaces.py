@@ -101,30 +101,40 @@ surface_of_pistol.fill(G.WHITE)
 surface_of_pistol.set_colorkey(G.WHITE)
 draw.polygon(surface_of_pistol, G.BLACK, [(54+25, 0), (72+25, 0), (72+25, 6), (60+25, 6), (60+25, 12), (54+25, 12)])
 
-surface_of_pistol_up = pygame.transform.flip(surface_of_pistol, 0, 1)
-
 surface_of_revolver = pygame.Surface((100, 15), pygame.SRCALPHA)
 surface_of_revolver.fill(G.WHITE)
 surface_of_revolver.set_colorkey(G.WHITE)
 draw.polygon(surface_of_revolver, G.BLACK, [(79, 6), (82, 6), (82, 3), (96, 3), (96, 0), (99, 0),
                                             (99, 6), (93, 6), (93, 11), (84, 11), (84, 18), (79, 18)])
-surface_of_revolver_up = pygame.transform.flip(surface_of_revolver, 0, 1)
 
-surface_of_shotgun = pygame.Surface((100, 15), pygame.SRCALPHA)
+surface_of_shotgun = pygame.Surface((150, 50), pygame.SRCALPHA)
 surface_of_shotgun.fill(G.WHITE)
-draw.rect(surface_of_shotgun, G.GRAY, (75, 6, 25, 5))
-draw.rect(surface_of_shotgun, G.BLACK, (75, 6, 25, 5), 2)
-draw.rect(surface_of_shotgun, (173, 135, 98), (65, 8, 15, 7))
-draw.rect(surface_of_shotgun, G.BLACK, (65, 8, 15, 7), 2)
+draw.rect(surface_of_shotgun, G.GRAY, (75, 36, 45, 6))
+draw.rect(surface_of_shotgun, G.BLACK, (75, 36, 45, 6), 2)
+draw.rect(surface_of_shotgun, (173, 135, 98), (65, 38, 15, 7))
+draw.rect(surface_of_shotgun, G.BLACK, (65, 38, 15, 7), 2)
 
-surface_of_shotgun_up = pygame.transform.flip(surface_of_shotgun, 0, 1)
+surface_of_uzi = pygame.Surface((100, 20), pygame.SRCALPHA)
+surface_of_uzi.fill(G.WHITE)
+draw.polygon(surface_of_uzi, G.BLACK, ((75, 0), (78, 0), (78, 3), (85, 3), (87, 0), (89, 0), (89, 3),
+             (94, 3), (94, 5), (99, 5), (99, 7), (94, 7), (94, 9), (83, 9), (85, 25), (80, 25), (80, 9), (75, 9)))
+
+surface_of_rifle = pygame.Surface((150, 20 + 30), pygame.SRCALPHA)
+surface_of_rifle.fill(G.WHITE)
+draw.polygon(surface_of_rifle, G.BLACK, ((65, 7 + 30), (68, 7 + 30), (68, 3 + 30), (112, 3 + 30), (112, 0 + 30),
+             (115, 0 + 30), (115, 3 + 30), (120, 3 + 30), (120, 8 + 30), (95, 8 + 30), (95, 11 + 30), (70, 11 + 30), (70, 15 + 30), (65, 15 + 30)))
+
+surface_of_ak = pygame.Surface((150, 60), pygame.SRCALPHA)
+surface_of_ak.fill(G.WHITE)
 
 surface_background = pygame.Surface((3600, 800), pygame.SRCALPHA)
 surface_background.fill(G.BLACK)
 for k in range(6):
     grass = [(0, 800)]
     for i in range(1000 - k * 150):
-        grass.append((i * 3600/(1000 - k * 150) + 1800/(1000 - k * 150), 150 + k*100))
-        grass.append((i * 3600/(1000 - k * 150) + 3600/(1000 - k * 150), 140 + k*100))
+        grass.append((i * 3600 / (1000 - k * 150) + 1800
+                     / (1000 - k * 150), 150 + k * 100))
+        grass.append((i * 3600 / (1000 - k * 150) + 3600
+                     / (1000 - k * 150), 140 + k * 100))
     grass.append((3600, 800))
     draw.polygon(surface_background, (5, 32 + k * 20, 53), grass)

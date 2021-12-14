@@ -104,15 +104,29 @@ def shop_actions(event, shop, Dude):
                 continue
     return Dude
 
-def check(check1, check2):
-    if check1 or check2:
+def check(check1, check2, check3, check4, check5, check6, check7, check8, check9):
+    if check1 or check2 or check3 or check4 or check5 or check6 or check7 or check8 or check9:
         return True
     else:
         return False
 
 
-def choose(check1, check2):
+def choose(check1, check2, check3, check4, check5, check6, check7, check8, check9):
     if check1:
         return 0
     if check2:
         return 1
+    if check3:
+        return 2
+    if check4:
+        return 3
+    if check5:
+        return 4
+    if check6:
+        return 5
+    if check7:
+        return 6
+    if check8:
+        return 7
+    if check9:
+        return 8    
