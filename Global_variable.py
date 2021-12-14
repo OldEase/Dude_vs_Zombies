@@ -1,5 +1,7 @@
 import pygame
 screen = pygame.display.set_mode((1200, 700))
+import Surfaces as S
+import Gun_class as Gn
 
 g = 1
 bullets = []

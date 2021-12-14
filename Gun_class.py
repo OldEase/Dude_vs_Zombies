@@ -9,9 +9,10 @@ sr = pygame.Surface((180, 80))
 
 
 class gun():
-    def __init__(self, image, speed=1000, damage=1, magaz=10, reload=5000, amount=5, spread=10):
+    def __init__(self, image, speed=1000, damage=1, magaz=10, reload=5000, amount=5, spread=10, long=45):
         self.x = 130
         self.y = 35
+        self.h = long
         self.speed = speed
         self.shot_time = 0
         self.damage = damage
@@ -22,6 +23,8 @@ class gun():
         self.amount = amount
         self.spread = spread
         self.image = image
+        self.image_right = image
+        self.image_left = pygame.transform.flip(image, 0, 1)
 
     def draw(self):
         pygame.draw.rect(sr, G.BLUE, (self.x, self.y, 50, 10))
@@ -48,15 +51,9 @@ def muv(sr, pos, coord):
 
 class bullet:
     def __init__(self, pos, coord, gun):
-        h = 45
         R = ((coord[0] - pos[0])**2 + (coord[1] - pos[1])**2)**0.5
-        self.x = coord[0] + h * -(coord[0] - pos[0]) / R
-        self.y = coord[1] + h * -(coord[1] - pos[1]) / R
-        self.h = 60
-        self.x1 = coord[0] + h * - \
-            (coord[0] - pos[0]) / R - (coord[0] - pos[0]) / self.h
-        self.y1 = coord[1] + h * - \
-            (coord[1] - pos[1]) / R - (coord[1] - pos[1]) / self.h
+        self.x = coord[0] + gun.h * -(coord[0] - pos[0]) / R
+        self.y = coord[1] + gun.h * -(coord[1] - pos[1]) / R
         screed = pygame.Surface((3, 3))
         screed.fill(G.WHITE)
         self.angle = 3 * randint(-gun.spread, gun.spread) / 100
@@ -85,7 +82,6 @@ pygame.display.update()
 clock = pygame.time.Clock()
 finished=False
 
-Gun = gun(S.surface_of_pistol)
-Gun.draw()
+
 coord = [200, 405]
 ch=False

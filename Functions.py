@@ -103,3 +103,16 @@ def shop_actions(event, shop, Dude):
                         ['image'].y + 30):
                 continue
     return Dude
+
+def check(check1, check2):
+    if check1 or check2:
+        return True
+    else:
+        return False
+
+
+def choose(check1, check2):
+    if check1:
+        return 0
+    if check2:
+        return 1
