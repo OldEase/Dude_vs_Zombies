@@ -109,6 +109,16 @@ surface_of_revolver.set_colorkey(G.WHITE)
 draw.polygon(surface_of_revolver, G.BLACK, [(79, 6), (82, 6), (82, 3), (96, 3), (96, 0), (99, 0),
                                             (99, 6), (93, 6), (93, 11), (84, 11), (84, 18), (79, 18)])
 surface_of_revolver_up = pygame.transform.flip(surface_of_revolver, 0, 1)
+
+surface_of_shotgun = pygame.Surface((100, 15), pygame.SRCALPHA)
+surface_of_shotgun.fill(G.WHITE)
+draw.rect(surface_of_shotgun, G.GRAY, (75, 6, 25, 5))
+draw.rect(surface_of_shotgun, G.BLACK, (75, 6, 25, 5), 2)
+draw.rect(surface_of_shotgun, (173, 135, 98), (65, 8, 15, 7))
+draw.rect(surface_of_shotgun, G.BLACK, (65, 8, 15, 7), 2)
+
+surface_of_shotgun_up = pygame.transform.flip(surface_of_shotgun, 0, 1)
+
 surface_background = pygame.Surface((3600, 800), pygame.SRCALPHA)
 surface_background.fill(G.BLACK)
 for k in range(6):
