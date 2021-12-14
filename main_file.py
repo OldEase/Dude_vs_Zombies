@@ -15,15 +15,15 @@ pygame.mixer.music.set_volume(0)
 pygame.mixer.music.play()
 
 arsenal = []
-arsenal.append(Gn.gun(S.surface_of_pistol, speed=100, damage=1,
-             magaz=1000, reload=5000, amount=1, spread=1))
-arsenal.append(Gn.gun(S.surface_of_revolver, speed=100, damage=1,
-             magaz=1000, reload=5000, amount=1, spread=1))
-arsenal.append(Gn.gun(S.surface_of_shotgun, speed=100, damage=1,
-             magaz=1000, reload=5000, amount=1, spread=1))
+arsenal.append(Gn.gun(S.surface_of_pistol, speed=500, damage=2,
+             magaz=15, reload=5000, amount=1, spread=2))
+arsenal.append(Gn.gun(S.surface_of_revolver, speed=1000, damage=5,
+             magaz=6, reload=7000, amount=1, spread=1))
+arsenal.append(Gn.gun(S.surface_of_shotgun, speed=1000, damage=1,
+             magaz=2, reload=5000, amount=10, spread=200))
 arsenal.append(Gn.gun(S.surface_of_uzi, speed=100, damage=1,
              magaz=1000, reload=5000, amount=1, spread=1))
-arsenal.append(Gn.gun(S.surface_of_rifle, speed=100, damage=1,
+arsenal.append(Gn.gun(S.surface_of_rifle, speed=1000, damage=4,
              magaz=1000, reload=5000, amount=1, spread=1))
 arsenal.append(Gn.gun(S.surface_of_shotgun, speed=100, damage=1,
              magaz=1000, reload=5000, amount=1, spread=1))
