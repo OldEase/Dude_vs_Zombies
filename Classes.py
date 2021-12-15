@@ -2,7 +2,8 @@ import pygame
 
 
 class Dude:
-    def __init__(self, x, y, dx, dy, v, power_of_jump, a, skills, lives, guns, money, car, image, width, height, stun):
+    def __init__(self, x, y, dx, dy, v, power_of_jump, a, skills, lives, guns, money, car, image, hp, width, height, \
+                                                                                                    stun):
         '''
         задаем начальные параметры элемента класса:
         x, y - координаты человечка;
@@ -29,6 +30,7 @@ class Dude:
         self.money = money
         self.car = car
         self.image = image
+        self.hp = hp
         self.width = width
         self.height = height
         self.stun = stun
@@ -74,7 +76,7 @@ class Dude:
 
         if (not shop_open) and (not self.stun['fact']):
             # починка машины
-            if (button_down_check == 1) and (self.x - 30 < self.car.x < self.x + 30):
+            if (button_down_check == 1) and (self.x - 30 < self.car.x < self.x + 30) and (self.y == 350):
                 self.car.repairing = True
                 self.car.repair_level += 1
             else:

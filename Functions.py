@@ -20,19 +20,22 @@ def motion_processing(object, dude):
                 dude.dx) and (object.y + object.dy < dude.car.y + object.height) and (
                 object.y < dude.car.y + object.height):
             object.x = dude.car.x - object.width
+            object.y += object.dy
+            dude.car.repair_level += - object.damage // 10
         elif (object.x >= dude.car.x + dude.dx + dude.car.width) and (object.x + object.dx < dude.car.x + dude.dx +
                 dude.car.width) and (object.y < dude.car.y + object.height) and (object.y + object.dy < dude.car.y + object.height):
             object.x = dude.car.x + dude.car.width
             object.y += object.dy
-        elif (object.y >= dude.car.y + object.height) and (object.y + object.dy < dude.car.y + object.height) and (
-                dude.car.x - object.width <= object.x + object.dx - dude.dx <= dude.car.x + dude.car.width):
-            object.x += object.dx - dude.dx
-            object.y = dude.car.y + object.height
+            dude.car.repair_level += - object.damage // 10
+        #elif (object.y >= dude.car.y + object.height) and (object.y + object.dy < dude.car.y + object.height) and (
+                #dude.car.x - object.width <= object.x + object.dx - dude.dx <= dude.car.x + dude.car.width):
+            #object.x += object.dx - dude.dx
+            #object.y = dude.car.y + object.height
         else:
             object = move_object(object, dude)
     else:
         object = move_object(object, dude)
-    return object
+    return object, dude
 
 
 def move_bullet(object):
@@ -46,7 +49,7 @@ def move_bullet(object):
 
 def draw_object(object):
     """
-    универсальная функция, отвечающая за прорисовку объекта на экране
+    универсальная функция, отвечающая за прорисовку объектов на экране
     """
     G.screen.blit(object.image, (object.x, object.y))
 
@@ -67,9 +70,12 @@ def handle_events(event, shop_open, finished):
     return shop_open, finished
 
 
-def checking_of_repairing(repair_level, result, finished):
-    if repair_level >= 500:
+def checking_of_end(lives, repair_level, result, finished):
+    if repair_level >= 5000:
         result = 'ПОБЕДА'
+        finished = True
+    if (repair_level) <= 0 or (lives <= 0):
+        result = 'ПОРАЖЕНИЕ'
         finished = True
     return result, finished
 

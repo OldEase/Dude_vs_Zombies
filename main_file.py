@@ -6,6 +6,7 @@ import Functions as F
 import Global_variable as G
 import Zombies_class as Z
 import Starting_functions
+import Starting_objects as Obg
 import Gun_class as Gn
 
 pygame.init()
@@ -35,18 +36,9 @@ arsenal.append(Gn.gun(S.surface_of_shotgun, speed=100, damage=1,
 arsenal.append(Gn.gun(S.surface_of_shotgun, speed=100, damage=1,
              magaz=1000, reload=5000, amount=1, spread=1, long=45))
 
-car = C.Car(500, 372, 0, 0, False, 20, S.surface_of_car, S.width_of_images['car'], S.height_of_images['car'])
-dude = C.Dude(550, 350, 0, 0, 10 / FPS * 30, 7, 1, 0, 100, [0] * 10, 0, car, S.surface_of_dude_left,
-            S.width_of_images['dude'], S.height_of_images['dude'], {'fact':False, 'time': 0})
-button_shop = [C.Button_objects(1100, 0, S.shop_button), C.Button_objects(1100, 0, S.shop_close_button)]
-zombie1 = Z.Zombie(S.width_of_images['zombie'], S.width_of_images['zombie'], dude, 100, 350, 3 / FPS * 30,
-            10, 10, 10, 1, 1, S.surface_of_zombie_right)
-zombie2 = Z.Zombie(S.width_of_images['zombie'], S.width_of_images['zombie'], dude, 200, 350, 3 / FPS * 30,
-            20, 10, 10, 1, 1, S.surface_of_zombie_right)
-zombie3 = Z.Zombie(S.width_of_images['zombie'], S.width_of_images['zombie'], dude, 300, 350, 3 / FPS * 30,
-            75, 10, 10, 1, 1, S.surface_of_zombie_right)
-rabbit = Z.Rabbit(S.width_of_images['rabbit'], S.width_of_images['rabbit'], 200, 388, 5 / FPS * 30, 10, 100,
-            600, 1, 1, S.surface_of_rabbit_left)
+car, dude, button_shop, zombie1, zombie2, zombie3, rabbit = Obg.car, Obg.dude, Obg.button_shop, Obg.zombie1, \
+    Obg.zombie2, Obg.zombie3, Obg.rabbit
+
 zombies = [zombie1, zombie2, zombie3]
 rabbits = [rabbit]
 monsters = [zombies] + [rabbits]
@@ -81,10 +73,9 @@ while (not finished) and (time < 100000):  # основной цикл прог�
                 not dude.stun['fact']:
             dude.lives += - zombie.damage
             if dude.x - zombie.x == 0:
-                dude.dx = dude.width *2
+                dude.dx = dude.width * 2
             else:
                 dude.dx = (dude.x - zombie.x) / np.abs(dude.x - zombie.x) * 2 * dude.width
-            print(dude.dx)
             dude.dy = 0
             dude.stun['fact'] = True
         counter = 0
@@ -113,10 +104,10 @@ while (not finished) and (time < 100000):  # основной цикл прог�
 
     for zombie in zombies:
         zombie.follow(dude)
-        zombie = F.motion_processing(zombie, dude)
+        zombie, dude = F.motion_processing(zombie, dude)
         F.draw_object(zombie)
     rabbit.follow(dude)
-    rabbit = F.motion_processing(rabbit, dude)
+    rabbit, dude = F.motion_processing(rabbit, dude)
     F.draw_object(dude.car)
     F.draw_object(dude)
 
@@ -124,7 +115,7 @@ while (not finished) and (time < 100000):  # основной цикл прог�
     pos = pygame.mouse.get_pos()
     sr1, coord_change, angel = Gn.muv(gun.image, pos, coord)
 
-    if (dude.stun['fact']):
+    if dude.stun['fact']:
         if dude.stun['time'] > 0:
             dude.dx = 0
         dude.stun['time'] += 1
@@ -162,8 +153,7 @@ while (not finished) and (time < 100000):  # основной цикл прог�
     else:
         F.draw_object(button_shop[0])
 
-    result, finished = F.checking_of_repairing(dude.car.repair_level, result, finished)
-
+    result, finished = F.checking_of_end(dude.lives, dude.car.repair_level, result, finished)
     time += 1
     pygame.display.update()
     G.screen.fill(G.BLACK)
