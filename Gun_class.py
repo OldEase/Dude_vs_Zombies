@@ -7,9 +7,9 @@ import Global_variable as G
 
 sr = pygame.Surface((180, 80))
 
-
 class gun():
-    def __init__(self, image, speed=1000, damage=1, magaz=10, reload=5000, amount=5, spread=10, long=45):
+    def __init__(self, image, speed=1000, damage=1, magaz=10, reload=5000, amount=5, spread=10,
+                 long=45):
         self.x = 130
         self.y = 35
         self.h = long
@@ -65,6 +65,7 @@ class bullet:
         self.dy = self.V * -(coord[1] - pos[1]) / R + self.angle
         self.dx /= self.V
         self.dy /= self.V
+        self.damage = gun.damage
         self.image = screed
         self.mask = pygame.mask.from_surface(screed)
 
@@ -78,7 +79,6 @@ class bullet:
                 (self.x1, self.y1 + 1), (self.x, self.y + 1)), 0)
 
 
-pygame.display.update()
 clock = pygame.time.Clock()
 finished=False
 

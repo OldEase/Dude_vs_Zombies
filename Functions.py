@@ -15,18 +15,21 @@ def move_object(object, dude):
     return object
 
 def motion_processing(object, dude):
-    if (object.x + object.width <= dude.car.x + dude.dx) and (object.x + object.width + object.dx > dude.car.x +
-            dude.dx) and (object.y + object.dy < dude.car.y + object.height) and (
-            object.y < dude.car.y + object.height):
-        object.x = dude.car.x - object.width
-    elif (object.x >= dude.car.x + dude.dx + 40) and (object.x + object.dx < dude.car.x + dude.dx + 40) and (
-            object.y < dude.car.y + object.height) and (object.y + object.dy < dude.car.y + object.height):
-        object.x = dude.car.x + 40
-        object.y += object.dy
-    elif (object.y >= dude.car.y + object.height) and (object.y + object.dy < dude.car.y + object.height) and (
-            dude.car.x - object.width <= object.x + object.dx - dude.dx <= dude.car.x + 40):
-        object.x += object.dx - dude.dx
-        object.y = dude.car.y + object.height
+    if dude.car.x - dude.width < dude.x + dude.dx < dude.car.x + dude.car.width:
+        if (object.x + object.width <= dude.car.x + dude.dx) and (object.x + object.width + object.dx > dude.car.x +
+                dude.dx) and (object.y + object.dy < dude.car.y + object.height) and (
+                object.y < dude.car.y + object.height):
+            object.x = dude.car.x - object.width
+        elif (object.x >= dude.car.x + dude.dx + dude.car.width) and (object.x + object.dx < dude.car.x + dude.dx +
+                dude.car.width) and (object.y < dude.car.y + object.height) and (object.y + object.dy < dude.car.y + object.height):
+            object.x = dude.car.x + dude.car.width
+            object.y += object.dy
+        elif (object.y >= dude.car.y + object.height) and (object.y + object.dy < dude.car.y + object.height) and (
+                dude.car.x - object.width <= object.x + object.dx - dude.dx <= dude.car.x + dude.car.width):
+            object.x += object.dx - dude.dx
+            object.y = dude.car.y + object.height
+        else:
+            object = move_object(object, dude)
     else:
         object = move_object(object, dude)
     return object

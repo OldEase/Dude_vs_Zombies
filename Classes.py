@@ -2,7 +2,7 @@ import pygame
 
 
 class Dude:
-    def __init__(self, x, y, dx, dy, v, power_of_jump, a, skills, lives, guns, money, car, image, width, height):
+    def __init__(self, x, y, dx, dy, v, power_of_jump, a, skills, lives, guns, money, car, image, width, height, stun):
         '''
         задаем начальные параметры элемента класса:
         x, y - координаты человечка;
@@ -14,6 +14,7 @@ class Dude:
         car - машины игрока
         money - кол-во монет; image - поверхность, на которой рисуется человечек
         width - ширина, height - высота поверхности
+        stun - оглушение; stun = True - значит, человечка в этот момент ударили
         '''
         self.x = x
         self.y = y
@@ -30,6 +31,7 @@ class Dude:
         self.image = image
         self.width = width
         self.height = height
+        self.stun = stun
 
     def handle_pressing_keys(self, shop_open, time, g):
         '''
@@ -47,7 +49,7 @@ class Dude:
             # обработка движения по горизонтальной оси
             if time % (16 - self.a) == 0:
                 self.dx += button_left_check + button_right_check
-            if (button_right_check + button_left_check == 0) and (self.dx != 0):
+            if (button_right_check + button_left_check == 0) and (self.dx != 0) or self.stun['fact']:
                 self.dx = 0
 
             if self.dx > self.v:  # скорость не должна превышать по  модудю значения v
@@ -70,7 +72,7 @@ class Dude:
             else:
                 self.dy += g
 
-        if not shop_open:
+        if (not shop_open) and (not self.stun['fact']):
             # починка машины
             if (button_down_check == 1) and (self.x - 30 < self.car.x < self.x + 30):
                 self.car.repairing = True
