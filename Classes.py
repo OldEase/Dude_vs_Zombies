@@ -135,3 +135,21 @@ class Background:
         self.dx = 0
         self.dy = 0
 
+class Health:
+    def __init__(self, image):
+        self.x = 400
+        self.y = 50
+        self.dx = 0
+        self.dy = 0
+        self.image = image
+
+class Health_full:
+    def __init__(self, dude):
+        self.x = 400
+        self.y = 50
+        self.dx = 0
+        self.dy = 0
+        self.image = pygame.Surface((400, 10), pygame.SRCALPHA)
+        self.image.fill((255, 255, 255))
+        self.image.set_colorkey((255, 255, 255))
+        pygame.draw.rect(self.image, (255, 0, 0), (0, 0, int(dude.lives * 4), 10))

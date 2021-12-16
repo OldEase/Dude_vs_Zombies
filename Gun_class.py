@@ -63,8 +63,8 @@ class bullet:
         self.V = 100
         self.dx = self.V * -(coord[0] - pos[0]) / R
         self.dy = self.V * -(coord[1] - pos[1]) / R + self.angle
-        self.dx /= self.V
-        self.dy /= self.V
+        self.dx /= self.V * 5
+        self.dy /= self.V* 5
         self.damage = gun.damage
         self.image = screed
         self.mask = pygame.mask.from_surface(screed)
