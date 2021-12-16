@@ -22,7 +22,6 @@ zombie3 = Z.Zombie(S.width_of_images['zombie'], S.width_of_images['zombie'],'hp'
             75, 10, 10, 1, 1, S.surface_of_zombie_right)
 rabbit = Z.Rabbit(S.width_of_images['rabbit'], S.width_of_images['rabbit'], 'hp', 200, 388, 5 / FPS * 30, 10, 100,
             10, 1, 1, S.surface_of_rabbit_left)
-
 objects = {'car': car, 'dude': dude, 'button_shop': button_shop, 'zombie1': zombie1, 'zombie2': zombie2,
            'zombie3': zombie3, 'rabbit': rabbit}
 live_objects = {'dude': dude, 'zombie1': zombie1, 'zombie2': zombie2,

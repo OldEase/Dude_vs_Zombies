@@ -22,7 +22,8 @@ class Zombie():
         self.hp = hp
         self.direction = 'right'
         if dude.x < self.x:
-            self.image = self.image = pygame.transform.flip(self.image, 1, 0)
+            self.image = pygame.transform.flip(self.image, 1, 0)
+            self.image.set_colorkey(G.WHITE)
             self.direction = 'left'
             self.dx = -dx_max
         self.mask = pygame.mask.from_surface(image)

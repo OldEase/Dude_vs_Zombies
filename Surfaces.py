@@ -124,8 +124,8 @@ surface_of_rifle.fill(G.WHITE)
 draw.polygon(surface_of_rifle, G.BLACK, ((65, 7 + 30), (68, 7 + 30), (68, 3 + 30), (112, 3 + 30), (112, 0 + 30),
              (115, 0 + 30), (115, 3 + 30), (120, 3 + 30), (120, 8 + 30), (95, 8 + 30), (95, 11 + 30), (70, 11 + 30), (70, 15 + 30), (65, 15 + 30)))
 
-surface_of_ak = pygame.Surface((150, 60), pygame.SRCALPHA)
-surface_of_ak.fill(G.WHITE)
+health_empty = pygame.Surface((400, 10), pygame.SRCALPHA)
+health_empty.fill((255, 255, 255))
 
 surface_background = pygame.Surface((3600, 800), pygame.SRCALPHA)
 surface_background.fill(G.BLACK)

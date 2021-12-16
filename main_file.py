@@ -27,14 +27,6 @@ arsenal.append(Gn.gun(S.surface_of_uzi, speed=100, damage=1,
              magaz=1000, reload=5000, amount=1, spread=1, long=45))
 arsenal.append(Gn.gun(S.surface_of_rifle, speed=1000, damage=4,
              magaz=1000, reload=5000, amount=1, spread=1, long=45))
-arsenal.append(Gn.gun(S.surface_of_shotgun, speed=100, damage=1,
-             magaz=1000, reload=5000, amount=1, spread=1, long=45))
-arsenal.append(Gn.gun(S.surface_of_shotgun, speed=100, damage=1,
-             magaz=1000, reload=5000, amount=1, spread=1, long=45))
-arsenal.append(Gn.gun(S.surface_of_shotgun, speed=100, damage=1,
-             magaz=1000, reload=5000, amount=1, spread=1, long=45))
-arsenal.append(Gn.gun(S.surface_of_shotgun, speed=100, damage=1,
-             magaz=1000, reload=5000, amount=1, spread=1, long=45))
 
 car, dude, button_shop, zombie1, zombie2, zombie3, rabbit = Obg.car, Obg.dude, Obg.button_shop, Obg.zombie1, \
     Obg.zombie2, Obg.zombie3, Obg.rabbit
@@ -52,14 +44,12 @@ result = 'ПОРАЖЕНИЕ'
 time = 0
 background = C.Background(S.surface_background)
 side_gun_check = "right"
+health = C.Health(S.health_empty)
 
 Mask_dude = pygame.mask.from_surface(dude.image)
 
 while (not finished) and (time < 100000):  # основной цикл программы
     clock.tick(FPS)
-    '''if(Mask_dude.overlap_area(Mask_zombie, (int(zombie.x - dude.x), int(zombie.y - dude.y)))) != 0:
-		print((int(zombie.x - dude.x), int(zombie.y - dude.y)))'''
-    # zombie.image.fill(G.BLACK)
     events = pygame.event.get()
     G.screen.fill(G.LIGHT_YELLOW)
     dude.check_collision_with_car()
@@ -67,7 +57,12 @@ while (not finished) and (time < 100000):  # основной цикл прог�
     dude.car = F.move_object(car, dude)
     background = F.move_object(background, dude)
     F.draw_object(background)
+    F.draw_object(health)
+    F.draw_object(C.Health_full(dude))
     k = 0
+    pos = pygame.mouse.get_pos()
+    if not dude.stun['fact']:
+        gun.shot(dude, pos, pygame.mouse.get_pressed()[0])    
     for zombie in zombies:
         if (dude.x - zombie.width <= zombie.x <= dude.x + dude.width) and (dude.y > zombie.y - dude.height) and      \
                 not dude.stun['fact']:
@@ -82,7 +77,7 @@ while (not finished) and (time < 100000):  # основной цикл прог�
         for bull in G.bullets:
             inside_check = False
 
-            for i in range(bull.V):
+            for i in range(20):
                 bull = F.move_bullet(bull)
                 if (zombie.mask.overlap_area(bull.mask,
                         (int(-zombie.x + bull.x), int(-zombie.y + bull.y)))) != 0 and not inside_check:
@@ -110,16 +105,17 @@ while (not finished) and (time < 100000):  # основной цикл прог�
     rabbit, dude = F.motion_processing(rabbit, dude)
     F.draw_object(dude.car)
     F.draw_object(dude)
-
+    
     F.draw_object(rabbit)
-    pos = pygame.mouse.get_pos()
+
     sr1, coord_change, angel = Gn.muv(gun.image, pos, coord)
 
     if dude.stun['fact']:
         if dude.stun['time'] > 0:
-            dude.dx = 0
+            pass
+            #dude.dx = 0
         dude.stun['time'] += 1
-        if dude.stun['time'] >= 72:
+        if dude.stun['time'] >= 18:
             dude.stun['fact'], dude.stun['time'] = False, 0
 
     for event in events:  # блок обработки выполненных игроком действий
@@ -127,12 +123,11 @@ while (not finished) and (time < 100000):  # основной цикл прог�
     # if (event.type == pygame.MOUSEBUTTONDOWN) and (not shop['open']):
     # gun.shot(dude, pos, True, False)
     dude.handle_pressing_keys(shop['open'], time, G.g / FPS * 30)
-    if not dude.stun['fact']:
-        gun.shot(dude, pos, pygame.mouse.get_pressed()[0])
+    
     if F.check(pygame.key.get_pressed()[
-            pygame.K_1], pygame.key.get_pressed()[pygame.K_2], pygame.key.get_pressed()[pygame.K_3], pygame.key.get_pressed()[pygame.K_4], pygame.key.get_pressed()[pygame.K_5], pygame.key.get_pressed()[pygame.K_6], pygame.key.get_pressed()[pygame.K_7], pygame.key.get_pressed()[pygame.K_8], pygame.key.get_pressed()[pygame.K_9]):
+            pygame.K_1], pygame.key.get_pressed()[pygame.K_2], pygame.key.get_pressed()[pygame.K_3], pygame.key.get_pressed()[pygame.K_4], pygame.key.get_pressed()[pygame.K_5]):
         gun = arsenal[F.choose(pygame.key.get_pressed()[
-            pygame.K_1], pygame.key.get_pressed()[pygame.K_2], pygame.key.get_pressed()[pygame.K_3], pygame.key.get_pressed()[pygame.K_4], pygame.key.get_pressed()[pygame.K_5], pygame.key.get_pressed()[pygame.K_6], pygame.key.get_pressed()[pygame.K_7], pygame.key.get_pressed()[pygame.K_8], pygame.key.get_pressed()[pygame.K_9])]
+            pygame.K_1], pygame.key.get_pressed()[pygame.K_2], pygame.key.get_pressed()[pygame.K_3], pygame.key.get_pressed()[pygame.K_4], pygame.key.get_pressed()[pygame.K_5])]
 
     sr1.set_colorkey(G.WHITE)
     G.screen.blit(sr1, (dude.x + 10 - coord_change[0] / 2, dude.y + 10 - coord_change[1] / 2))
