@@ -1,5 +1,6 @@
 import pygame
 import Classes
+import numpy as np
 
 import Global_variable as G
 
@@ -53,8 +54,51 @@ def draw_object(object):
     """
     G.screen.blit(object.image, (object.x, object.y))
 
+def collision_with_zombie(zombies, dude, bullets):
+    j = len(zombies) - 1
+    while j >= 0:
+        if (dude.x - zombies[j].width <= zombies[j].x <= dude.x + dude.width) and (dude.y > zombies[j].y -
+                dude.height) and not dude.stun['fact']:
+            dude.lives += - zombies[j].damage
+            if dude.x - zombies[j].x == 0:
+                dude.dx = dude.width * 2
+            else:
+                dude.dx = (dude.x - zombies[j].x) / np.abs(dude.x - zombies[j].x) * 2 * dude.width
+            dude.dy = 0
+            dude.stun['fact'] = True
+        counter = 0
+        exist_check = True
+        for bull in bullets:
+            inside_check = False
+            if bull.x > 1300 or bull.x < -100:
+                bullets.pop(counter)
 
-
+            for i in range(20):
+                bull = move_bullet(bull)
+                if (zombies[j].mask.overlap_area(bull.mask,
+                                             (int(-zombies[j].x + bull.x),
+                                              int(-zombies[j].y + bull.y)))) != 0 and not inside_check:
+                    (x, y) = zombies[j].mask.overlap(
+                        bull.mask, (int(-zombies[j].x + bull.x), int(-zombies[j].y + bull.y)))
+                    pygame.draw.rect(zombies[j].image, G.WHITE, (x, y, 2, 2))
+                    pygame.draw.rect(zombies[j].image, G.RED, (x + 2 * bull.dx / abs(bull.dx), y, 1, 1))
+                    zombies[j].mask = pygame.mask.from_surface(zombies[j].image)
+                    zombies[j].lives += - bull.damage
+                    print(zombies[j].lives, 'попал')
+                    if zombies[j].lives <= 0 and exist_check:
+                        zombies.pop(j)
+                        print('убил')
+                        exist_check = False
+                        break
+                    inside_check = True
+                    bullets.pop(counter)
+            if not inside_check:
+                draw_object(bull)
+            counter += 1
+            if not exist_check:
+                break
+        j += -1
+    return zombies, dude, bullets
 
 def handle_events(event, shop_open, finished):
     """
