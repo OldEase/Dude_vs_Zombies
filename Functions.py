@@ -193,20 +193,20 @@ def create_label(label: str, size: int, a: int, b: int, border: bool, fill: bool
     return surf
 
 
-def shop_actions(event, shop, Dude):
+def shop_actions(event, shop, dude, arsenal, full_arsenal):
     '''
     обрабатывает выполенные игроком в магазине действия
     '''
     if event.type == pygame.MOUSEBUTTONDOWN:  # нажатие на кнопку мыши
         x = pygame.mouse.get_pos()[0]  # определяем координаты положения мыши
         y = pygame.mouse.get_pos()[1]
-        for i in range(10):
-            if (shop['image'].x + shop['guns'][i]['image'].x < x < shop['image'].x + shop['guns'][i]['image'].x \
-                + 250) and (
-                    shop['image'].y + shop['guns'][i]['image'].y -30 < y < shop['image'].x + shop['guns'][i] \
-                        ['image'].y + 30):
-                print(2)
-    return Dude
+        for i in range(8):
+            if (shop['image'].x + shop['guns'][i]['cost'].x < x < shop['image'].x + shop['guns'][i]['cost'].x \
+                + 200) and (shop['image'].y + shop['guns'][i]['cost'].y < y < shop['image'].y + shop['guns'][i] \
+                    ['cost'].y + 30) and (type(shop['costs'][i]) == int) and (dude.money >= shop['costs'][i]):
+                arsenal[i] = full_arsenal[i]
+                dude.money += - shop['costs'][i]
+    return dude, arsenal
 
 def check(check1, check2, check3, check4, check5):
     if check1 or check2 or check3 or check4 or check5:

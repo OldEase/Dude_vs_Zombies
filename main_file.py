@@ -18,7 +18,8 @@ pygame.mixer.music.load('ost.mp3')
 pygame.mixer.music.set_volume(0)
 pygame.mixer.music.play()
 
-arsenal = Obg.arsenal
+full_arsenal = Obg.full_arsenal
+arsenal = [full_arsenal[0]] * 5
 car, dude, button_shop, zombies, rabbit = Obg.car, Obg.dude, Obg.button_shop, [Obg.zombie1, \
     Obg.zombie2, Obg.zombie3], Obg.rabbit
 objects = {'car': car, 'dude': dude, 'button_shop': button_shop, 'zombies': [zombies[0], zombies[1],
@@ -42,12 +43,13 @@ spawn_check = False
 spawn_counter = 0
 Mask_dude = pygame.mask.from_surface(dude.image)
 
+print(shop['guns'])
 while (not finished) and (time < 100000):  # основной цикл программы
     clock.tick(FPS)
     events = pygame.event.get()
     G.screen.fill(G.LIGHT_YELLOW)
     pos = pygame.mouse.get_pos()
-    objects, G.bullets = Motion.motion_objects(objects, background, gun, G.bullets, time, health, pos)
+    objects, G.bullets = Motion.motion_objects(objects, background, gun, G.bullets, shop['open'], health, pos)
     car, dude, zombies, rabbit = objects['car'], objects['dude'], objects['zombies'], objects['rabbit']
     F.draw_object(dude.car)
     F.draw_object(dude)
@@ -83,7 +85,7 @@ while (not finished) and (time < 100000):  # основной цикл прог�
     if shop['open']:
         G.screen.blit(shop['image'].image, (shop['image'].x, shop['image'].y))
         for event in events:  # блок обработки выполненных игроком в магазине действий
-            C.Dude = F.shop_actions(event, shop, C.Dude)
+            dude, arsenal = F.shop_actions(event, shop, dude, arsenal, full_arsenal)
         F.draw_object(button_shop[1])
     else:
         F.draw_object(button_shop[0])
@@ -99,7 +101,6 @@ while (not finished) and (time < 100000):  # основной цикл прог�
     for object in live_objects:
         F.draw_hp(object)
     F.draw_rapair_level(car)
-    print(dude.car.repair_level)
     time += 1
     pygame.display.update()
     G.screen.fill(G.BLACK)
