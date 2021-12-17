@@ -15,6 +15,7 @@ FPS = 144  # число кадров в секунду
 
 def motion_objects(objects, background, gun, bullets, time, health, pos):
     objects['dude'].check_collision_with_car()
+    objects['dude'], background = limiting_of_space(objects['dude'], background)
     objects['dude'] = F.move_object(objects['dude'], objects['dude'])
     objects['dude'].car = F.move_object(objects['car'], objects['dude'])
     background = F.move_object(background, objects['dude'])
@@ -35,5 +36,15 @@ def motion_objects(objects, background, gun, bullets, time, health, pos):
     objects['rabbit'], objects['dude'] = F.motion_processing(objects['rabbit'], objects['dude'])
 
     return objects, bullets
+
+def limiting_of_space(dude, background):
+    '''
+    следит за тем, чтобы герой не выбежал за пределы экрана
+    '''
+    if background.x - dude.dx <= - 3050 + dude.width:
+        dude.dx = background.x + 3050 - dude.width
+    if background.x - dude.dx >= 550:
+        dude.dx = background.x - 550
+    return dude, background
 
 
