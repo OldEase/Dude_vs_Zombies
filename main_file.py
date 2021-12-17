@@ -5,7 +5,7 @@ import Classes as C
 import Functions as F
 import Global_variable as G
 import Zombies_class as Z
-import Starting_functions
+import Special_functions
 import Starting_objects as Obg
 import Motion_objects as Motion
 import Gun_class as Gn
@@ -26,7 +26,7 @@ objects = {'car': car, 'dude': dude, 'button_shop': button_shop, 'zombies': [zom
 live_objects = {'dude': dude, 'zombie1': zombies[0], 'zombie2': zombies[1],
            'zombie3': zombies[2], 'rabbit': rabbit}
 rabbits = [rabbit]
-shop = Starting_functions.create_shop()
+shop = Special_functions.create_shop()
 gun = arsenal[0]
 coord = [560, 370]
 pygame.display.update()
@@ -56,13 +56,7 @@ while (not finished) and (time < 100000):  # основной цикл прог�
 
     sr1, coord_change, angel = Gn.muv(gun.image, pos, coord)
 
-    if dude.stun['fact']:
-        if dude.stun['time'] > 0:
-            pass
-            # dude.dx = 0
-        dude.stun['time'] += 1
-        if dude.stun['time'] >= 18:
-            dude.stun['fact'], dude.stun['time'] = False, 0
+    dude = F.checking_of_stun(dude)
 
     for event in events:  # блок обработки выполненных игроком действий
         shop['open'], finished = F.handle_events(event, shop['open'], finished)
@@ -95,24 +89,16 @@ while (not finished) and (time < 100000):  # основной цикл прог�
         F.draw_object(button_shop[0])
 
     result, finished = F.checking_of_end(dude.lives, dude.car.repair_level, result, finished)
-    time += 1
-    if len(objects['zombies']) == 0:
-        spawn_time += 1
-        if spawn_time >= 1440:
-            spawn_check = True
-    if spawn_check:
-        objects['zombies'].append(Z.Zombie(S.width_of_images['zombie'], S.width_of_images['zombie'], 'hp', dude,
-                randint(0, 3) * 1200 - 1800, 350, randint(2, 6) / FPS * 30, 10, 10, 10, 1, 1,
-                                           S.surface_of_zombie_right))
-        spawn_counter += 10
-        if spawn_counter >= 100:
-            spawn_check = False
+
+    objects['zombies'], spawn_time, spawn_check, spawn_counter = Special_functions.spaun_checking(objects['zombies'],
+            dude, spawn_time, spawn_check, spawn_counter)
 
     live_objects = F.update_live_objects(objects)
 
     for object in live_objects:
         F.draw_hp(object)
 
+    time += 1
     pygame.display.update()
     G.screen.fill(G.BLACK)
 print(result)

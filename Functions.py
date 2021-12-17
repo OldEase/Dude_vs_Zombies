@@ -108,9 +108,25 @@ def draw_hp(object):
     pygame.draw.rect(G.screen, G.WHITE, (object.x, object.y - 16, object.width, 8))
     pygame.draw.rect(G.screen, G.RED, (object.x, object.y - 16, object.width * object.lives // object.lives0, 8))
 
+def checking_of_stun(dude):
+    '''
+    Проверяет, оглушен ли человечек в данный момент, и выполняет необходимые в данном случае действия
+    '''
+    if dude.stun['fact']:
+        if dude.stun['time'] > 0:
+            pass
+            # dude.dx = 0
+        dude.stun['time'] += 1
+        if dude.stun['time'] >= 18:
+            dude.stun['fact'], dude.stun['time'] = False, 0
+    return dude
+
+
 def update_live_objects(objects):
     live_objects = [objects['dude']] + objects['zombies'] + [objects['rabbit']]
     return live_objects
+
+
 def handle_events(event, shop_open, finished):
     """
     функция, обрабатывающая все произошедшие за временной интервал события

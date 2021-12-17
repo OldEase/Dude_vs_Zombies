@@ -6,6 +6,7 @@ import Gun_class as Gn
 g = 1
 bullets = []
 screen = pygame.display.set_mode((1200, 700))
+FPS = 144
 
 RED = (255, 0, 0)  # блок задания цветовой палитры
 BLUE = (0, 0, 255)

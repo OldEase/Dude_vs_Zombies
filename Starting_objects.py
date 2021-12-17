@@ -5,7 +5,7 @@ import Classes as C
 import Functions as F
 import Global_variable as G
 import Zombies_class as Z
-import Starting_functions
+import Special_functions
 import Gun_class as Gn
 
 FPS = 144
