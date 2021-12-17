@@ -8,6 +8,7 @@ import Zombies_class as Z
 import Starting_functions
 import Starting_objects as Obg
 import Gun_class as Gn
+from random import *
 
 pygame.init()
 FPS = 144  # число кадров в секунду
@@ -45,7 +46,9 @@ time = 0
 background = C.Background(S.surface_background)
 side_gun_check = "right"
 health = C.Health(S.health_empty)
-
+spawn_time = 0
+spawn_check = False
+spawn_counter = 0
 Mask_dude = pygame.mask.from_surface(dude.image)
 
 while (not finished) and (time < 100000):  # основной цикл программы
@@ -74,8 +77,11 @@ while (not finished) and (time < 100000):  # основной цикл прог�
             dude.dy = 0
             dude.stun['fact'] = True
         counter = 0
+        exist_check = True
         for bull in G.bullets:
             inside_check = False
+            if bull.x > 1300 or bull.x < -100:
+                G.bullets.pop(counter)
 
             for i in range(20):
                 bull = F.move_bullet(bull)
@@ -88,8 +94,9 @@ while (not finished) and (time < 100000):  # основной цикл прог�
                     zombie.mask = pygame.mask.from_surface(zombie.image)
                     zombie.lives += - bull.damage
                     print(bull.damage)
-                    if zombie.lives <=0:
+                    if zombie.lives <= 0 and exist_check:
                         zombies.pop(k)
+                        exist_check = False
                     inside_check = True
                     G.bullets.pop(counter)
             if not inside_check:
@@ -150,6 +157,16 @@ while (not finished) and (time < 100000):  # основной цикл прог�
 
     result, finished = F.checking_of_end(dude.lives, dude.car.repair_level, result, finished)
     time += 1
+    if len(zombies) == 0:
+        spawn_time += 1
+        if spawn_time >= 1440:
+            spawn_check = True
+    if spawn_check:
+        zombies.append(Z.Zombie(S.width_of_images['zombie'], S.width_of_images['zombie'], 'hp', dude, randint(0, 3) * 1200 - 1800, 350, randint(2, 6) / FPS * 30,
+            10, 10, 10, 1, 1, S.surface_of_zombie_right))
+        spawn_counter += 10
+        if spawn_counter >= 100:
+            spawn_check = False
     pygame.display.update()
     G.screen.fill(G.BLACK)
 print(result)
