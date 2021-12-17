@@ -41,6 +41,7 @@ health = C.Health(S.health_empty)
 spawn_time = 0
 spawn_check = False
 spawn_counter = 0
+spawn_dif = 30
 Mask_dude = pygame.mask.from_surface(dude.image)
 
 print(shop['guns'])
@@ -55,8 +56,9 @@ while (not finished) and (time < 100000):  # основной цикл прог�
     F.draw_object(dude)
 
     F.draw_object(rabbit)
-    text_money = S.font_money.render('$' + str(dude.money), True, G.WHITE)
-    text_xp = S.font_money.render('XP' + str(dude.xp) + '/' + str(dude.lvl_up), True, G.WHITE)
+    text_money = S.font_money.render('$ ' + str(dude.money), True, G.WHITE)
+    text_xp = S.font_money.render(
+        'XP ' + str(dude.xp) + '/' + str(dude.lvl_up), True, G.WHITE)
     G.screen.blit(text_money, (50, 50))
     G.screen.blit(text_xp, (50, 20))
     sr1, coord_change, angel = Gn.muv(gun.image, pos, coord)
@@ -96,8 +98,8 @@ while (not finished) and (time < 100000):  # основной цикл прог�
     result, finished = F.checking_of_end(dude.lives, dude.car.repair_level, dude.car.full_repair_level, result,
                                                                                                         finished)
 
-    objects['zombies'], spawn_time, spawn_check, spawn_counter = Special_functions.spaun_checking(objects['zombies'],
-            dude, spawn_time, spawn_check, spawn_counter)
+    objects['zombies'], spawn_time, spawn_check, spawn_counter, spawn_dif = Special_functions.spaun_checking(objects['zombies'],
+            dude, spawn_time, spawn_check, spawn_counter, spawn_dif)
 
     live_objects = F.update_live_objects(objects)
 

@@ -27,7 +27,7 @@ class Dude:
         self.a = a
         self.skills = skills
         self.xp = 0
-        self.lvl_up = 100
+        self.lvl_up = 5
         self.lives = lives0
         self.lives0 = lives0
         self.guns = guns

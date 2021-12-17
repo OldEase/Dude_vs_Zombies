@@ -41,10 +41,10 @@ def limiting_of_space(dude, background):
     '''
     следит за тем, чтобы герой не выбежал за пределы экрана
     '''
-    if background.x - dude.dx <= - 3050 + dude.width:
-        dude.dx = background.x + 3050 - dude.width
-    if background.x - dude.dx >= 550:
-        dude.dx = background.x - 550
+    if background.x - dude.dx <= - 2400 + dude.width:
+        dude.dx = background.x + 2400 - dude.width
+    if background.x - dude.dx >= 0:
+        dude.dx = background.x - 0
     return dude, background
 
 
