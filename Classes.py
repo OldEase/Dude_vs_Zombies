@@ -2,9 +2,8 @@ import pygame
 
 
 class Dude:
-    def __init__(self, x, y, dx, dy, v, power_of_jump, a, skills, lives, lives0, guns, money, car, image, hp, width,
-                 height, \
-                                                                                                    stun):
+    def __init__(self, x, y, dx, dy, v, power_of_jump, a, skills, lives0, guns, money, car, image, hp, width,
+                 height, stun):
         '''
         задаем начальные параметры элемента класса:
         x, y - координаты человечка;
@@ -27,7 +26,7 @@ class Dude:
         self.power_of_jump = power_of_jump
         self.a = a
         self.skills = skills
-        self.lives = lives
+        self.lives = lives0
         self.lives0 = lives0
         self.guns = guns
         self.money = money

@@ -100,6 +100,17 @@ def collision_with_zombie(zombies, dude, bullets):
         j += -1
     return zombies, dude, bullets
 
+def draw_hp(object):
+    '''
+    отображает на экране текущее состояние здоровья персонажа
+    '''
+    print(object)
+    pygame.draw.rect(G.screen, G.WHITE, (object.x, object.y - 16, object.width, 8))
+    pygame.draw.rect(G.screen, G.RED, (object.x, object.y - 16, object.width * object.lives // object.lives0, 8))
+
+def update_live_objects(objects):
+    live_objects = [objects['dude']] + objects['zombies'] + [objects['rabbit']]
+    return live_objects
 def handle_events(event, shop_open, finished):
     """
     функция, обрабатывающая все произошедшие за временной интервал события

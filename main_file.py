@@ -108,6 +108,11 @@ while (not finished) and (time < 100000):  # основной цикл прог�
         if spawn_counter >= 100:
             spawn_check = False
 
+    live_objects = F.update_live_objects(objects)
+
+    for object in live_objects:
+        F.draw_hp(object)
+
     pygame.display.update()
     G.screen.fill(G.BLACK)
 print(result)
