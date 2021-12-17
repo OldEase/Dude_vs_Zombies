@@ -91,9 +91,16 @@ def collision_with_zombie(zombies, dude, bullets):
                     pygame.draw.rect(zombies[j].image, G.RED, (x + 2 * bull.dx / abs(bull.dx), y, 1, 1))
                     zombies[j].mask = pygame.mask.from_surface(zombies[j].image)
                     zombies[j].lives += - bull.damage
-                    dude.money += zombies[j].money
                     print(zombies[j].lives, 'попал')
                     if zombies[j].lives <= 0 and exist_check:
+                        dude.money += zombies[j].money
+                        dude.xp += zombies[j].exp
+                        if dude.xp >= dude.lvl_up:
+                            dude.xp -= dude.lvl_up
+                            dude.lvl_up *= 2
+                            dude.lives0 += 20
+                            dude.lives = dude.lives0
+                            dude.v += 1
                         zombies.pop(j)
                         print('убил')
                         exist_check = False

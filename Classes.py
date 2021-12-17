@@ -26,6 +26,8 @@ class Dude:
         self.power_of_jump = power_of_jump
         self.a = a
         self.skills = skills
+        self.xp = 0
+        self.lvl_up = 100
         self.lives = lives0
         self.lives0 = lives0
         self.guns = guns

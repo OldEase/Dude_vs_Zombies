@@ -39,7 +39,7 @@ def spaun_checking(zombies, dude, spawn_time, spawn_check, spawn_counter):
             spawn_check = True
     if spawn_check:
         zombies.append(Zombie(S.width_of_images['zombie'], S.width_of_images['zombie'], 'hp', dude,
-                randint(0, 3) * 1200 - 1800, 350, randint(2, 6) / G.FPS * 30, 10, 10, 10, 1, 1,
+                randint(0, 1) * 3600 - 1800, 350, randint(4, 9) / G.FPS * 30, 10, 10, 10, 1, 1,
                                            S.surface_of_zombie_right))
         spawn_counter += 10
         if spawn_counter >= 100:
