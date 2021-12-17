@@ -56,7 +56,7 @@ while (not finished) and (time < 100000):  # основной цикл прог�
 
     sr1, coord_change, angel = Gn.muv(gun.image, pos, coord)
 
-    dude = F.checking_of_stun(dude)
+    dude, background = F.checking_of_stun(dude, background)
 
     for event in events:  # блок обработки выполненных игроком действий
         shop['open'], finished = F.handle_events(event, shop['open'], finished)
@@ -88,7 +88,8 @@ while (not finished) and (time < 100000):  # основной цикл прог�
     else:
         F.draw_object(button_shop[0])
 
-    result, finished = F.checking_of_end(dude.lives, dude.car.repair_level, result, finished)
+    result, finished = F.checking_of_end(dude.lives, dude.car.repair_level, dude.car.full_repair_level, result,
+                                                                                                        finished)
 
     objects['zombies'], spawn_time, spawn_check, spawn_counter = Special_functions.spaun_checking(objects['zombies'],
             dude, spawn_time, spawn_check, spawn_counter)
@@ -97,6 +98,7 @@ while (not finished) and (time < 100000):  # основной цикл прог�
 
     for object in live_objects:
         F.draw_hp(object)
+    F.draw_rapair_level(car)
 
     time += 1
     pygame.display.update()

@@ -8,6 +8,9 @@ from random import randint
 
 
 def create_shop():
+    '''
+    создает магазин как элемент игры
+    '''
     names_of_guns = ['        PISTOL', '       REVOLVER', '     WINCHESTER', '            UZI', '       MOSSBERG',
     '          AK-47', '          M16', '       STRIKER', '        SPITFIRE', '       MINIGUN']
     cost_of_guns = [i * 500 + 1000 for i in range(10)]
@@ -27,6 +30,9 @@ def create_shop():
 
 
 def spaun_checking(zombies, dude, spawn_time, spawn_check, spawn_counter):
+    '''
+    отвечает за создание новых поколений зомби
+    '''
     if len(zombies) == 0:
         spawn_time += 1
         if spawn_time >= 1440:

@@ -105,6 +105,7 @@ class Car:
         dy - вертикальная скорость;
         image - поверхность, на которой рисуется машина
         repairing - логическая переменная, показывает, ремонтируется ли машина в настоящий момент
+        full_repair_level - уровень полной починки, необходимый для победы в игре
         repair_level - уровень починки автомобиля;
         width, height - ширина и высота изображения соответственно
         '''
@@ -113,6 +114,7 @@ class Car:
         self.dx = dx
         self.dy = dy
         self.repairing = repairing
+        self.full_repair_level = 5000
         self.repair_level = repair_level
         self.image = image
         self.width = width

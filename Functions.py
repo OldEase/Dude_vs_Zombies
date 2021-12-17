@@ -16,6 +16,10 @@ def move_object(object, dude):
     return object
 
 def motion_processing(object, dude):
+    '''
+    устанавливает характер движения объекта в зависимости от его взаимного относительно героя, машины
+    и других факторов (заставляет монстров стоять у машины, когда герой находится на ней)
+    '''
     if dude.car.x - dude.width < dude.x + dude.dx < dude.car.x + dude.car.width:
         if (object.x + object.width <= dude.car.x + dude.dx) and (object.x + object.width + object.dx > dude.car.x +
                 dude.dx) and (object.y + object.dy < dude.car.y + object.height) and (
@@ -55,6 +59,9 @@ def draw_object(object):
     G.screen.blit(object.image, (object.x, object.y))
 
 def collision_with_zombie(zombies, dude, bullets):
+    '''
+    реализует столкновение героя с зомби
+    '''
     j = len(zombies) - 1
     while j >= 0:
         if (dude.x - zombies[j].width <= zombies[j].x <= dude.x + dude.width) and (dude.y > zombies[j].y -
@@ -104,25 +111,35 @@ def draw_hp(object):
     '''
     отображает на экране текущее состояние здоровья персонажа
     '''
-    print(object)
     pygame.draw.rect(G.screen, G.WHITE, (object.x, object.y - 16, object.width, 8))
     pygame.draw.rect(G.screen, G.RED, (object.x, object.y - 16, object.width * object.lives // object.lives0, 8))
 
-def checking_of_stun(dude):
+def draw_rapair_level(car):
+    '''
+    выводит на экран уровень починки машины
+    '''
+    pygame.draw.rect(G.screen, G.WHITE, (car.x, car.y + car.height + 8, car.width, 8))
+    pygame.draw.rect(G.screen, G.BLUE, (car.x, car.y + car.height + 8, car.width * car.repair_level //
+                                        car.full_repair_level, 8))
+
+def checking_of_stun(dude, background):
     '''
     Проверяет, оглушен ли человечек в данный момент, и выполняет необходимые в данном случае действия
     '''
     if dude.stun['fact']:
-        if dude.stun['time'] > 0:
-            pass
-            # dude.dx = 0
+        if dude.stun['time'] == 0:
+            dude.car = move_object(dude.car, dude)
+            background = move_object(background, dude)
         dude.stun['time'] += 1
         if dude.stun['time'] >= 18:
             dude.stun['fact'], dude.stun['time'] = False, 0
-    return dude
+    return dude, background
 
 
 def update_live_objects(objects):
+    '''
+    обновляет список объектов, у которых выводится на экран уровень здоровья
+    '''
     live_objects = [objects['dude']] + objects['zombies'] + [objects['rabbit']]
     return live_objects
 
@@ -141,11 +158,14 @@ def handle_events(event, shop_open, finished):
     return shop_open, finished
 
 
-def checking_of_end(lives, repair_level, result, finished):
-    if repair_level >= 5000:
+def checking_of_end(lives, repair_level, full_repair_level, result, finished):
+    '''
+    осуществляет проверку условий окончания игры; выдает результат игры в случае их выполнения
+    '''
+    if repair_level >= full_repair_level:
         result = 'ПОБЕДА'
         finished = True
-    if (repair_level) <= 0 or (lives <= 0):
+    if (repair_level <= 0) or (lives <= 0):
         result = 'ПОРАЖЕНИЕ'
         finished = True
     return result, finished
@@ -173,6 +193,9 @@ def create_label(label: str, size: int, a: int, b: int, border: bool, fill: bool
 
 
 def shop_actions(event, shop, Dude):
+    '''
+    обрабатывает выполенные игроком в магазине действия
+    '''
     if event.type == pygame.MOUSEBUTTONDOWN:  # нажатие на кнопку мыши
         x = pygame.mouse.get_pos()[0]  # определяем координаты положения мыши
         y = pygame.mouse.get_pos()[1]
