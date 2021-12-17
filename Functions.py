@@ -91,6 +91,7 @@ def collision_with_zombie(zombies, dude, bullets):
                     pygame.draw.rect(zombies[j].image, G.RED, (x + 2 * bull.dx / abs(bull.dx), y, 1, 1))
                     zombies[j].mask = pygame.mask.from_surface(zombies[j].image)
                     zombies[j].lives += - bull.damage
+                    dude.money += zombies[j].money
                     print(zombies[j].lives, 'попал')
                     if zombies[j].lives <= 0 and exist_check:
                         zombies.pop(j)
@@ -146,7 +147,7 @@ def update_live_objects(objects):
 
 def handle_events(event, shop_open, finished):
     """
-    функция, обрабатывающая все произошедшие за временной интервал события
+    функция, обрабатывающая некоторые произошедшие за временной интервал события
     """
     if event.type == pygame.QUIT:  # выхода из игры
         finished = True
@@ -204,7 +205,7 @@ def shop_actions(event, shop, Dude):
                 + 250) and (
                     shop['image'].y + shop['guns'][i]['image'].y -30 < y < shop['image'].x + shop['guns'][i] \
                         ['image'].y + 30):
-                continue
+                print(2)
     return Dude
 
 def check(check1, check2, check3, check4, check5):

@@ -22,7 +22,7 @@ def motion_objects(objects, background, gun, bullets, time, health, pos):
     F.draw_object(background)
     F.draw_object(health)
     F.draw_object(C.Health_full(objects['dude']))
-    if not objects['dude'].stun['fact']:
+    if (not objects['dude'].stun['fact']) and (not objects['dude'].car.repairing):
         gun.shot(objects['dude'], pos, pygame.mouse.get_pressed()[0])
 
     objects['zombies'], objects['dude'], G.bullets = F.collision_with_zombie(objects['zombies'], objects['dude'],

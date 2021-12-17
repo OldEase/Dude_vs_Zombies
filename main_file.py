@@ -99,7 +99,7 @@ while (not finished) and (time < 100000):  # основной цикл прог�
     for object in live_objects:
         F.draw_hp(object)
     F.draw_rapair_level(car)
-
+    print(dude.car.repair_level)
     time += 1
     pygame.display.update()
     G.screen.fill(G.BLACK)

@@ -16,7 +16,7 @@ class Dude:
         car - машины игрока
         money - кол-во монет; image - поверхность, на которой рисуется человечек
         width - ширина, height - высота поверхности
-        stun - оглушение; stun = True - значит, человечка в этот момент ударили
+        stun - оглушение; stun = True - значит, человечек в этот момент оглушен ударом
         '''
         self.x = x
         self.y = y
@@ -49,6 +49,10 @@ class Dude:
         button_up_check = - pygame.key.get_pressed()[pygame.K_UP]
         button_down_check = pygame.key.get_pressed()[pygame.K_DOWN]
 
+        # герой не может прыгать, находясь в магазине или чиня машину
+        if shop_open or self.car.repairing:
+            button_up_check = 0
+
         if (not shop_open) and (not self.car.repairing):
             # обработка движения по горизонтальной оси
             if time % (16 - self.a) == 0:
@@ -60,25 +64,26 @@ class Dude:
                 self.dx = self.v
             if self.dx < - self.v:
                 self.dx = - self.v
+        else:
+            self.dx = 0
 
-            if (self.x <= 0) and (self.dx < 0) or (self.x >= 1200) and (self.dx > 0):
-                self.dx = 0  # человечек не может выбежать за пределы экрана
+        # обработка движения по вертикальной оси
+        if self.car.x - self.width < self.x + self.dx < self.car.x + 40:
+            level_of_ground = self.car.y - self.height
+        else:
+            level_of_ground = 350
+        if (self.y < level_of_ground) and (self.y + self.dy > level_of_ground):
+            self.dy = level_of_ground - self.y
+        if self.y >= level_of_ground:
+            self.dy = button_up_check * self.power_of_jump
+        else:
+            self.dy += g
 
-            # обработка движения по вертикальной оси
-            if self.car.x - self.width < self.x + self.dx < self.car.x + 40:
-                level_of_ground = self.car.y - self.height
-            else:
-                level_of_ground = 350
-            if (self.y < level_of_ground) and (self.y + self.dy > level_of_ground):
-                self.dy = level_of_ground - self.y
-            if self.y >= level_of_ground:
-                self.dy = button_up_check * self.power_of_jump
-            else:
-                self.dy += g
 
         if (not shop_open) and (not self.stun['fact']):
             # починка машины
-            if (button_down_check == 1) and (self.x - 30 < self.car.x < self.x + 30) and (self.y == 350):
+            if (button_down_check == 1) and (self.x - 30 < self.car.x < self.x + 30) and (self.y == self.car.y -
+                                                                                          self.height):
                 self.car.repairing = True
                 self.car.repair_level += 1
             else:
