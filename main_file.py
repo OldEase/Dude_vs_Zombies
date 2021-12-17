@@ -48,7 +48,6 @@ print(shop['guns'])
 while (not finished) and (time < 100000):  # основной цикл программы
     clock.tick(FPS)
     events = pygame.event.get()
-    G.screen.fill(G.LIGHT_YELLOW)
     pos = pygame.mouse.get_pos()
     objects, G.bullets = Motion.motion_objects(objects, background, gun, G.bullets, shop['open'], health, pos)
     car, dude, zombies, rabbit = objects['car'], objects['dude'], objects['zombies'], objects['rabbit']
@@ -67,8 +66,6 @@ while (not finished) and (time < 100000):  # основной цикл прог�
 
     for event in events:  # блок обработки выполненных игроком действий
         shop['open'], finished = F.handle_events(event, shop['open'], finished)
-    # if (event.type == pygame.MOUSEBUTTONDOWN) and (not shop['open']):
-    # gun.shot(dude, pos, True, False)
     dude.handle_pressing_keys(shop['open'], time, G.g / FPS * 30)
     
     if F.check(pygame.key.get_pressed()[
