@@ -45,8 +45,7 @@ spawn_dif = 3
 spawn_cooldown = 0
 Mask_dude = pygame.mask.from_surface(dude.image)
 
-print(shop['guns'])
-while (not finished):
+while not finished:
     clock.tick(FPS)
     events = pygame.event.get()
     pos = pygame.mouse.get_pos()
@@ -58,7 +57,7 @@ while (not finished):
 
 finished = False
 
-while (not finished):  # основной цикл программы
+while not finished:  # основной цикл программы
     clock.tick(FPS)
     events = pygame.event.get()
     pos = pygame.mouse.get_pos()

@@ -81,7 +81,7 @@ class Dude:
             self.dx = 0
 
         # обработка движения по вертикальной оси
-        if self.car.x - self.width < self.x + self.dx < self.car.x + 40:
+        if self.car.x - self.width < self.x + self.dx < self.car.x + self.car.width:
             level_of_ground = self.car.y - self.height
         else:
             level_of_ground = 350

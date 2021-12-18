@@ -18,7 +18,6 @@ text_title = font_title.render('Dude VS Zombies', True, G.WHITE)
 
 shop_window = pygame.Surface((1000, 500), pygame.SRCALPHA)
 shop_window.fill(G.BLACK)
-image_of_gun = pygame.Surface((250, 150), pygame.SRCALPHA)  # (вспомогательная штука; жду реальных озображений оружия)
 
 surface_of_car = pygame.Surface((width_of_images['car'], height_of_images['car']), pygame.SRCALPHA)
 # поверхность, на которой нарисована машина
@@ -170,6 +169,8 @@ surface_of_rabbit_left.set_colorkey(G.WHITE)
 surface_of_rabbit_right=pygame.transform.flip(surface_of_rabbit_left, 1, 0)
 surface_of_rabbit_right.set_colorkey(G.WHITE)
 
+image_of_gun = []
+
 surface_of_pistol=pygame.Surface((75 + 25, 15), pygame.SRCALPHA)
 surface_of_pistol.fill(G.WHITE)
 surface_of_pistol.set_colorkey(G.WHITE)
@@ -198,6 +199,12 @@ surface_of_rifle=pygame.Surface((150, 20 + 30), pygame.SRCALPHA)
 surface_of_rifle.fill(G.WHITE)
 draw.polygon(surface_of_rifle, G.BLACK, ((65, 7 + 30), (68, 7 + 30), (68, 3 + 30), (112, 3 + 30), (112, 0 + 30),
              (115, 0 + 30), (115, 3 + 30), (120, 3 + 30), (120, 8 + 30), (95, 8 + 30), (95, 11 + 30), (70, 11 + 30), (70, 15 + 30), (65, 15 + 30)))
+
+image_of_gun.append(pygame.transform.smoothscale(surface_of_pistol, (200, 90)))
+image_of_gun.append(pygame.transform.smoothscale(surface_of_revolver, (200, 90)))
+image_of_gun.append(pygame.transform.smoothscale(surface_of_shotgun, (200, 90)))
+image_of_gun.append(pygame.transform.smoothscale(surface_of_uzi, (200, 90)))
+image_of_gun.append(pygame.transform.smoothscale(surface_of_rifle, (200, 90)))
 
 health_empty=pygame.Surface((400, 10), pygame.SRCALPHA)
 health_empty.fill((255, 255, 255))

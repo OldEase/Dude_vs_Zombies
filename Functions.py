@@ -210,7 +210,7 @@ def shop_actions(event, shop, dude, arsenal, full_arsenal):
     if event.type == pygame.MOUSEBUTTONDOWN:  # нажатие на кнопку мыши
         x = pygame.mouse.get_pos()[0]  # определяем координаты положения мыши
         y = pygame.mouse.get_pos()[1]
-        for i in range(8):
+        for i in range(5):
             if (shop['image'].x + shop['guns'][i]['cost'].x < x < shop['image'].x + shop['guns'][i]['cost'].x \
                 + 200) and (shop['image'].y + shop['guns'][i]['cost'].y < y < shop['image'].y + shop['guns'][i] \
                     ['cost'].y + 30) and (type(shop['costs'][i]) == int) and (dude.money >= shop['costs'][i]):
