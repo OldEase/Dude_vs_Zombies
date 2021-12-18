@@ -86,6 +86,9 @@ while (not finished):  # основной цикл программы
         shop['open'], finished = F.handle_events(
             event, shop['open'], finished)
     dude.handle_pressing_keys(shop['open'], time, G.g / FPS * 30)
+
+    if pygame.key.get_pressed()[pygame.K_RCTRL]:
+        gun.reload()
     
     if F.check(pygame.key.get_pressed()[
             pygame.K_1], pygame.key.get_pressed()[pygame.K_2], pygame.key.get_pressed()[pygame.K_3], pygame.key.get_pressed()[pygame.K_4], pygame.key.get_pressed()[pygame.K_5]):

@@ -41,6 +41,10 @@ class gun():
             self.shot_time = pygame.time.get_ticks()
             if self.load == 0:
                 self.load_time = pygame.time.get_ticks()
+                
+    def reload(self, dude, pos, check):
+        self.load = 0
+        self.shot
 
 def muv(sr, pos, coord):
     x1, y1 = pos[0], pos[1]
