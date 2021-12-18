@@ -15,6 +15,8 @@ car = C.Car(500, 342, 0, 0, False, 2000, S.surface_of_car,
 dude = C.Dude(550, 350, 0, 0, 10 / FPS * 30, 8, 1, 0, 100, [0] * 10, 5000, car, S.surface_of_dude_left, 'hp',
             S.width_of_images['dude'], S.height_of_images['dude'], {'fact': False, 'time': 0})
 button_shop = [C.Button_objects(1100, 0, S.shop_button), C.Button_objects(1100, 0, S.shop_close_button)]
+start_button = C.Button_objects(400, 350, S.start_window)
+quit_button = C.Button_objects(400, 340, S.quit_window)
 zombie1 = Z.Zombie(S.width_of_images['zombie'], S.width_of_images['zombie'], 'hp', dude, 50, 350, 3 / FPS * 30,
             10, 10, 10, 1, 1, S.surface_of_zombie_right)
 zombie2 = Z.Zombie(S.width_of_images['zombie'], S.width_of_images['zombie'], 'hp', dude, 250, 350, 3 / FPS * 30,

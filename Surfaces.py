@@ -5,8 +5,11 @@ from Functions import create_label
 
 pygame.init()
 
-width_of_images = {'dude': 24, 'zombie': 24, 'rabbit': 19, 'car': 100}
-height_of_images = {'dude': 52, 'zombie': 52, 'rabbit': 15, 'car': 60}
+start_window = create_label('START', 150, 400, 140, True, True, G.GREEN)  # кнопка старта
+quit_window = create_label('QUIT', 220, 400, 160, True, True, G.GREEN)  # кнопка старта
+
+width_of_images = {'dude': 24, 'zombie': 24, 'rabbit': 19, 'car': 100}  # ширина изображений объектов
+height_of_images = {'dude': 52, 'zombie': 52, 'rabbit': 15, 'car': 60}  # высота изображений объектов
 
 shop_button = create_label('shop', 60, 100, 50, False, True, G.GREEN)  # кнопка доступа к магазину
 shop_close_button = create_label('close', 60, 100, 50, False, True, G.GREEN)  # кнопка закрытия магазина
@@ -16,7 +19,7 @@ font_money = pygame.font.Font(None, 36)
 font_title = pygame.font.Font(None, 144)
 text_title = font_title.render('Dude VS Zombies', True, G.WHITE)
 
-shop_window = pygame.Surface((1000, 500), pygame.SRCALPHA)
+shop_window = pygame.Surface((750, 500), pygame.SRCALPHA)
 shop_window.fill(G.BLACK)
 
 surface_of_car = pygame.Surface((width_of_images['car'], height_of_images['car']), pygame.SRCALPHA)

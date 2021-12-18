@@ -6,6 +6,17 @@ import Global_variable as G
 
 pygame.init()
 
+def start_game(event, start_button, start, finished, quit):
+    if event.type == pygame.QUIT:  # выхода из игры
+        finished = True
+        quit = True
+    if event.type == pygame.MOUSEBUTTONDOWN:  # нажатие на кнопку мыши
+        x = pygame.mouse.get_pos()[0]  # определяем координаты положения мыши
+        y = pygame.mouse.get_pos()[1]
+        if (start_button.x <= x <= start_button.x + 400) and (start_button.y <= y <= start_button.x + 200):
+            start = True
+    return start, finished, quit
+
 
 def move_object(object, dude):
     """
@@ -155,18 +166,19 @@ def update_live_objects(objects):
     return live_objects
 
 
-def handle_events(event, shop_open, finished):
+def handle_events(event, shop_open, finished, quit):
     """
     функция, обрабатывающая некоторые произошедшие за временной интервал события
     """
     if event.type == pygame.QUIT:  # выхода из игры
         finished = True
+        quit = True
     if event.type == pygame.MOUSEBUTTONDOWN:  # нажатие на кнопку мыши
         x = pygame.mouse.get_pos()[0]  # определяем координаты положения мыши
         y = pygame.mouse.get_pos()[1]
         if (x > 1100) and (y < 50):  # нажатие на кнопку магазина
             shop_open = not shop_open
-    return shop_open, finished
+    return shop_open, finished, quit
 
 
 def checking_of_end(lives, repair_level, full_repair_level, result, finished):
@@ -236,4 +248,13 @@ def choose(check1, check2, check3, check4, check5):
         return 3
     if check5:
         return 4
-     
+
+def finish_game(event, quit_button, quit):
+    if event.type == pygame.QUIT:  # выхода из игры
+        quit = True
+    if event.type == pygame.MOUSEBUTTONDOWN:  # нажатие на кнопку мыши
+        x = pygame.mouse.get_pos()[0]  # определяем координаты положения мыши
+        y = pygame.mouse.get_pos()[1]
+        if (quit_button.x <= x <= quit_button.x + 400) and (quit_button.y <= y <= quit_button.y + 200):
+            quit = True
+    return quit

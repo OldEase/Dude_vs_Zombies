@@ -20,8 +20,8 @@ pygame.mixer.music.play()
 
 full_arsenal = Obg.full_arsenal
 arsenal = [full_arsenal[0]] * 5
-car, dude, button_shop, zombies, rabbit = Obg.car, Obg.dude, Obg.button_shop, [Obg.zombie1, \
-    Obg.zombie2, Obg.zombie3], Obg.rabbit
+car, dude, button_shop, start_button, quit_button, zombies, rabbit = Obg.car, Obg.dude, Obg.button_shop, \
+    Obg.start_button, Obg.quit_button, [Obg.zombie1, Obg.zombie2, Obg.zombie3], Obg.rabbit
 objects = {'car': car, 'dude': dude, 'button_shop': button_shop, 'zombies': [zombies[0], zombies[1],
             zombies[2]], 'rabbit': rabbit}
 live_objects = {'dude': dude, 'zombie1': zombies[0], 'zombie2': zombies[1],
@@ -30,6 +30,7 @@ rabbits = [rabbit]
 shop = Special_functions.create_shop()
 gun = arsenal[0]
 coord = [560, 370]
+
 pygame.display.update()
 clock = pygame.time.Clock()
 finished = False
@@ -45,17 +46,19 @@ spawn_dif = 3
 spawn_cooldown = 0
 Mask_dude = pygame.mask.from_surface(dude.image)
 
-while not finished:
+start = False  # логическая переменная, отвечающая за начало игры
+finished = False  # логическая переменная, отвечающая за окончание игры
+quit = False
+
+while (not start) and (not finished):  # цикл, который выводит начальную заставку, пока игрок не нажмет "start"
     clock.tick(FPS)
     events = pygame.event.get()
-    pos = pygame.mouse.get_pos()
+    for event in events:
+        start, finished, quit = F.start_game(event, start_button, start, finished, quit)
     G.screen.fill(G.BLACK) 
     G.screen.blit(S.text_title, (200, 200))
-    if pygame.time.get_ticks() > 5000:
-        finished = True
+    F.draw_object(start_button)
     pygame.display.update()
-
-finished = False
 
 while not finished:  # основной цикл программы
     clock.tick(FPS)
@@ -82,8 +85,7 @@ while not finished:  # основной цикл программы
     dude, background = F.checking_of_stun(dude, background)
 
     for event in events:  # блок обработки выполненных игроком действий
-        shop['open'], finished = F.handle_events(
-            event, shop['open'], finished)
+        shop['open'], finished, quit = F.handle_events(event, shop['open'], finished, quit)
     dude.handle_pressing_keys(shop['open'], time, G.g / FPS * 30)
 
     if pygame.key.get_pressed()[pygame.K_RCTRL]:
@@ -127,4 +129,18 @@ while not finished:  # основной цикл программы
     pygame.display.update()
     G.screen.fill(G.BLACK)
 print(result)
+
+time = 0
+result = F.create_label(result, 150, 800, 90, False, True, G.WHITE)
+
+while (not quit) and (time <= 700):  # цикл, который выводит результат игры по ее окончании
+    clock.tick(FPS)
+    events = pygame.event.get()
+    for event in events:
+        quit = F.finish_game(event, quit_button, quit)
+    G.screen.fill(G.BLACK)
+    G.screen.blit(result, (250, 200))
+    F.draw_object(quit_button)
+    pygame.display.update()
+
 pygame.quit()
