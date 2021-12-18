@@ -41,10 +41,10 @@ def spaun_checking(zombies, dude, spawn_time, spawn_check, spawn_counter, spawn_
         zombies.append(Zombie(S.width_of_images['zombie'], S.width_of_images['zombie'], 'hp', dude,
                 randint(0, 1) * 3600 - 1800, 350, randint(4, 9) / G.FPS * 30, 10, 10, 10, 1, 1,
                                            S.surface_of_zombie_right))
-        spawn_counter += 10
+        spawn_counter += 1
         if spawn_counter >= spawn_dif:
             spawn_check = False
-            spawn_dif += 10
+            spawn_dif += 2
     return zombies, spawn_time, spawn_check, spawn_counter, spawn_dif
 
 

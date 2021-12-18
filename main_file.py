@@ -45,7 +45,7 @@ spawn_dif = 30
 Mask_dude = pygame.mask.from_surface(dude.image)
 
 print(shop['guns'])
-while (not finished) and (time < 100000):  # основной цикл программы
+while (not finished):  # основной цикл программы
     clock.tick(FPS)
     events = pygame.event.get()
     pos = pygame.mouse.get_pos()
@@ -107,7 +107,6 @@ while (not finished) and (time < 100000):  # основной цикл прог�
     for object in live_objects:
         F.draw_hp(object)
     F.draw_rapair_level(car)
-    time += 1
     pygame.display.update()
     G.screen.fill(G.BLACK)
 print(result)

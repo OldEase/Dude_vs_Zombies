@@ -40,6 +40,7 @@ class Dude:
         self.stun = stun
         self.medkit = 5
         self.medkit_cooldown = 0
+        self.repair_speed = 1
 
     def handle_pressing_keys(self, shop_open, time, g):
         '''
@@ -97,7 +98,7 @@ class Dude:
             if (button_down_check == 1) and (self.x - 30 < self.car.x < self.x + 30) and (self.y == self.car.y -
                                                                                           self.height):
                 self.car.repairing = True
-                self.car.repair_level += 1
+                self.car.repair_level += self.repair_speed
             else:
                 self.car.repairing = False
 
