@@ -38,6 +38,8 @@ class Dude:
         self.width = width
         self.height = height
         self.stun = stun
+        self.medkit = 5
+        self.medkit_cooldown = 0
 
     def handle_pressing_keys(self, shop_open, time, g):
         '''
@@ -50,7 +52,15 @@ class Dude:
         button_right_check = pygame.key.get_pressed()[pygame.K_RIGHT]
         button_up_check = - pygame.key.get_pressed()[pygame.K_UP]
         button_down_check = pygame.key.get_pressed()[pygame.K_DOWN]
+        button_heal_check = pygame.key.get_pressed()[pygame.K_RSHIFT]
 
+        if button_heal_check and self.medkit > 0 and self.medkit_cooldown == 0:
+            self.medkit -= 1
+            self.lives = self.lives0
+            self.medkit_cooldown = 288
+        elif self.medkit_cooldown > 0:
+            self.medkit_cooldown -= 1
+        
         # герой не может прыгать, находясь в магазине или чиня машину
         if shop_open or self.car.repairing:
             button_up_check = 0

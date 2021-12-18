@@ -58,14 +58,18 @@ while (not finished) and (time < 100000):  # основной цикл прог�
     text_money = S.font_money.render('$ ' + str(dude.money), True, G.WHITE)
     text_xp = S.font_money.render(
         'XP ' + str(dude.xp) + '/' + str(dude.lvl_up), True, G.WHITE)
+    text_medkit = S.font_money.render(
+        'Medkit ' + str(dude.medkit), True, G.WHITE)
     G.screen.blit(text_money, (50, 50))
     G.screen.blit(text_xp, (50, 20))
+    G.screen.blit(text_medkit, (50, 80))
     sr1, coord_change, angel = Gn.muv(gun.image, pos, coord)
 
     dude, background = F.checking_of_stun(dude, background)
 
     for event in events:  # блок обработки выполненных игроком действий
-        shop['open'], finished = F.handle_events(event, shop['open'], finished)
+        shop['open'], finished = F.handle_events(
+            event, shop['open'], finished)
     dude.handle_pressing_keys(shop['open'], time, G.g / FPS * 30)
     
     if F.check(pygame.key.get_pressed()[
