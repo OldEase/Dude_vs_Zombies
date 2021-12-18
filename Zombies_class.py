@@ -5,7 +5,7 @@ import  Global_variable as G
 
 class Zombie():
     def __init__(self, width, height, hp, dude, x_coord=0, y_coord=0, dx_max=4, dy_max=10,
-                 lives0 = 10, damage=10, exp=1, money=1, image=S.surface_of_zombie_right):
+                 lives0 = 10, damage=10, exp=1, money=10, image=S.surface_of_zombie_right):
         self.x = x_coord
         self.y = y_coord
         self.dx_max = dx_max

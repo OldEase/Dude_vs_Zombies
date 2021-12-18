@@ -27,7 +27,7 @@ class Dude:
         self.a = a
         self.skills = skills
         self.xp = 0
-        self.lvl_up = 5
+        self.lvl_up = 10
         self.lives = lives0
         self.lives0 = lives0
         self.guns = guns
@@ -132,7 +132,7 @@ class Car:
         self.dx = dx
         self.dy = dy
         self.repairing = repairing
-        self.full_repair_level = 5000
+        self.full_repair_level = 50000
         self.repair_level = repair_level
         self.image = image
         self.width = width

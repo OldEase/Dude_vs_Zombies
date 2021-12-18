@@ -29,7 +29,7 @@ def create_shop():
     return shop
 
 
-def spaun_checking(zombies, dude, spawn_time, spawn_check, spawn_counter, spawn_dif):
+def spaun_checking(zombies, dude, spawn_time, spawn_check, spawn_counter, spawn_dif, spawn_cooldown):
     '''
     отвечает за создание новых поколений зомби
     '''
@@ -38,14 +38,19 @@ def spaun_checking(zombies, dude, spawn_time, spawn_check, spawn_counter, spawn_
         if spawn_time >= 1440:
             spawn_check = True
     if spawn_check:
-        zombies.append(Zombie(S.width_of_images['zombie'], S.width_of_images['zombie'], 'hp', dude,
-                randint(0, 1) * 3600 - 1800, 350, randint(4, 9) / G.FPS * 30, 10, 10, 10, 1, 1,
-                                           S.surface_of_zombie_right))
-        spawn_counter += 1
+        if spawn_cooldown == 0:
+            zombies.append(Zombie(S.width_of_images['zombie'], S.width_of_images['zombie'], 'hp', dude,
+                randint(0, 1) * 1200, 350, randint(5, 9) /
+                G.FPS * 30, 10, 10, 10, 1, 100,
+                S.surface_of_zombie_right))
+            spawn_cooldown = 144
+            spawn_counter += 1
+        else:
+            spawn_cooldown -= 1
         if spawn_counter >= spawn_dif:
             spawn_check = False
             spawn_dif += 2
-    return zombies, spawn_time, spawn_check, spawn_counter, spawn_dif
+    return zombies, spawn_time, spawn_check, spawn_counter, spawn_dif, spawn_cooldown
 
 
 

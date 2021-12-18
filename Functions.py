@@ -100,7 +100,7 @@ def collision_with_zombie(zombies, dude, bullets):
                             dude.lvl_up *= 2
                             dude.lives0 += 20
                             dude.lives = dude.lives0
-                            dude.v += 1
+                            dude.repair_speed += 1
                         zombies.pop(j)
                         print('убил')
                         exist_check = False
