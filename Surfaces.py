@@ -13,6 +13,9 @@ shop_close_button = create_label('close', 60, 100, 50, False, True, G.GREEN)  # 
 
 font_money = pygame.font.Font(None, 36)
 
+font_title = pygame.font.Font(None, 144)
+text_title = font_title.render('Dude VS Zombies', True, G.WHITE)
+
 shop_window = pygame.Surface((1000, 500), pygame.SRCALPHA)
 shop_window.fill(G.BLACK)
 image_of_gun = pygame.Surface((250, 150), pygame.SRCALPHA)  # (вспомогательная штука; жду реальных озображений оружия)
@@ -79,6 +82,8 @@ draw.rect(surface_of_dude_right, (147, 0, 55),
 draw.rect(surface_of_dude_right, G.BLACK, (4, 40, 4, 12))  # л нога
 draw.rect(surface_of_dude_right, G.BLACK, (16, 40, 4, 12))  # п нога
 surface_of_dude_right.set_colorkey(G.WHITE)
+
+
 def new_zombie_surface():
     surface_of_zombie_right = pygame.Surface(
         (width_of_images['zombie'], height_of_images['zombie']), pygame.SRCALPHA)

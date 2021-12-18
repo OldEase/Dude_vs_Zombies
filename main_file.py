@@ -46,6 +46,18 @@ spawn_cooldown = 0
 Mask_dude = pygame.mask.from_surface(dude.image)
 
 print(shop['guns'])
+while (not finished):
+    clock.tick(FPS)
+    events = pygame.event.get()
+    pos = pygame.mouse.get_pos()
+    G.screen.fill(G.BLACK) 
+    G.screen.blit(S.text_title, (200, 200))
+    if pygame.time.get_ticks() > 5000:
+        finished = True
+    pygame.display.update()
+
+finished = False
+
 while (not finished):  # основной цикл программы
     clock.tick(FPS)
     events = pygame.event.get()
