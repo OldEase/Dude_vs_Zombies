@@ -90,7 +90,7 @@ def collision_with_zombie(zombies, dude, bullets):
                     '''pygame.draw.rect(
                         zombies[j].image, G.RED, (x - 5, y - 3, 3, 3))'''
                     pygame.draw.rect(
-                        zombies[j].image, G.WHITE, (x - 4, y - 4, 5, 8))
+                        zombies[j].image, G.WHITE, (x - 4, y - 4, 8, 8))
                     zombies[j].mask = pygame.mask.from_surface(
                         zombies[j].image)
                     zombies[j].lives += - bull.damage
