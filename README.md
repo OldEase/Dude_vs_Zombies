@@ -107,4 +107,46 @@
   5) Gun_class.py - классы оружия;
   6) Surfaces.py - собраны поверхности с нарисованными
      графическими объектами;
-  7) Special_functions
+  7) Special_functions.py - функции, требующие импорт
+     ряда модулей и потому выведенные в отдельный 
+     модуль (создание магазина и спаунинг зомби)
+  8) Starting_objects.py - создание обхектов 
+     различных классов в начале игры;
+  9) Motion_objects.py - отдельный модуль, 
+     управляющий передвижением всех объектов за 1 FPS
+  10) Global_variable.py - данный модуль импортируется
+     повсюду и хранит ряд повсеместно необходимых
+     значений переменных
+Обращаем внимание на структурную взаимосвязь
+модулей. Ниже представлены линии импорта:
+     1) main_file.py - Functions.py,  Classes.py, 
+Zombies_class.py, Gun_class.py, Surfaces.py, 
+Special_functions.py, Starting_objects.py,
+Motion_objects.py, Global_variable.py
+     2) Functions.py - Classes.py,
+Global_variable.py;
+     3) Classes.py - nothing;
+     4) Zombies_class.py - Surfaces.py, 
+Global_variable.py;
+     5) Gun_class.py - Surfaces.py, 
+Global_variable.py;
+     6) Surfaces.py - Global_variable.py;
+     7) Special_functions.py - Functions.py, 
+Classes.py, Surfaces.py, Global_variable.py;
+     8) Starting_objects.py - Functions.py, 
+Classes.py, Zombies_class.py, Gun_class.py, 
+Surfaces.py, Special_functions.py, Global_variable.py
+     9) Motion_objects.py - Functions.py,  Classes.py, 
+Zombies_class.py, Gun_class.py, Surfaces.py, 
+Special_functions.py, Starting_objects.py,
+Global_variable.py
+     10) Global_variable.py - nothing
+Основной подход при структуризации программы -
+разделение "обязанностей" модулей (функции, 
+графика, управление, классы), что удобно в работе.
+Большинство начальных числовых значений, 
+определяющих сложность игры, заданы в модуле
+Starting_objects.py при создании основных
+объектов игры. 
+   
+
