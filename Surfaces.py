@@ -79,10 +79,32 @@ draw.rect(surface_of_dude_right, (147, 0, 55),
 draw.rect(surface_of_dude_right, G.BLACK, (4, 40, 4, 12))  # л нога
 draw.rect(surface_of_dude_right, G.BLACK, (16, 40, 4, 12))  # п нога
 surface_of_dude_right.set_colorkey(G.WHITE)
-
+def new_zombie_surface():
+    surface_of_zombie_right = pygame.Surface(
+        (width_of_images['zombie'], height_of_images['zombie']), pygame.SRCALPHA)
+    surface_of_zombie_right.fill(G.WHITE)
+    draw.polygon(surface_of_zombie_right, G.BLACK, [
+                 (0, 0), (24, 0), (24, 40), (0, 40)])  # контур
+    draw.polygon(surface_of_zombie_right, (41, 207, 99), [
+                 (2, 2), (22, 2), (22, 20), (2, 20)])  # лицо
+    draw.rect(surface_of_zombie_right, (61, 156, 201), (6, 4, 16, 4))  # лоб
+    draw.rect(surface_of_zombie_right, (31, 128, 173), (6, 10, 16, 8))  # щеки
+    draw.rect(surface_of_zombie_right, (31, 128, 173),
+              (8, 10, 12, 6))  # под глазами
+    draw.rect(surface_of_zombie_right, G.BLACK, (8, 12, 4, 4))  # л глаз
+    draw.rect(surface_of_zombie_right, G.BLACK, (18, 12, 4, 4))  # пр глаз
+    draw.rect(surface_of_zombie_right, (31, 128, 173),
+              (2, 20, 20, 2))  # подбородок
+    draw.rect(surface_of_zombie_right, (6, 90, 163), (2, 22, 20, 16))  # одежда
+    draw.rect(surface_of_zombie_right, (37, 60, 190),
+              (8, 26, 12, 12))  # одежда тень
+    draw.rect(surface_of_zombie_right, G.BLACK, (4, 40, 4, 12))  # л нога
+    draw.rect(surface_of_zombie_right, G.BLACK, (16, 40, 4, 12))  # п нога
+    surface_of_zombie_right.set_colorkey(G.WHITE)
+    return surface_of_zombie_right
+    
 surface_of_zombie_right=pygame.Surface(
     (width_of_images['zombie'], height_of_images['zombie']), pygame.SRCALPHA)
-# поверхность, на которой надо бы нарисовать человечка, а не просто круг...
 surface_of_zombie_right.fill(G.WHITE)
 draw.polygon(surface_of_zombie_right, G.BLACK, [
              (0, 0), (24, 0), (24, 40), (0, 40)])  # контур

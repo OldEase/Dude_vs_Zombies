@@ -5,7 +5,7 @@ import  Global_variable as G
 
 class Zombie():
     def __init__(self, width, height, hp, dude, x_coord=0, y_coord=0, dx_max=4, dy_max=10,
-                 lives0 = 10, damage=10, exp=1, money=10, image=S.surface_of_zombie_right):
+                 lives0=10, damage=10, exp=1, money=10, image=S.surface_of_zombie_right):
         self.x = x_coord
         self.y = y_coord
         self.dx_max = dx_max
@@ -33,7 +33,7 @@ class Zombie():
     def follow(self, dude):
         if dude.x < self.x and self.direction == 'right':
             self.dx = -self.dx
-            self.image = self.image = pygame.transform.flip(self.image, 1, 0)
+            self.image = pygame.transform.flip(self.image, 1, 0)
             self.image.set_colorkey(G.WHITE)
             self.direction = 'left'
             self.mask = pygame.mask.from_surface(self.image)

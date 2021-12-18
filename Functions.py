@@ -77,7 +77,7 @@ def collision_with_zombie(zombies, dude, bullets):
         exist_check = True
         for bull in bullets:
             inside_check = False
-            if bull.x > 1300 or bull.x < -100:
+            if bull.x > 1200 or bull.x < 0 or bull.y < 0 or bull.y > 1000:
                 bullets.pop(counter)
 
             for i in range(20):
@@ -87,8 +87,10 @@ def collision_with_zombie(zombies, dude, bullets):
                                               int(-zombies[j].y + bull.y)))) != 0 and not inside_check:
                     (x, y) = zombies[j].mask.overlap(
                         bull.mask, (int(-zombies[j].x + bull.x), int(-zombies[j].y + bull.y)))
-                    pygame.draw.rect(zombies[j].image, G.WHITE, (x, y, 2, 2))
-                    pygame.draw.rect(zombies[j].image, G.RED, (x + 2 * bull.dx / abs(bull.dx), y, 1, 1))
+                    pygame.draw.rect(
+                        zombies[j].image, G.WHITE, (x - 1, y - 1, 3, 3))
+                    pygame.draw.rect(
+                        zombies[j].image, G.RED, (x - 1, y - 1, 1, 1))
                     zombies[j].mask = pygame.mask.from_surface(zombies[j].image)
                     zombies[j].lives += - bull.damage
                     print(zombies[j].lives, 'попал')

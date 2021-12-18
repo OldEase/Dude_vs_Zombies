@@ -42,7 +42,7 @@ def spaun_checking(zombies, dude, spawn_time, spawn_check, spawn_counter, spawn_
             zombies.append(Zombie(S.width_of_images['zombie'], S.width_of_images['zombie'], 'hp', dude,
                 randint(0, 1) * 1200, 350, randint(5, 9) /
                 G.FPS * 30, 10, 10, 10, 1, 100,
-                S.surface_of_zombie_right))
+                S.new_zombie_surface()))
             spawn_cooldown = 144
             spawn_counter += 1
         else:
