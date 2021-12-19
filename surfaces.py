@@ -123,6 +123,9 @@ surface_of_dude_right.set_colorkey(g.WHITE)
 
 
 def new_zombie_surface():
+    """
+    Функция создания поверхности
+    """
     surface_of_zombie_right = pygame.Surface((width_of_images['zombie'],
                                               height_of_images['zombie']
                                               ),

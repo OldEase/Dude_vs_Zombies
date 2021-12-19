@@ -10,6 +10,9 @@ def motion_objects(objects, background,
                    gun, bullets, shop_open,
                    health, pos, time
                    ):
+    """
+    Функция перемещающая все объекты
+    """
     objects['dude'].check_collision_with_car()
     objects['dude'], background = limiting_of_space(objects['dude'], background)
     objects['dude'] = f.move_object(objects['dude'], objects['dude'])

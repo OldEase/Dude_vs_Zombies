@@ -4,6 +4,9 @@ import global_variable as g
 
 
 class Zombie:
+    """
+    Класс зомби
+    """
     def __init__(self, width, height,
                  hp, dude, x_coord=0,
                  y_coord=0, dx_max=4,
@@ -35,6 +38,9 @@ class Zombie:
         self.mask = pygame.mask.from_surface(image)
 
     def follow(self, dude):
+        """
+        Поворот зомби
+        """
         if dude.x < self.x and self.direction == 'right':
             self.dx = -self.dx
             self.image = pygame.transform.flip(self.image, 1, 0)
@@ -49,10 +55,16 @@ class Zombie:
             self.mask = pygame.mask.from_surface(self.image)
 
     def jump(self, dude):
+        """
+        Для корректной работы
+        """
         pass
 
 
 class Rabbit(Zombie):
+    """
+    Класс кролика
+    """
     def __init__(self, width, height,
                  hp, dude, x_coord=0,
                  y_coord=0, dx_max=1,
@@ -88,6 +100,9 @@ class Rabbit(Zombie):
         self.mask = pygame.mask.from_surface(image)
 
     def jump(self, dude):
+        """
+        Прыжки кролика
+        """
         if self.dy >= self.dy_max - self.ay:
             self.dy = -self.dy_max
             self.y = self.y0

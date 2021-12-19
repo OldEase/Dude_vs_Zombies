@@ -7,6 +7,9 @@ sr = pygame.Surface((180, 80))
 
 
 class Gun:
+    """
+    Класс оружия
+    """
     def __init__(self, image, speed=1000,
                  damage=1, magaz=10, reload=5000,
                  amount=5, spread=10, long=45):
@@ -27,10 +30,16 @@ class Gun:
         self.image_left = pygame.transform.flip(image, 0, 1)
 
     def draw(self):
+        """
+        Отрисовка оружия
+        """
         pygame.draw.rect(sr, g.BLUE, (self.x, self.y, 50, 10))
         pygame.draw.rect(sr, g.BLUE, (self.x, self.y + 10, 10, 15))
 
     def shot(self, dude, pos: list, check: bool):
+        """
+        Функция стрельбы
+        """
         if self.load == 0 and self.load_time + self.reload < pygame.time.get_ticks() and check:
             self.load = self.magaz
         if self.load != 0 and self.shot_time + self.speed < pygame.time.get_ticks() and check:
@@ -45,6 +54,9 @@ class Gun:
 
 
 def muv(sr, pos: list, coord: list):
+    """
+    Изменение положения
+    """
     x1, y1 = pos[0], pos[1]
     x, y = coord[0], coord[1]
     angle = np.arctan2((x1 - x), (y1 - y)) * 180 / np.pi
@@ -53,6 +65,9 @@ def muv(sr, pos: list, coord: list):
 
 
 class Bullet:
+    """
+    Класс пуль
+    """
     def __init__(self, pos: list, coord: list, gun):
         R = ((coord[0] - pos[0]) ** 2 + (coord[1] - pos[1]) ** 2) ** 0.5
         self.x = coord[0] + gun.h * -(coord[0] - pos[0]) / R
