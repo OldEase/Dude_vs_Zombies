@@ -29,7 +29,7 @@ objects = {'car': car,
            'rabbit': []
            }
 
-shop = Special_functions.create_shop()
+shop = Special_functions.create_shop(dude)
 gun = arsenal[0]
 coord = [560, 370]
 
@@ -142,6 +142,7 @@ while not finished:  # основной цикл программы
         G.screen.blit(shop['image'].image, (shop['image'].x, shop['image'].y))
         for event in events:  # блок обработки выполненных игроком в магазине действий
             dude, arsenal = F.shop_actions(event, shop, dude, arsenal, full_arsenal)
+        shop = Special_functions.update_shop(shop, dude)
         F.draw_object(button_shop[1])
     else:
         F.draw_object(button_shop[0])

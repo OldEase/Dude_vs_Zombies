@@ -230,6 +230,7 @@ def shop_actions(event, shop, dude, arsenal, full_arsenal):
                     ['cost'].y + 30) and (type(shop['costs'][i]) == int) and (dude.money >= shop['costs'][i]):
                 if i <= 4:
                     arsenal[i] = full_arsenal[i]
+                    shop['cost_label'][i] = 'IN ARSENAL'
                 else:
                     dude.lives = min(dude.lives + 10, dude.lives0)
                     print(dude.lives)
