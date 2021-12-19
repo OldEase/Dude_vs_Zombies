@@ -1,12 +1,14 @@
 import pygame
 import Classes
 import numpy as np
-
 import Global_variable as G
 
 pygame.init()
 
-def start_game(event, start_button, start, finished, quit):
+
+def start_game(event, start_button,
+               start, finished, quit
+               ):
     if event.type == pygame.QUIT:  # выхода из игры
         finished = True
         quit = True
@@ -26,6 +28,7 @@ def move_object(object, dude):
     object.y += object.dy
     return object
 
+
 def motion_processing(object, dude):
     '''
     устанавливает характер движения объекта в зависимости от его взаимного относительно героя, машины
@@ -43,10 +46,6 @@ def motion_processing(object, dude):
             object.x = dude.car.x + dude.car.width
             object.y += object.dy
             dude.car.repair_level += - object.damage // 10
-        #elif (object.y >= dude.car.y + object.height) and (object.y + object.dy < dude.car.y + object.height) and (
-                #dude.car.x - object.width <= object.x + object.dx - dude.dx <= dude.car.x + dude.car.width):
-            #object.x += object.dx - dude.dx
-            #object.y = dude.car.y + object.height
         else:
             object = move_object(object, dude)
     else:
@@ -69,6 +68,7 @@ def draw_object(object):
     """
     G.screen.blit(object.image, (object.x, object.y))
 
+
 def collision_with_zombie(zombies, dude, bullets):
     '''
     реализует столкновение героя с зомби
@@ -88,7 +88,7 @@ def collision_with_zombie(zombies, dude, bullets):
         exist_check = True
         for bull in bullets:
             inside_check = False
-            if bull.x > 1200 or bull.x < 0 or bull.y < 0 or bull.y > 1000:
+            if (bull.x > 1200 or bull.x < 0 or bull.y < 0 or bull.y > 1000) and len(bullets) > 0:
                 bullets.pop(counter)
 
             for i in range(20):
@@ -98,8 +98,6 @@ def collision_with_zombie(zombies, dude, bullets):
                                               int(-zombies[j].y + bull.y)))) != 0 and not inside_check:
                     (x, y) = zombies[j].mask.overlap(
                         bull.mask, (int(-zombies[j].x + bull.x), int(-zombies[j].y + bull.y)))
-                    '''pygame.draw.rect(
-                        zombies[j].image, G.RED, (x - 5, y - 3, 3, 3))'''
                     pygame.draw.rect(
                         zombies[j].image, G.WHITE, (x - 4, y - 4, 8, 8))
                     zombies[j].mask = pygame.mask.from_surface(
@@ -120,7 +118,8 @@ def collision_with_zombie(zombies, dude, bullets):
                         exist_check = False
                         break
                     inside_check = True
-                    bullets.pop(counter)
+                    if len(bullets) > 0:
+                        bullets.pop(counter)
             if not inside_check:
                 draw_object(bull)
             counter += 1
@@ -129,12 +128,14 @@ def collision_with_zombie(zombies, dude, bullets):
         j += -1
     return zombies, dude, bullets
 
+
 def draw_hp(object):
     '''
     отображает на экране текущее состояние здоровья персонажа
     '''
     pygame.draw.rect(G.screen, G.WHITE, (object.x, object.y - 16, object.width, 8))
     pygame.draw.rect(G.screen, G.RED, (object.x, object.y - 16, object.width * object.lives // object.lives0, 8))
+
 
 def draw_rapair_level(car):
     '''
@@ -143,6 +144,7 @@ def draw_rapair_level(car):
     pygame.draw.rect(G.screen, G.WHITE, (car.x, car.y + car.height + 8, car.width, 8))
     pygame.draw.rect(G.screen, G.BLUE, (car.x, car.y + car.height + 8, car.width * car.repair_level //
                                         car.full_repair_level, 8))
+
 
 def checking_of_stun(dude, background):
     '''
@@ -162,7 +164,7 @@ def update_live_objects(objects):
     '''
     обновляет список объектов, у которых выводится на экран уровень здоровья
     '''
-    live_objects = [objects['dude']] + objects['zombies'] + [objects['rabbit']]
+    live_objects = [objects['dude']] + objects['zombies']
     return live_objects
 
 
@@ -230,14 +232,21 @@ def shop_actions(event, shop, dude, arsenal, full_arsenal):
                 dude.money += - shop['costs'][i]
     return dude, arsenal
 
-def check(check1, check2, check3, check4, check5):
+
+def check(check1, check2,
+          check3, check4,
+          check5
+          ):
     if check1 or check2 or check3 or check4 or check5:
         return True
     else:
         return False
 
 
-def choose(check1, check2, check3, check4, check5):
+def choose(check1, check2,
+           check3, check4,
+           check5
+           ):
     if check1:
         return 0
     if check2:
@@ -248,6 +257,7 @@ def choose(check1, check2, check3, check4, check5):
         return 3
     if check5:
         return 4
+
 
 def finish_game(event, quit_button, quit):
     if event.type == pygame.QUIT:  # выхода из игры

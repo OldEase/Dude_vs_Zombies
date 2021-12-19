@@ -2,8 +2,13 @@ import pygame
 
 
 class Dude:
-    def __init__(self, x, y, dx, dy, v, power_of_jump, a, skills, lives0, guns, money, car, image, hp, width,
-                 height, stun):
+    def __init__(self, x: float, y: float, dx: float,
+                 dy: float, v: float, power_of_jump: float,
+                 a: float, skills: int, lives0: int,
+                 guns: list, money: int, car, image,
+                 hp: int, width: float,
+                 height: float, stun: bool
+                 ):
         '''
         задаем начальные параметры элемента класса:
         x, y - координаты человечка;
@@ -42,7 +47,9 @@ class Dude:
         self.medkit_cooldown = 0
         self.repair_speed = 1
 
-    def handle_pressing_keys(self, shop_open, time, g):
+    def handle_pressing_keys(self, shop_open: bool,
+                             time: float, g: float
+                             ):
         '''
         обрабатывает нажатия на клавиши и отвечает за движение человечка
         v - максимальная скорость, а - ускорение по горизонтальной оси,
@@ -61,7 +68,7 @@ class Dude:
             self.medkit_cooldown = 288
         elif self.medkit_cooldown > 0:
             self.medkit_cooldown -= 1
-        
+
         # герой не может прыгать, находясь в магазине или чиня машину
         if shop_open or self.car.repairing:
             button_up_check = 0
@@ -92,10 +99,9 @@ class Dude:
         else:
             self.dy += g
 
-
         if (not shop_open) and (not self.stun['fact']):
             # починка машины
-            if (button_down_check == 1) and (self.x - 30 < self.car.x < self.x + 30) and (self.y == self.car.y -
+            if (button_down_check == 1) and (self.x - 90 < self.car.x < self.x + 30) and (self.y == self.car.y -
                                                                                           self.height):
                 self.car.repairing = True
                 self.car.repair_level += self.repair_speed
@@ -115,7 +121,13 @@ class Dude:
 
 
 class Car:
-    def __init__(self, x, y, dx, dy, repairing, repair_level, image, width, height):
+    def __init__(self, x: float, y: float,
+                 dx: float, dy: float,
+                 repairing: bool,
+                 repair_level: float,
+                 image, width: float,
+                 height: float
+                 ):
         '''
         задаем начальные параметры элемента класса:
         x, y - координаты машины;
@@ -138,8 +150,11 @@ class Car:
         self.width = width
         self.height = height
 
-class Button_objects:  # класс кнопок
-    def __init__(self, x, y, image):
+
+class ButtonObjects:  # класс кнопок
+    def __init__(self, x: float,
+                 y: float, image
+                 ):
         '''
         задаем начальные параметры элемента класса:
         x, y - координаты, отвечающие за местоположение кнопки;
@@ -149,6 +164,7 @@ class Button_objects:  # класс кнопок
         self.y = y
         self.image = image
 
+
 class Background:
     def __init__(self, image):
         self.x = -1200
@@ -156,6 +172,7 @@ class Background:
         self.image = image
         self.dx = 0
         self.dy = 0
+
 
 class Health:
     def __init__(self, image):
@@ -165,7 +182,8 @@ class Health:
         self.dy = 0
         self.image = image
 
-class Health_full:
+
+class HealthFull:
     def __init__(self, dude):
         self.x = 400
         self.y = 50

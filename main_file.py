@@ -20,13 +20,15 @@ pygame.mixer.music.play()
 
 full_arsenal = Obg.full_arsenal
 arsenal = [full_arsenal[0]] * 5
-car, dude, button_shop, start_button, quit_button, zombies, rabbit = Obg.car, Obg.dude, Obg.button_shop, \
-    Obg.start_button, Obg.quit_button, [Obg.zombie1, Obg.zombie2, Obg.zombie3], Obg.rabbit
-objects = {'car': car, 'dude': dude, 'button_shop': button_shop, 'zombies': [zombies[0], zombies[1],
-            zombies[2]], 'rabbit': rabbit}
-live_objects = {'dude': dude, 'zombie1': zombies[0], 'zombie2': zombies[1],
-           'zombie3': zombies[2], 'rabbit': rabbit}
-rabbits = [rabbit]
+car, dude, button_shop, start_button, quit_button, zombies = Obg.car, Obg.dude, Obg.button_shop, \
+    Obg.start_button, Obg.quit_button, []
+objects = {'car': car,
+           'dude': dude,
+           'button_shop': button_shop,
+           'zombies': [],
+           'rabbit': []
+           }
+
 shop = Special_functions.create_shop()
 gun = arsenal[0]
 coord = [560, 370]
@@ -54,7 +56,11 @@ while (not start) and (not finished):  # цикл, который выводит
     clock.tick(FPS)
     events = pygame.event.get()
     for event in events:
-        start, finished, quit = F.start_game(event, start_button, start, finished, quit)
+        start, finished, quit = F.start_game(event,
+                                             start_button,
+                                             start, finished,
+                                             quit
+                                             )
     G.screen.fill(G.BLACK) 
     G.screen.blit(S.text_title, (200, 200))
     F.draw_object(start_button)
@@ -64,12 +70,23 @@ while not finished:  # основной цикл программы
     clock.tick(FPS)
     events = pygame.event.get()
     pos = pygame.mouse.get_pos()
-    objects, G.bullets = Motion.motion_objects(objects, background, gun, G.bullets, shop['open'], health, pos)
-    car, dude, zombies, rabbit = objects['car'], objects['dude'], objects['zombies'], objects['rabbit']
+
+    objects['zombies'], spawn_time, spawn_check, spawn_counter, spawn_dif, spawn_cooldown = \
+        Special_functions.spawn_checking(objects['zombies'],
+                                         dude, spawn_time,
+                                         spawn_check, spawn_counter,
+                                         spawn_dif, spawn_cooldown,
+                                         time
+                                         )
+
+    objects, G.bullets = Motion.motion_objects(objects, background,
+                                               gun, G.bullets, shop['open'],
+                                               health, pos
+                                               )
+    car, dude, zombies = objects['car'], objects['dude'], objects['zombies']
     F.draw_object(dude.car)
     F.draw_object(dude)
 
-    F.draw_object(rabbit)
     text_money = S.font_money.render('$ ' + str(dude.money), True, G.WHITE)
     text_xp = S.font_money.render(
         'XP ' + str(dude.xp) + '/' + str(dude.lvl_up), True, G.WHITE)
@@ -85,16 +102,24 @@ while not finished:  # основной цикл программы
     dude, background = F.checking_of_stun(dude, background)
 
     for event in events:  # блок обработки выполненных игроком действий
-        shop['open'], finished, quit = F.handle_events(event, shop['open'], finished, quit)
+        shop['open'], finished, quit = F.handle_events(event, shop['open'],
+                                                       finished, quit
+                                                       )
     dude.handle_pressing_keys(shop['open'], time, G.g / FPS * 30)
-
-    if pygame.key.get_pressed()[pygame.K_RCTRL]:
-        gun.reload()
     
-    if F.check(pygame.key.get_pressed()[
-            pygame.K_1], pygame.key.get_pressed()[pygame.K_2], pygame.key.get_pressed()[pygame.K_3], pygame.key.get_pressed()[pygame.K_4], pygame.key.get_pressed()[pygame.K_5]):
-        gun = arsenal[F.choose(pygame.key.get_pressed()[
-            pygame.K_1], pygame.key.get_pressed()[pygame.K_2], pygame.key.get_pressed()[pygame.K_3], pygame.key.get_pressed()[pygame.K_4], pygame.key.get_pressed()[pygame.K_5])]
+    if F.check(pygame.key.get_pressed()[pygame.K_1],
+               pygame.key.get_pressed()[pygame.K_2],
+               pygame.key.get_pressed()[pygame.K_3],
+               pygame.key.get_pressed()[pygame.K_4],
+               pygame.key.get_pressed()[pygame.K_5]
+               ):
+        gun = arsenal[F.choose(pygame.key.get_pressed()[pygame.K_1],
+                               pygame.key.get_pressed()[pygame.K_2],
+                               pygame.key.get_pressed()[pygame.K_3],
+                               pygame.key.get_pressed()[pygame.K_4],
+                               pygame.key.get_pressed()[pygame.K_5]
+                               )
+        ]
 
     sr1.set_colorkey(G.WHITE)
     G.screen.blit(sr1, (dude.x + 10 - coord_change[0] / 2, dude.y + 10 - coord_change[1] / 2))
@@ -115,11 +140,11 @@ while not finished:  # основной цикл программы
     else:
         F.draw_object(button_shop[0])
 
-    result, finished = F.checking_of_end(dude.lives, dude.car.repair_level, dude.car.full_repair_level, result,
-                                                                                                        finished)
-
-    objects['zombies'], spawn_time, spawn_check, spawn_counter, spawn_dif, spawn_cooldown = Special_functions.spaun_checking(objects['zombies'],
-            dude, spawn_time, spawn_check, spawn_counter, spawn_dif, spawn_cooldown)
+    result, finished = F.checking_of_end(dude.lives,
+                                         dude.car.repair_level,
+                                         dude.car.full_repair_level,
+                                         result, finished
+                                         )
 
     live_objects = F.update_live_objects(objects)
 
