@@ -13,13 +13,14 @@ def create_shop():
     создает магазин как элемент игры
     '''
     names_of_guns = ['        PISTOL', '       REVOLVER', '     WINCHESTER', '            UZI', '       MOSSBERG',
-    '          AK-47', '          M16', '       STRIKER', '        SPITFIRE', '       MINIGUN']
-    cost_of_guns = [i * 500 + 1000 for i in range(8)]
+                     '              KIT']
+    cost_of_guns = [(i + 1) % 6 * 500 + 500 for i in range(6)]
     cost_of_guns[0] = '  IN USE'
-    guns_button = [{'name': 0, 'image': 0, 'cost': 0} for j in range(8)]
-    for i in range(5):
+    guns_button = [{'name': 0, 'image': 0, 'cost': 0} for j in range(6)]
+    for i in range(6):
         guns_button[i]['name'] = C.ButtonObjects(250 * (i % 3), 160 * (i // 3),
-        F.create_label(str(names_of_guns[i]),  30, 200, 30, False, True, G.YELLOW))
+                                                 F.create_label(str(names_of_guns[i]), 30, 200, 30, False, True,
+                                                                G.YELLOW))
         guns_button[i]['image'] = C.ButtonObjects(250 * (i % 3), 160 * (i // 3) + 30, S.image_of_gun[i])
         guns_button[i]['cost'] = C.ButtonObjects(250 * (i % 3), 160 * (i // 3) + 120, F.create_label
         ('            ' + str(cost_of_guns[i]), 30, 200, 30, False, True, G.YELLOW))
@@ -46,7 +47,7 @@ def spawn_checking(zombies: list, dude, spawn_time: int,
         if spawn_cooldown == 0:
             zombies.append(Zombie(S.width_of_images['zombie'],
                                   S.width_of_images['zombie'],
-                                  'hp', dude,randint(0, 1) * 1400 - 100,
+                                  'hp', dude, randint(0, 1) * 1400 - 100,
                                   350, randint(5, 8) / G.FPS * 30,
                                   10, 10, 10, 1, 100,
                                   S.new_zombie_surface()
@@ -55,7 +56,7 @@ def spawn_checking(zombies: list, dude, spawn_time: int,
             zombies.append(Rabbit(S.width_of_images['rabbit'],
                                   S.width_of_images['rabbit'],
                                   'hp', dude, randint(0, 1) * 1400 - 100,
-                                  388,5 / G.FPS * 30, 15 / G.FPS * 30,
+                                  388, 5 / G.FPS * 30, 15 / G.FPS * 30,
                                   3, 10, 1, 1, S.surface_of_rabbit_left
                                   )
                            )
@@ -68,10 +69,3 @@ def spawn_checking(zombies: list, dude, spawn_time: int,
             spawn_dif += 1
             spawn_counter = 0
     return zombies, spawn_time, spawn_check, spawn_counter, spawn_dif, spawn_cooldown
-
-
-
-
-
-
-

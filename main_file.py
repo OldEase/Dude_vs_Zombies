@@ -61,7 +61,7 @@ while (not start) and (not finished):  # цикл, который выводит
                                              start, finished,
                                              quit
                                              )
-    G.screen.fill(G.BLACK) 
+    G.screen.fill(G.BLACK)
     G.screen.blit(S.text_title, (200, 200))
     F.draw_object(start_button)
     pygame.display.update()
@@ -106,7 +106,7 @@ while not finished:  # основной цикл программы
                                                        finished, quit
                                                        )
     dude.handle_pressing_keys(shop['open'], time, G.g / FPS * 30)
-    
+
     if F.check(pygame.key.get_pressed()[pygame.K_1],
                pygame.key.get_pressed()[pygame.K_2],
                pygame.key.get_pressed()[pygame.K_3],
@@ -132,6 +132,12 @@ while not finished:  # основной цикл программы
         dude.image = S.surface_of_dude_left
         gun.image = gun.image_left
         side_gun_check = "left"
+
+    live_objects = F.update_live_objects(objects)
+    for object in live_objects:
+        F.draw_hp(object)
+    F.draw_rapair_level(car)
+
     if shop['open']:
         G.screen.blit(shop['image'].image, (shop['image'].x, shop['image'].y))
         for event in events:  # блок обработки выполненных игроком в магазине действий
@@ -146,14 +152,8 @@ while not finished:  # основной цикл программы
                                          result, finished
                                          )
 
-    live_objects = F.update_live_objects(objects)
-
-    for object in live_objects:
-        F.draw_hp(object)
-    F.draw_rapair_level(car)
     pygame.display.update()
     G.screen.fill(G.BLACK)
-print(result)
 
 time = 0
 result = F.create_label(result, 150, 800, 90, False, True, G.WHITE)

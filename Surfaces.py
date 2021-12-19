@@ -94,11 +94,11 @@ draw.rect(surface_of_dude_left, G.BLACK, (4, 40, 4, 12))  # л нога
 draw.rect(surface_of_dude_left, G.BLACK, (16, 40, 4, 12))  # п нога
 surface_of_dude_left.set_colorkey(G.WHITE)
 
-surface_of_dude_right=pygame.Surface((width_of_images['dude'],
-                                      height_of_images['dude']
-                                      ),
-                                     pygame.SRCALPHA
-                                     )  #
+surface_of_dude_right = pygame.Surface((width_of_images['dude'],
+                                        height_of_images['dude']
+                                        ),
+                                       pygame.SRCALPHA
+                                       )  #
 # поверхность, на которой нарисован человечек
 surface_of_dude_right.fill(G.WHITE)
 draw.polygon(surface_of_dude_right, G.BLACK, [(0, 0), (24, 0),
@@ -123,7 +123,6 @@ surface_of_dude_right.set_colorkey(G.WHITE)
 
 
 def new_zombie_surface():
-
     surface_of_zombie_right = pygame.Surface((width_of_images['zombie'],
                                               height_of_images['zombie']
                                               ),
@@ -179,10 +178,10 @@ draw.rect(surface_of_zombie_right, G.BLACK, (16, 40, 4, 12))  # п нога
 surface_of_zombie_right.set_colorkey(G.WHITE)
 
 surface_of_zombie_left = pygame.Surface((width_of_images['zombie'],
-                                       height_of_images['zombie']
-                                       ),
-                                      pygame.SRCALPHA
-                                      )
+                                         height_of_images['zombie']
+                                         ),
+                                        pygame.SRCALPHA
+                                        )
 surface_of_zombie_left.fill(G.WHITE)
 draw.polygon(surface_of_zombie_left, G.BLACK, [(0, 0), (24, 0),
                                                (24, 40), (0, 40)
@@ -205,10 +204,10 @@ draw.rect(surface_of_zombie_left, G.BLACK, (16, 40, 4, 12))  # п нога
 surface_of_zombie_left.set_colorkey(G.WHITE)
 
 surface_of_rabbit_left = pygame.Surface((width_of_images['rabbit'],
-                                       height_of_images['rabbit']
-                                       ),
-                                      pygame.SRCALPHA
-                                      )
+                                         height_of_images['rabbit']
+                                         ),
+                                        pygame.SRCALPHA
+                                        )
 surface_of_rabbit_left.fill(G.WHITE)
 draw.polygon(surface_of_rabbit_left, G.BLACK, [(0, 0), (10, 0),
                                                (10, 6), (18, 6),
@@ -273,7 +272,7 @@ surface_of_uzi.fill(G.WHITE)
 draw.polygon(surface_of_uzi, G.BLACK, ((75, 0), (78, 0),
                                        (78, 3), (85, 3),
                                        (87, 0), (89, 0),
-                                       (89, 3),(94, 3),
+                                       (89, 3), (94, 3),
                                        (94, 5), (99, 5),
                                        (99, 7), (94, 7),
                                        (94, 9), (83, 9),
@@ -297,20 +296,20 @@ draw.polygon(surface_of_rifle, G.BLACK, ((65, 37), (68, 37),
 surface_of_pistol_shop = pygame.Surface((30, 15), pygame.SRCALPHA)
 surface_of_pistol_shop.fill(G.WHITE)
 draw.polygon(surface_of_pistol_shop, G.BLACK, [(9, 2), (27, 2),
-                                          (27, 8), (15, 8),
-                                          (15, 13), (9, 13)
-                                          ]
+                                               (27, 8), (15, 8),
+                                               (15, 13), (9, 13)
+                                               ]
              )
 
 surface_of_revolver_shop = pygame.Surface((30, 15), pygame.SRCALPHA)
 surface_of_revolver_shop.fill(G.WHITE)
 draw.polygon(surface_of_revolver_shop, G.BLACK, [(9, 6), (12, 6),
-                                            (12, 3), (26, 3),
-                                            (26, 0), (29, 0),
-                                            (29, 6), (23, 6),
-                                            (23, 11), (14, 11),
-                                            (14, 18), (9, 18)
-                                            ]
+                                                 (12, 3), (26, 3),
+                                                 (26, 0), (29, 0),
+                                                 (29, 6), (23, 6),
+                                                 (23, 11), (14, 11),
+                                                 (14, 18), (9, 18)
+                                                 ]
              )
 
 surface_of_shotgun_shop = pygame.Surface((70, 20), pygame.SRCALPHA)
@@ -323,27 +322,38 @@ draw.rect(surface_of_shotgun_shop, G.BLACK, (5, 8, 15, 7), 2)
 surface_of_uzi_shop = pygame.Surface((30, 20), pygame.SRCALPHA)
 surface_of_uzi_shop.fill(G.WHITE)
 draw.polygon(surface_of_uzi_shop, G.BLACK, ((5, 0), (8, 0),
-                                       (8, 3), (15, 3),
-                                       (17, 0), (19, 0),
-                                       (19, 3),(24, 3),
-                                       (24, 5), (29, 5),
-                                       (29, 7), (24, 7),
-                                       (24, 9), (13, 9),
-                                       (15, 25), (10, 25),
-                                       (10, 9), (5, 9)
-                                       )
+                                            (8, 3), (15, 3),
+                                            (17, 0), (19, 0),
+                                            (19, 3), (24, 3),
+                                            (24, 5), (29, 5),
+                                            (29, 7), (24, 7),
+                                            (24, 9), (13, 9),
+                                            (15, 25), (10, 25),
+                                            (10, 9), (5, 9)
+                                            )
              )
 
 surface_of_rifle_shop = pygame.Surface((70, 25), pygame.SRCALPHA)
 surface_of_rifle_shop.fill(G.WHITE)
 draw.polygon(surface_of_rifle_shop, G.BLACK, ((5, 12), (8, 12),
-                                         (8, 8), (52, 8),
-                                         (52, 5), (55, 5),
-                                         (55, 8), (60, 8),
-                                         (60, 13), (35, 13),
-                                         (35, 16), (10, 16),
-                                         (10, 20), (5, 20)
-                                         )
+                                              (8, 8), (52, 8),
+                                              (52, 5), (55, 5),
+                                              (55, 8), (60, 8),
+                                              (60, 13), (35, 13),
+                                              (35, 16), (10, 16),
+                                              (10, 20), (5, 20)
+                                              )
+             )
+
+surface_of_kit_shop = pygame.Surface((200, 90), pygame.SRCALPHA)
+surface_of_kit_shop.fill(G.WHITE)
+draw.polygon(surface_of_kit_shop, G.RED, ((80, 5), (120, 5),
+                                          (120, 25), (140, 25),
+                                          (140, 65), (120, 65),
+                                          (120, 85), (80, 85),
+                                          (80, 65), (60, 65),
+                                          (60, 25), (80, 25)
+                                          )
              )
 
 image_of_gun.append(pygame.transform.smoothscale(surface_of_pistol_shop, (200, 90)))
@@ -351,18 +361,19 @@ image_of_gun.append(pygame.transform.smoothscale(surface_of_revolver_shop, (200,
 image_of_gun.append(pygame.transform.smoothscale(surface_of_shotgun_shop, (200, 90)))
 image_of_gun.append(pygame.transform.smoothscale(surface_of_uzi_shop, (200, 90)))
 image_of_gun.append(pygame.transform.smoothscale(surface_of_rifle_shop, (200, 90)))
+image_of_gun.append(surface_of_kit_shop)
 
-health_empty=pygame.Surface((400, 10), pygame.SRCALPHA)
+health_empty = pygame.Surface((400, 10), pygame.SRCALPHA)
 health_empty.fill((255, 255, 255))
 
-surface_background=pygame.Surface((3600, 800), pygame.SRCALPHA)
+surface_background = pygame.Surface((3600, 800), pygame.SRCALPHA)
 surface_background.fill(G.BLACK)
 for k in range(6):
-    grass=[(0, 800)]
+    grass = [(0, 800)]
     for i in range(1000 - k * 150):
         grass.append((i * 3600 / (1000 - k * 150) + 1800
-                     / (1000 - k * 150), 150 + k * 100))
+                      / (1000 - k * 150), 150 + k * 100))
         grass.append((i * 3600 / (1000 - k * 150) + 3600
-                     / (1000 - k * 150), 140 + k * 100))
+                      / (1000 - k * 150), 140 + k * 100))
     grass.append((3600, 800))
     draw.polygon(surface_background, (5, 32 + k * 20, 53), grass)
