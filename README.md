@@ -98,55 +98,77 @@
   1) main_file.py - главный модуль, осуществляет
 общее управление работой программы, импортирует все
 остальные модули;
-  2) Functions.py - здесь собрано большинство
+  2) functions.py - здесь собрано большинство
 используемых в программе функций;
-  3) Classes.py - представлено большинство
+  3) classes.py - представлено большинство
 используемых в программе классов (кроме классов
 монстров и оружия)
-  4) Zombies_class.py - собраны классы монстров;
-  5) Gun_class.py - классы оружия;
-  6) Surfaces.py - собраны поверхности с нарисованными
+  4) zombies_class.py - собраны классы монстров;
+  5) gun_class.py - классы оружия;
+  6) surfaces.py - собраны поверхности с нарисованными
      графическими объектами;
-  7) Special_functions.py - функции, требующие импорт
+  7) special_functions.py - функции, требующие импорт
      ряда модулей и потому выведенные в отдельный 
      модуль (создание магазина и спаунинг зомби)
-  8) Starting_objects.py - создание обхектов 
+  8) starting_objects.py - создание обхектов 
      различных классов в начале игры;
-  9) Motion_objects.py - отдельный модуль, 
+  9) motion_objects.py - отдельный модуль, 
      управляющий передвижением всех объектов за 1 FPS
-  10) Global_variable.py - данный модуль импортируется
+  10) global_variable.py - данный модуль импортируется
      повсюду и хранит ряд повсеместно необходимых
      значений переменных
 Обращаем внимание на структурную взаимосвязь
 модулей. Ниже представлены линии импорта:
-     1) main_file.py - Functions.py,  Classes.py, 
-Zombies_class.py, Gun_class.py, Surfaces.py, 
-Special_functions.py, Starting_objects.py,
-Motion_objects.py, Global_variable.py
-     2) Functions.py - Classes.py,
-Global_variable.py;
-     3) Classes.py - nothing;
-     4) Zombies_class.py - Surfaces.py, 
-Global_variable.py;
-     5) Gun_class.py - Surfaces.py, 
-Global_variable.py;
-     6) Surfaces.py - Global_variable.py;
-     7) Special_functions.py - Functions.py, 
-Classes.py, Surfaces.py, Global_variable.py;
-     8) Starting_objects.py - Functions.py, 
-Classes.py, Zombies_class.py, Gun_class.py, 
-Surfaces.py, Special_functions.py, Global_variable.py
-     9) Motion_objects.py - Functions.py,  Classes.py, 
-Zombies_class.py, Gun_class.py, Surfaces.py, 
-Special_functions.py, Starting_objects.py,
-Global_variable.py
-     10) Global_variable.py - nothing
+     1) main_file.py - functions.py,  classes.py, 
+zombies_class.py, gun_class.py, surfaces.py, 
+special_functions.py, starting_objects.py,
+motion_objects.py, global_variable.py
+     2) functions.py - classes.py,
+global_variable.py;
+     3) classes.py - nothing;
+     4) zombies_class.py - global_variable.py;
+     5) gun_class.py - global_variable.py;
+     6) surfaces.py - global_variable.py;
+     7) special_functions.py - functions.py, 
+classes.py, surfaces.py, global_variable.py;
+     8) starting_objects.py - classes.py, 
+gun_class.py, surfaces.py, global_variable.py
+     9) motion_objects.py - functions.py,  classes.py,
+global_variable.py
+     10) global_variable.py - nothing
+Ниже описаны основные классы:
+  1. Модуль classes.py:
+     1) Dude - класс человечка (героя)
+Единственный элемент - ваш герой
+     2) Car - класс машины героя
+     3) ButtonObjects - класс кнопок и подобных
+  им элементов 
+     4) Background - фон (в программе реализовано
+  движение всех объектов относительно персонажа,
+  поэтому все движущиеся относительно него объекты
+  (включая фон) реализованы как классы)
+     5) Health - графический элемент, информирующий
+  о текущем уровне здоровья персонажа
+     6) HealthFull - графический элемент, 
+  показывающий максимальный уровень здоровья 
+  персонажа
+  2. Модуль gun_class.py
+     1) Gun - класс огнестрельно оружия
+     2) Bullets - класс пуль
+  3. Модуль zombies_class.py:
+     1) Zombie - класс обычных зомби
+     2) Rabbits - класс кроликов. Является 
+  наследником класса зомби и обладает рядом его 
+  функций (следование за героем), но объекты класса 
+  обладают специфическими свойствами 
+  (другой вид движения)
+
 Основной подход при структуризации программы -
 разделение "обязанностей" модулей (функции, 
 графика, управление, классы), что удобно в работе.
 Большинство начальных числовых значений, 
 определяющих сложность игры, заданы в модуле
-Starting_objects.py при создании основных
+starting_objects.py при создании основных
 объектов игры. 
    
 

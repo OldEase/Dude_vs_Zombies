@@ -9,7 +9,7 @@ class Dude:
                  hp: int, width: float,
                  height: float, stun: bool
                  ):
-        '''
+        """
         задаем начальные параметры элемента класса:
         x, y - координаты человечка;
         dx, dy -текущая скорость;
@@ -22,7 +22,7 @@ class Dude:
         money - кол-во монет; image - поверхность, на которой рисуется человечек
         width - ширина, height - высота поверхности
         stun - оглушение; stun = True - значит, человечек в этот момент оглушен ударом
-        '''
+        """
         self.x = x
         self.y = y
         self.dx = dx
@@ -50,11 +50,11 @@ class Dude:
     def handle_pressing_keys(self, shop_open: bool,
                              time: float, g: float
                              ):
-        '''
+        """
         обрабатывает нажатия на клавиши и отвечает за движение человечка
         v - максимальная скорость, а - ускорение по горизонтальной оси,
         g - по вертикальной
-        '''
+        """
         # считываем данные о том, какие клавиши в данный момент зажаты
         button_left_check = - pygame.key.get_pressed()[pygame.K_LEFT]
         button_right_check = pygame.key.get_pressed()[pygame.K_RIGHT]
@@ -109,6 +109,9 @@ class Dude:
                 self.car.repairing = False
 
     def check_collision_with_car(self):
+        """
+        проверяет столкновение героя с машиной
+        """
         if (self.x + self.width <= self.car.x) and (self.x + self.width + self.dx > self.car.x) and (
                 self.y + self.dy > self.car.y - self.height) and (self.y > self.car.y - self.height):
             self.dx = self.car.x - self.width - self.x
@@ -128,7 +131,7 @@ class Car:
                  image, width: float,
                  height: float
                  ):
-        '''
+        """
         задаем начальные параметры элемента класса:
         x, y - координаты машины;
         dx - горизонтальная скорость;
@@ -138,7 +141,7 @@ class Car:
         full_repair_level - уровень полной починки, необходимый для победы в игре
         repair_level - уровень починки автомобиля;
         width, height - ширина и высота изображения соответственно
-        '''
+        """
         self.x = x
         self.y = y
         self.dx = dx
@@ -155,11 +158,11 @@ class ButtonObjects:  # класс кнопок
     def __init__(self, x: float,
                  y: float, image
                  ):
-        '''
+        """
         задаем начальные параметры элемента класса:
         x, y - координаты, отвечающие за местоположение кнопки;
         image - поверхность, на которой рисуется кнопка
-        '''
+        """
         self.x = x
         self.y = y
         self.image = image
@@ -192,4 +195,4 @@ class HealthFull:
         self.image = pygame.Surface((400, 10), pygame.SRCALPHA)
         self.image.fill((255, 255, 255))
         self.image.set_colorkey((255, 255, 255))
-        pygame.draw.rect(self.image, (255, 0, 0), (0, 0, int(dude.lives * 4), 10))
+        pygame.draw.rect(self.image, (255, 0, 0), (0, 0, int(400/dude.lives0*dude.lives), 10))

@@ -1,6 +1,6 @@
-import Surfaces as S
+import surfaces as s
 import pygame
-import Global_variable as G
+import global_variable as g
 
 
 class Zombie:
@@ -9,7 +9,7 @@ class Zombie:
                  y_coord=0, dx_max=4,
                  dy_max=10, lives0=10,
                  damage=10, exp=1, money=10,
-                 image=S.surface_of_zombie_right
+                 image=s.surface_of_zombie_right
                  ):
         self.x = x_coord
         self.y = y_coord
@@ -29,7 +29,7 @@ class Zombie:
         self.direction = 'right'
         if dude.x < self.x:
             self.image = pygame.transform.flip(self.image, 1, 0)
-            self.image.set_colorkey(G.WHITE)
+            self.image.set_colorkey(g.WHITE)
             self.direction = 'left'
             self.dx = -dx_max
         self.mask = pygame.mask.from_surface(image)
@@ -38,13 +38,13 @@ class Zombie:
         if dude.x < self.x and self.direction == 'right':
             self.dx = -self.dx
             self.image = pygame.transform.flip(self.image, 1, 0)
-            self.image.set_colorkey(G.WHITE)
+            self.image.set_colorkey(g.WHITE)
             self.direction = 'left'
             self.mask = pygame.mask.from_surface(self.image)
         if dude.x > self.x and self.direction == 'left':
             self.dx = -self.dx
             self.image = pygame.transform.flip(self.image, 1, 0)
-            self.image.set_colorkey(G.WHITE)
+            self.image.set_colorkey(g.WHITE)
             self.direction = 'right'
             self.mask = pygame.mask.from_surface(self.image)
 
@@ -56,9 +56,9 @@ class Rabbit(Zombie):
     def __init__(self, width, height,
                  hp, dude, x_coord=0,
                  y_coord=0, dx_max=1,
-                 dy_max=2, lives0 = 100,
+                 dy_max=2, lives0=100,
                  damage=10, exp=1, money=1,
-                 image=S.surface_of_rabbit_right
+                 image=s.surface_of_rabbit_right
                  ):
         self.x = x_coord
         self.y = y_coord
@@ -75,14 +75,14 @@ class Rabbit(Zombie):
         self.money = money
         self.image = image
         self.image = pygame.transform.flip(self.image, 1, 0)
-        self.image.set_colorkey(G.WHITE)
+        self.image.set_colorkey(g.WHITE)
         self.width = width
         self.height = height
         self.hp = hp
         self.direction = 'right'
         if dude.x < self.x:
             self.image = pygame.transform.flip(self.image, 1, 0)
-            self.image.set_colorkey(G.WHITE)
+            self.image.set_colorkey(g.WHITE)
             self.direction = 'left'
             self.dx = -dx_max
         self.mask = pygame.mask.from_surface(image)
@@ -93,5 +93,3 @@ class Rabbit(Zombie):
             self.y = self.y0
         else:
             self.dy += self.ay
-
-

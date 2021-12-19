@@ -1,12 +1,9 @@
 import pygame
 
-import Surfaces as S
-import Gun_class as Gn
-
 g = 1
 bullets = []
 screen = pygame.display.set_mode((1200, 700))
-FPS = 144
+FPS = 144  # число кадров в секунду
 
 RED = (255, 0, 0)  # блок задания цветовой палитры
 BLUE = (0, 0, 255)
